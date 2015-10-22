@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<title>FaMirror</title>
 </head>
-	<video class="mirror" id="mirror" autoplay></video>
-	<script type="text/javascript" src="js/mirror.js"></script>
+	<h1>FaMirror</h1>
+	<p>FaMirrorで一瞬の時間もムダにしない、新しい朝を。</p>
+	<a href="OAuth.php">googleアカウントでログイン</a>
 <body>
