@@ -47,19 +47,19 @@ $array = json_decode($res, true);
 //セッションスタート
 session_start();
 $_SESSION['name'] = $array[name];
+$_SESSION['mail'] = $array[email];
 if($_SESSION['name'] == '')
 	header('Location: ../');
 
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
-	mysql_select_db('sample_db')
-} else {
-	header('Location: ../');
+	mysql_select_db('famirror', $conn);
+	$sql = "SELECT family_id FROM `family` WHERE `user_id1` = '". $array[email] ."' OR `user_id2` = '". $array[email] ."' OR `user_id3` = '". $array[email] ."' OR `user_id4` = '". $array[email] ."' OR `user_id5` = '". $array[email] ."' OR `user_id6` = '". $array[email] ."' OR `user_id7` = '". $array[email] ."' OR `user_id8` = '". $array[email] ."' OR `user_id9` = '". $array[email] ."' OR `user_id10` = '". $array[email] ."'";
+	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0)
+		header('Location: ../mirror/');	
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -71,7 +71,6 @@ if($conn) {
 	<video class="mirror" id="mirror" autoplay></video>
 	<script type="text/javascript" src="../js/mirror.js"></script>
 <body>
-
 
 
 
