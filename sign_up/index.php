@@ -46,16 +46,19 @@ $array = json_decode($res, true);
 
 //セッションスタート
 session_start();
-$_SESSION['name'] = $array[name];
-$_SESSION['mail'] = $array[email];
-if($_SESSION['name'] == '')
-	header('Location: ../');
+if($array[name] == '') {
+	if($_SESSION['name'] == '')
+		header('Location: ../');
+ } else {
+	$_SESSION['name'] = $array[name];
+	$_SESSION['mail'] = $array[email];
+}
 
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
 	mysql_select_db('famirror', $conn);
-	$sql = "SELECT family_id FROM `family` WHERE `user_id1` = '". $array[email] ."' OR `user_id2` = '". $array[email] ."' OR `user_id3` = '". $array[email] ."' OR `user_id4` = '". $array[email] ."' OR `user_id5` = '". $array[email] ."' OR `user_id6` = '". $array[email] ."' OR `user_id7` = '". $array[email] ."' OR `user_id8` = '". $array[email] ."' OR `user_id9` = '". $array[email] ."' OR `user_id10` = '". $array[email] ."'";
+	$sql = "SELECT family_id FROM `family` WHERE `user_id1` = '". $_SESSION['mail'] ."' OR `user_id2` = '". $_SESSION['mail'] ."' OR `user_id3` = '". $_SESSION['mail'] ."' OR `user_id4` = '". $_SESSION['mail'] ."' OR `user_id5` = '". $_SESSION['mail'] ."' OR `user_id6` = '". $_SESSION['mail'] ."' OR `user_id7` = '". $_SESSION['mail'] ."' OR `user_id8` = '". $array[email] ."' OR `user_id9` = '". $_SESSION['mail'] ."' OR `user_id10` = '". $_SESSION['mail'] ."'";
 	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0)
 		header('Location: ../mirror/');	
 }
@@ -67,9 +70,16 @@ if($conn) {
 	<link rel="stylesheet" href="../css/style.css">
 	<title>FaMirror | 新規登録</title>
 </head>
-	<h1>ようこそ<?php echo $array[name]; ?>さん</h1>
+	<h1>ようこそ<?php echo $_SESSION['name']; ?>さん</h1>
+	<h2>画面の中央に顔が収まるようにしてください。</h2>
+	<div id="shot">撮影（残り<span id="count">5</span>回)</div>
 	<video class="mirror" id="mirror" autoplay></video>
+	<canvas class="screen" id="canvas"></canvas>
+	<img class="screen" id="img"></img>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/mirror.js"></script>
+	<script type="text/javascript" src="../js/shot.js"></script>
 <body>
 
 

@@ -9,3 +9,4 @@ navigator.getUserMedia({video: true, audio: false},
 	}, function(err) {
 		console.log(eer);
 	});
+
