@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<link rel="stylesheet" href="css/style.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width,maximum-scale=1.0">
+	<link rel="stylesheet" href="style.css">
 	<title>FaMirror</title>
 </head>
-	<h1>FaMirror</h1>
-	<p>FaMirrorで一瞬の時間もムダにしない、新しい朝を。</p>
-	<a href="OAuth.php">googleアカウントでログイン</a>
+
 <body>
+	<header class="siteheader shadow1">
+	</header>
+	<section class="main">
+		<h2>FaMirrorで<br>一瞬の時間もムダにしない、<br>新しい朝を。</h2>
+	</section>
+	<footer class="sitefooter">
+		<button onclick="location.href='OAuth.php'"></button>
+	</footer>
+</body>
+</html>
