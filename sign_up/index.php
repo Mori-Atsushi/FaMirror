@@ -67,24 +67,22 @@ if($conn) {
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<meta name="viewport" content="width=device-width,maximum-scale=1.0">
 	<link rel="stylesheet" href="../css/style.css">
 	<title>FaMirror | 新規登録</title>
 </head>
 	<h1>ようこそ<?php echo $_SESSION['name']; ?>さん</h1>
 	<h2>画面の中央に顔が収まるようにしてください。</h2>
 	<div id="shot">撮影（残り<span id="count">5</span>回)</div>
-	<video class="mirror" id="mirror" autoplay></video>
-	<canvas class="screen" id="canvas"></canvas>
-	<img class="screen" id="img"></img>
+
+	<video id="mirror" class="mirror" autoplay></video>
+	<canvas id="canvas" class="temp_pic" width="640" height="480" ></canvas>
+	<div class="box"><img id="img" class="pic" src=""></div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/mirror.js"></script>
-	<script type="text/javascript" src="../js/shot.js"></script>
+	<script src="../js/mirror.js"></script>
+	<script src="../js/jquery.facedetection.min.js"></script>
 <body>
-
-
-
-
 
 
 
