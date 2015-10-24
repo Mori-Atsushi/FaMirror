@@ -65,15 +65,16 @@ var sent = function() {
 		contentType: false,
 		processData: false,
 	}).done(function( data ) {
-		console.log(data.face[0].face_id);
 		if(data.face.length == 1) {
 			face_id[count++] = data.face[0].face_id;
-			if(count >= 5)
-				console.log('finish');
-			else
+			if(count >= 5) {
+				$('#message').text('撮影完了');
+			} else {
+				$('#message').text('撮影中(' + (count + 1) + '/5)');
 				roop();
+			}
 		} else {
-			console.log('error');
+			$('#message').text('もう一度やり直してください。');
 			flag = true;
 		}
 	});
@@ -99,6 +100,7 @@ navigator.getUserMedia({video: true}, function(stream) {
 //ボタンイベント
 $("#shot").click( function() {
 	if(flag == true) {
+		$('#message').text('撮影中(1/5)');
 		count = 0;
 		flag = false;
 		roop();

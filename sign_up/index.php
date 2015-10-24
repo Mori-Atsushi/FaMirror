@@ -36,10 +36,6 @@ if(isset($token['error'])){
 }
 $access_token = $token['access_token'];
 
-
-//--------------------------------------
-// ユーザー情報を取得してみる
-//--------------------------------------
 $params = array('access_token' => $access_token);
 $res = file_get_contents(INFO_URL . '?' . http_build_query($params));
 $array = json_decode($res, true);
@@ -73,8 +69,8 @@ if($conn) {
 </head>
 	<h1>ようこそ<?php echo $_SESSION['name']; ?>さん</h1>
 	<h2>画面の中央に顔が収まるようにしてください。</h2>
-	<div id="shot">準備完了（撮影開始）</div>
-	<pre id="response"></pre>
+	<div id="shot">撮影開始</div>
+	<p id="message"></p>
 
 	<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>
