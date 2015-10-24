@@ -73,12 +73,11 @@ if($conn) {
 </head>
 	<h1>ようこそ<?php echo $_SESSION['name']; ?>さん</h1>
 	<h2>画面の中央に顔が収まるようにしてください。</h2>
-	<div id="shot">撮影（残り<span id="count">5</span>回)</div>
+	<div id="shot">準備完了（撮影開始）</div>
 	<pre id="response"></pre>
 
 	<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>
-	<img id="img" class="pic" src="">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="../js/facepp-sdk.min.js"></script>
