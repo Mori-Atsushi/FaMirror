@@ -72,7 +72,7 @@ var sent = function() {
 			if(data.face.length == 1) {
 				face_id[count++] = data.face[0].face_id;
 				if(count >= max) {
-					$('#message').text('撮影完了');
+					$('#message').text('登録中');
 					regist_db();
 				} else {
 					$('#message').text('撮影中(' + (count + 1) + '/5)');
@@ -147,7 +147,7 @@ var group_create = function() {
 		url: request_url,
 		type: 'POST',
 		success: function(data, dataType) {
-			console.log(data);
+			$('#message').text('登録完了');
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log('Error : ' + errorThrown);
