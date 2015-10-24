@@ -74,14 +74,15 @@ if($conn) {
 	<h1>ようこそ<?php echo $_SESSION['name']; ?>さん</h1>
 	<h2>画面の中央に顔が収まるようにしてください。</h2>
 	<div id="shot">撮影（残り<span id="count">5</span>回)</div>
+	<pre id="response"></pre>
 
 	<video id="mirror" class="mirror" autoplay></video>
-	<canvas id="canvas" class="temp_pic" width="640" height="480" ></canvas>
-	<div class="box"><img id="img" class="pic" src=""></div>
+	<canvas id="canvas" class="temp_pic"></canvas>
+	<img id="img" class="pic" src="">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="../js/facepp-sdk.min.js"></script>
 	<script src="../js/mirror.js"></script>
-	<script src="../js/jquery.facedetection.min.js"></script>
 <body>
 
 

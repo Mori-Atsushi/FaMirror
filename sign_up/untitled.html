@@ -1,4 +1,0 @@
-		$sql2 = "INSERT INTO `famirror`.`family` (`family_num`, `user_id1`) VALUES ('1', '". $array[email] ."')";
-		mysql_query($sql2, $conn);
-		$family_id = mysql_fetch_array(mysql_query($sql, $conn));
-		$_SESSION['family_id'] = $family_id['family_id'];
