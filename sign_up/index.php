@@ -76,7 +76,9 @@ if($conn) {
 	<canvas id="canvas" class="temp_pic"></canvas>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script id="script" src="../js/mirror.js" mail=<?php echo '"' . $_SESSION['mail'] . '"'; ?>></script>
+	<script src="../js/facepp.js"></script>
+	<script src="../js/mirror.js"></script>
+	<script id="script" src="../js/sign_up.js" mail=<?php echo '"' . $_SESSION['mail'] . '"'; ?>></script>
 <body>
 
 
