@@ -14,7 +14,7 @@
 	<header class="siteheader shadow1">
 	</header>
 	<section class="main">
-		<h2>FaMirrorで<br>一瞬の時間もムダにしない、<br>新しい朝を。</h2>
+		<h2>一瞬の時間もムダにしない、<br>新しい朝を。</h2>
 	</section>
 	<footer class="sitefooter">
 		<button onclick="location.href='OAuth.php'"></button>

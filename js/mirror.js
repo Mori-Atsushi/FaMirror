@@ -26,7 +26,7 @@ var mail = $('#script').attr('mail');
 var hasGetUserMedia = function() {
 	return (navigator.getUserMedia || navigator.webkitGetUserMedia ||
 		navigator.mozGetUserMedia || navigator.msGetUserMedia);
-}
+};
 
 //エラー
 var onFailSoHard = function(e) {
@@ -42,7 +42,7 @@ var snapshot = function() {
 		$('#canvas').attr('height', h);
 		ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 	}
-}
+};
 
 //face++に画像を送信する
 var sent = function() {
@@ -87,12 +87,12 @@ var sent = function() {
 			console.log('Error : ' + errorThrown);
 		}
 	});
-}
+};
 
 var roop = function() {
 	snapshot();
 	sent();
-}
+};
 
 //データベースにユーザー情報を登録する
 var regist_db = function() {
@@ -108,11 +108,11 @@ var regist_db = function() {
 			person_create();
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-            console.log('Error : ' + errorThrown);
-        }
+			console.log('Error : ' + errorThrown);
+		}
 
 	});
-}
+};
 
 //face++に人を登録する
 var person_create = function() {
@@ -136,7 +136,7 @@ var person_create = function() {
 			console.log('Error : ' + errorThrown);
 		}
 	});
-}
+};
 
 //face++のグループを作成する
 var group_create = function() {
@@ -153,18 +153,18 @@ var group_create = function() {
 			console.log('Error : ' + errorThrown);
 		}
 	});
+};
+
+if(!hasGetUserMedia()) {
+	alert("未対応ブラウザです。");
 }
- 
-if (!hasGetUserMedia()) {
-    alert("未対応ブラウザです。");
-}
- 
+
 window.URL = window.URL || window.webkitURL;
 navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia || navigator.msGetUserMedia;
+							navigator.mozGetUserMedia || navigator.msGetUserMedia;
 navigator.getUserMedia({video: true}, function(stream) {
-  video.src = window.URL.createObjectURL(stream);
-  localMediaStream = stream;
+	video.src = window.URL.createObjectURL(stream);
+	localMediaStream = stream;
 }, onFailSoHard);
 
 //ボタンイベント
