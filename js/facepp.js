@@ -3,7 +3,6 @@ var	api_secret = 'bABwx_lmF99mpbGy9M3ZSzsJqiiAoNpb';
 var api = '?api_key=' + api_key + '&api_secret=' + api_secret;
 
 var url = 'https://apius.faceplusplus.com';
-var detection_detect_url = url + '/detection/detect';
 
 //face++に情報を送信する
 var send_info = function(url, callback) {
@@ -20,7 +19,10 @@ var send_info = function(url, callback) {
 };
 
 //face++に画像を送信する
-var send_img = function(url, formData, callback) {
+var send_img = function(url, blob, callback) {
+	var formData = new FormData();
+	formData.append('img', blob);
+
 	$.ajax({
 		url: url,
 		type: 'POST',
@@ -34,7 +36,19 @@ var send_img = function(url, formData, callback) {
 			console.log('Error : ' + errorThrown);
 		}
 	});
-}
+};
+
+//人を解析する
+var detection_detect = function(blob, callback) {
+	var request_url = url + '/detection/detect' + api + '&mode=oneface';
+	send_img(request_url, blob, callback);
+};
+
+//グループから人を探す
+var recognition_identify = function(name, blob, callback) {
+	var request_url = url + '/recognition/identify' + api + '&group_name=' + name + '&mode=oneface';
+	send_img(request_url, blob, callback);	
+};
 
 //face++に人を登録する
 var person_create = function(name, face, callback) {

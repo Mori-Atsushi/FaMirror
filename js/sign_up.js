@@ -12,11 +12,7 @@ $(function() {
 	//写真撮影及び送信
 	var roop = function() {
 		var blob = snapshot();
-		var formData = new FormData();
-		formData.append('img', blob);
-
-		var request_url = detection_detect_url + api + '&mode=oneface';
-		send_img(request_url, formData, check_img);
+		detection_detect(blob, check_img);
 	};
 
 	//写真に人が写っていたか確認する。
