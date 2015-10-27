@@ -63,23 +63,29 @@ if($conn) {
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width,maximum-scale=1.0">
 	<link rel="stylesheet" href="../css/style.css">
 	<title>FaMirror | 新規登録</title>
 </head>
-	<h1>ようこそ<?php echo $_SESSION['name']; ?>さん</h1>
-	<h2>画面の中央に顔が収まるようにしてください。</h2>
-	<div id="shot">撮影開始</div>
-	<p id="message"></p>
+<body>
+	<header class="site_header">
+		<h1>顔登録</h1>
+	</header>
 
 	<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>
+	
+	<section class="exp">
+		<p id="message">顔を登録します。<br>四角形の中に顔を入れてカメラボタンをタップしてください。</p>
+		<div id="shot" class="shot"></div>
+	</section>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="../js/facepp.js"></script>
 	<script src="../js/mirror.js"></script>
 	<script id="script" src="../js/sign_up.js" mail=<?php echo '"' . $_SESSION['mail'] . '"'; ?>></script>
-<body>
+</body>
 
 
 
