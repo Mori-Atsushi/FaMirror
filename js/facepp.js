@@ -75,6 +75,12 @@ var group_create = function(name, person, callback) {
 	send_info(request_url, function(){ train_identify(name, callback); });
 };
 
+//face++のグループに人を登録する
+var group_add_person = function(name, person, callback) {
+	var request_url = url + '/group/add_person' + api + '&group_name=' + name + '&person_name=' + person;
+	send_info(request_url, function(){ train_identify(name, callback); });
+};
+
 //グループをトレーニングする
 var train_identify = function(name, callback) {
 	var request_url = url + '/train/identify' + api + '&group_name=' + name;

@@ -42,21 +42,21 @@ $array = json_decode($res, true);
 
 //セッションスタート
 session_start();
-if($array[name] == '') {
+if(empty($array['name'])) {
 	if($_SESSION['name'] == '')
 		header('Location: ../');
- } else {
-	$_SESSION['name'] = $array[name];
-	$_SESSION['mail'] = $array[email];
+	} else {
+		$_SESSION['name'] = $array['name'];
+		$_SESSION['mail'] = $array['email'];
 }
 
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
 	mysql_select_db('famirror', $conn);
-	$sql = "SELECT family_id FROM `family` WHERE `user_id1` = '". $_SESSION['mail'] ."' OR `user_id2` = '". $_SESSION['mail'] ."' OR `user_id3` = '". $_SESSION['mail'] ."' OR `user_id4` = '". $_SESSION['mail'] ."' OR `user_id5` = '". $_SESSION['mail'] ."' OR `user_id6` = '". $_SESSION['mail'] ."' OR `user_id7` = '". $_SESSION['mail'] ."' OR `user_id8` = '". $array[email] ."' OR `user_id9` = '". $_SESSION['mail'] ."' OR `user_id10` = '". $_SESSION['mail'] ."'";
+	$sql = "SELECT family_id FROM `user` WHERE `user_mail` = '". $_SESSION['mail'] ."'";
 	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0)
-		header('Location: ../mirror/');	
+		header('Location: ../mirror/');
 }
 ?>
 
@@ -84,7 +84,7 @@ if($conn) {
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="../js/facepp.js"></script>
 	<script src="../js/mirror.js"></script>
-	<script id="script" src="../js/sign_up.js" mail=<?php echo '"' . $_SESSION['mail'] . '"'; ?>></script>
+	<script id="script" src="../js/sign_up.js"></script>
 </body>
 
 

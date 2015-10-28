@@ -1,13 +1,10 @@
 $(function() {
-	var count;
-	var family_no;
+	var count, max = 5; //写真を撮る枚数
+	var family_id, user_id;
 	var person_name;
 	var face_id = new Array(max);
 
-	var mail = $('#script').attr('mail');
-
 	var flag = true; //trueなら撮影可能
-	var max = 5; //写真を撮る枚数
 
 	//写真撮影及び送信
 	var roop = function() {
@@ -35,13 +32,12 @@ $(function() {
 	//データベースにユーザー情報を登録する
 	var regist_db = function() {
 		var regist_url = './regist.php';
-		var regist_data = {email : mail};
 		$.ajax({
 			url: regist_url,
 			type: 'POST',
-			data: regist_data,
 			success: function(data, dataType) {
-				family_no = data;
+				family_id = data.family_id;
+				user_id = data.user_id;
 				new_person_create();
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -52,14 +48,14 @@ $(function() {
 
 	//人を登録
 	var new_person_create = function() {
-		person_name = family_no + ':1';
-		person_create(person_name, face_id, new_group_create);
-	}
+		person_name = family_id + ':' + user_id;
+		var callback;
+		if(user_id == 1)
+			callback = function(){ group_create(family_id, person_name, finish); };
+		else
+			callback = function(){ group_add_person(family_id, person_name, finish); };
 
-	//グループを登録
-	var new_group_create = function() {
-		group_name = family_no;
-		group_create(group_name, person_name, finish);
+		person_create(person_name, face_id, callback);
 	}
 
 	//終了処理
