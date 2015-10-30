@@ -24,6 +24,7 @@ $(function() {
 				roop();
 			}
 		} else {
+			speak('撮影に失敗しました。顔がちゃんと写っていることを確認して、もう一度カメラボタンを押してください。');
 			$('#message').text('もう一度やり直してください。');
 			flag = true;
 		}
@@ -61,14 +62,20 @@ $(function() {
 	//終了処理
 	var finish = function() {
 		$('#message').text('登録完了');
+		speak('登録が完了しました。');
+		window.location.href = "../mirror/";
 	};
 
+	//処理ここから
 	start_mirror();
+	speak('ようこそ、ファミラーへ。');
+	speak('顔登録を開始します。画面に顔が映るようにして、カメラボタンを押してください。');
 
 	//ボタンイベント
 	$("#shot").click( function() {
 		if(flag == true) {
 			$('#message').text('撮影中(1/5)');
+			speak('撮影中です。しばらくそのまま、お待ちください。');
 			count = 0;
 			flag = false;
 			roop();

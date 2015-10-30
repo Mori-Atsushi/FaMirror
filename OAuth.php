@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+if(!empty($_SESSION['family']))
+	header('Location: ./mirror/');
+
 // アプリケーション設定
 define('CONSUMER_KEY', '482245107839-ltqcd5n13loc9oerhh00gpaehsn6okt3.apps.googleusercontent.com');
 define('CALLBACK_URL', 'http://localhost/famirror/sign_up/');

@@ -42,6 +42,9 @@ $array = json_decode($res, true);
 
 //セッションスタート
 session_start();
+if(!empty($_SESSION['family']))
+	header('Location: ./mirror/');
+
 if(empty($array['name'])) {
 	if($_SESSION['name'] == '')
 		header('Location: ../');
@@ -83,6 +86,7 @@ if($conn) {
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="../js/facepp.js"></script>
+	<script src="../js/speak.js"></script>
 	<script src="../js/mirror.js"></script>
 	<script id="script" src="../js/sign_up.js"></script>
 </body>
