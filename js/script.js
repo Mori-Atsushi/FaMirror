@@ -21,5 +21,24 @@ $(function() {
 			var blob = snapshot();
 			recognition_identify('1', blob, check_user);
 		}
-	})
+	});
+
+	$('#submit').click( function() {
+		var url = './setting.php';
+		var data = {
+			name: $("#name").val()
+    	};
+    	console.log(JSON.stringify(data));
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: JSON.stringify(data),
+			success: function(data, dataType) {
+				$('.start_setting').fadeOut();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log('Error : ' + errorThrown);
+			}
+		});
+	});
 });
