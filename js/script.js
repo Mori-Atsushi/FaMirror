@@ -23,18 +23,22 @@ $(function() {
 		}
 	});
 
-	$('#submit').click( function() {
+	$('.submit').click( function() {
+		var seet = $(this).parents('.start_setting');
 		var url = './setting.php';
 		var data = {
-			name: $("#name").val()
-    	};
-    	console.log(JSON.stringify(data));
+			user_id: $(seet).attr('id'),
+			name: $(seet).find('.name').val()
+		};
 		$.ajax({
 			url: url,
 			type: 'POST',
-			data: JSON.stringify(data),
+			data: data,
 			success: function(data, dataType) {
-				$('.start_setting').fadeOut();
+				if(data == true)
+					$(seet).fadeOut();
+				else
+					console.log(data);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				console.log('Error : ' + errorThrown);

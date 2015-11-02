@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION['family'])) {
+if($_SESSION['family'] === '') {
 	header('Location: ../');
 }
 ?>
@@ -11,8 +11,10 @@ if(empty($_SESSION['family'])) {
 	<link rel="stylesheet" href="../css/test.css">
 	<title>FaMirror | 鏡</title>
 </head>
-	<h1 id="auth">認証</h1>
-	<p id="message"></p>
+	<div class="main">
+		<h1 id="auth">認証</h1>
+		<p id="message"></p>
+	</div>
 	<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>
 	<?php
@@ -20,21 +22,17 @@ if(empty($_SESSION['family'])) {
 
 	if($conn) {
 		mysql_select_db('famirror', $conn);
-		$sql = 'SELECT * From user WHERE family_id = ' . $_SESSION['family'];
-		$family_member = mysql_query($sql);
-		$member = mysql_fetch_assoc($family_member);
-		for($i = 0; $i < mysql_num_rows($family_member); $i++) {
-			if($member[i]['user_name'] == NULL) {
-				echo '<div class="start_setting">';
-				echo '<h2>初期設定</h2>';
-				echo '<label for="name">表示名：</label>';
-				echo '<input type="text" name="name" id="name">';
-				echo '<div id="submit">送信</div>';
-				echo '</div>';
-			}
-
+		$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'] . ' AND user_name IS NULL';
+		$user = mysql_query($sql);
+		if(mysql_num_rows($user) > 0) {
+			$member = mysql_fetch_assoc($user);
+			echo '<div id="' . $member['family_id'] . '" class="start_setting">';
+			echo '<h2>初期設定（' . $member['user_mail'] . '）</h2>';
+			echo '<label for="name">表示名：</label>';
+			echo '<input type="text" name="name" class="name">';
+			echo '<div class="submit">送信</div>';
+			echo '</div>';		
 		}
-
 	}	
 	?>
 

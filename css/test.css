@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.main {
+	position: fixed;
+	z-index: 0;
+}
+
 .start_setting {
 	position: fixed;
 	background-color: #fafafa;

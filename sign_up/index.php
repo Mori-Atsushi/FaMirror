@@ -42,8 +42,7 @@ $array = json_decode($res, true);
 
 //セッションスタート
 session_start();
-if(!empty($_SESSION['family']))
-	header('Location: ./mirror/');
+
 
 if(empty($array['name'])) {
 	if($_SESSION['name'] == '')
@@ -58,8 +57,11 @@ $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 if($conn) {
 	mysql_select_db('famirror', $conn);
 	$sql = 'SELECT family_id FROM user WHERE user_mail = "'. $_SESSION['mail'] .'"';
-	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0)
+	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0) {
+		$famiy_num = mysql_fetch_assoc(mysql_query($sql, $conn));
+		$_SESSION['family'] = $famiy_num['family_id'];
 		header('Location: ../mirror/');
+	}
 }
 ?>
 
