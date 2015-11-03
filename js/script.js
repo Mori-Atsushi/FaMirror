@@ -1,14 +1,35 @@
 $(function() {
 	var flag = true; //tureなら撮影可能
 
+	//顔認証のあとの処理
 	var check_user = function(data) {
-		console.log(data);
 		if(data.face.length == 1) {
 			$('#message').text(data.face[0].candidate[0].confidence + '%あなたは' + data.face[0].candidate[0].person_name + 'です。');
+			get_info(data.face[0].candidate[0].person_name);
 		} else {
 			$('#message').text('認証失敗');			
 		}
 		flag = true;
+	};
+
+	//音声案内用の文章を取得
+	var get_info = function(user) {
+		var url = './info.php';
+		var id = user.split(':');
+		var data = {
+			user_id: id[1]
+		};
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: data,
+			success: function(data, dataType) {
+				speak(data);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log('Error : ' + errorThrown);
+			}
+		});
 	};
 
 	start_mirror();

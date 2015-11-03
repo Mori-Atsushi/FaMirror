@@ -39,5 +39,6 @@ if($_SESSION['family'] === '') {
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>	
 	<script type="text/javascript" src="../js/mirror.js"></script>
 	<script type="text/javascript" src="../js/facepp.js"></script>
+	<script type="text/javascript" src="../js/speak.js"></script>
 	<script type="text/javascript" src="../js/script.js"></script>
 <body>
