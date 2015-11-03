@@ -45,11 +45,11 @@ $(function() {
 		}
 	});
 
-	$('.submit').click( function() {
+	$('.start_submit').click( function() {
 		var seet = $(this).parents('.start_setting');
 		var url = './setting.php';
 		var data = {
-			user_id: $(seet).attr('id'),
+			user_id: $(seet).attr('id').split('_')[0],
 			name: $(seet).find('.name').val(),
 			name_p: $(seet).find('.name_p').val()
 		};
@@ -76,4 +76,40 @@ $(function() {
 	$('#back_top').click( function() {
 		$('#user_select').animate({'left': '100%'}, speed);
 	});
+
+	$('.submit').click( function() {
+		var seet = $(this).parents('.user_setting');
+		var url = './setting.php';
+		var data = {
+			user_id: $(seet).attr('id').split('_')[0],
+			name: $(seet).find('.name').val(),
+			name_p: $(seet).find('.name_p').val()
+		};
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: data,
+			success: function(data, dataType) {
+				if(data == true) {
+					$(seet).animate({'left': '100%'}, speed);
+					$('#user_select').animate({'left': '100%'}, speed);
+				} else {
+					console.log(data);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				console.log('Error : ' + errorThrown);
+			}
+		});
+	});
+
+	$('.user').click( function() {
+		var user_id = $(this).attr('id').split('_')[0];
+		$('#' + user_id + '_setting').animate({'left': '0%'}, speed);
+	});
+
+	$('.back_select').click( function() {
+		$(this).parents('.user_setting').animate({'left': '100%'}, speed);
+	});
+
 });

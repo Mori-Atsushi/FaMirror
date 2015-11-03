@@ -1,7 +1,18 @@
 <?php
 session_start();
-if($_SESSION['family'] === '') {
+if($_SESSION['family'] === '')
 	header('Location: ../');
+
+$conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
+if($conn) {
+	mysql_select_db('famirror', $conn);
+	$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'];
+	$user = mysql_query($sql);
+	$num = 0;
+	while($row = mysql_fetch_assoc($user)) {
+		$member[$num] = $row;
+		$num++;
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -21,21 +32,26 @@ if($_SESSION['family'] === '') {
 		<div id="back_top">戻る</div>
 		<ul>
 		<?php
-		$conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
-		if($conn) {
-			mysql_select_db('famirror', $conn);
-			$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'];
-			$user = mysql_query($sql);
-			for($i = 0; $i < mysql_num_rows($user); $i++) {
-				$member = mysql_fetch_assoc($user);
-				echo '<li class="' . $member['family_id'] . '">' . $member['user_name'] . '</li>';		
-			}
-		}
+		for($i = 0; $i < $num; $i++)
+			echo '<li id="' . $member[$i]['user_id'] . '_select" class="user">' . $member[$i]['user_name'] . '</li>';		
 		?>
 		<li onclick="location.href='../OAuth2.php'">ユーザー追加</li>
 		</ul>
-
 	</div>
+
+	<?php
+	for($i = 0; $i < $num; $i++) {
+		echo '<div id="' . $member[$i]['user_id'] . '_setting" class="user_setting">';
+		echo '<div class="back_select">戻る</div>';
+		echo '<h2>設定（' . $member[$i]['user_name'] . '）</h2>';
+		echo '<label for="name">表示名；</label><br>';
+		echo '<input type="text" name="name" class="name" value="' . $member[$i]['user_name'] . '"><br>';
+		echo '<label for="name_p">読み方（ひらがな）：</label><br>';
+		echo '<input type="text" name="name_p" class="name_p" value="' . $member[$i]['user_name_p'] . '"><br>';
+		echo '<div class="submit">送信</div>';
+		echo '</div>';
+	}
+	?>
 	<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>
 	<?php
@@ -46,14 +62,14 @@ if($_SESSION['family'] === '') {
 		$user = mysql_query($sql);
 		if(mysql_num_rows($user) > 0) {
 			$member = mysql_fetch_assoc($user);
-			echo '<div id="' . $member['family_id'] . '" class="start_setting">';
+			echo '<div id="' . $member['user_id'] . '_start" class="start_setting">';
 			echo '<h2>初期設定（' . $member['user_mail'] . '）</h2>';
 			echo '<label for="name">表示名：</label><br>';
 			echo '<input type="text" name="name" class="name"><br>';
-			echo '<label for="name">読み方（ひらがな）：</label><br>';
+			echo '<label for="name_p">読み方（ひらがな）：</label><br>';
 			echo '<input type="text" name="name_p" class="name_p">';
-			echo '<div class="submit">送信</div>';
-			echo '</div>';		
+			echo '<div class="start_submit">送信</div>';
+			echo '</div>';
 		}
 	}
 	?>
