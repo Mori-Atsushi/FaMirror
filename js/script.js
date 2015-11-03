@@ -1,5 +1,6 @@
 $(function() {
 	var flag = true; //tureなら撮影可能
+	var speed = 300; //アニメーションのスピード
 
 	//顔認証のあとの処理
 	var check_user = function(data) {
@@ -66,5 +67,13 @@ $(function() {
 				console.log('Error : ' + errorThrown);
 			}
 		});
+	});
+
+	$('#setting').click( function() {
+		$('#user_select').animate({'left': '0%'}, speed);
+	});
+
+	$('#back_top').click( function() {
+		$('#user_select').animate({'left': '100%'}, speed);
 	});
 });

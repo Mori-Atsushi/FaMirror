@@ -14,12 +14,32 @@ if($_SESSION['family'] === '') {
 	<div class="main">
 		<h1 id="auth">認証</h1>
 		<p id="message"></p>
+		<div id="setting">設定</div>
+	</div>
+
+	<div id="user_select" class="user_select">
+		<div id="back_top">戻る</div>
+		<ul>
+		<?php
+		$conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
+		if($conn) {
+			mysql_select_db('famirror', $conn);
+			$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'];
+			$user = mysql_query($sql);
+			for($i = 0; $i < mysql_num_rows($user); $i++) {
+				$member = mysql_fetch_assoc($user);
+				echo '<li class="' . $member['family_id'] . '">' . $member['user_name'] . '</li>';		
+			}
+		}
+		?>
+		<li onclick="location.href='../OAuth2.php'">ユーザー追加</li>
+		</ul>
+
 	</div>
 	<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>
 	<?php
 	$conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
-
 	if($conn) {
 		mysql_select_db('famirror', $conn);
 		$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'] . ' AND user_name IS NULL';
@@ -35,7 +55,7 @@ if($_SESSION['family'] === '') {
 			echo '<div class="submit">送信</div>';
 			echo '</div>';		
 		}
-	}	
+	}
 	?>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>	
