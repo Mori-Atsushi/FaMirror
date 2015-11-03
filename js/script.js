@@ -49,7 +49,8 @@ $(function() {
 		var url = './setting.php';
 		var data = {
 			user_id: $(seet).attr('id'),
-			name: $(seet).find('.name').val()
+			name: $(seet).find('.name').val(),
+			name_p: $(seet).find('.name_p').val()
 		};
 		$.ajax({
 			url: url,

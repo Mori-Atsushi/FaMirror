@@ -28,8 +28,10 @@ if($_SESSION['family'] === '') {
 			$member = mysql_fetch_assoc($user);
 			echo '<div id="' . $member['family_id'] . '" class="start_setting">';
 			echo '<h2>初期設定（' . $member['user_mail'] . '）</h2>';
-			echo '<label for="name">表示名：</label>';
-			echo '<input type="text" name="name" class="name">';
+			echo '<label for="name">表示名：</label><br>';
+			echo '<input type="text" name="name" class="name"><br>';
+			echo '<label for="name">読み方（ひらがな）：</label><br>';
+			echo '<input type="text" name="name_p" class="name_p">';
 			echo '<div class="submit">送信</div>';
 			echo '</div>';		
 		}
