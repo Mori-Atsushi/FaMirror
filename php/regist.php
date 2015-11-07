@@ -1,5 +1,7 @@
 <?php
-$data = array('user_id' => 1);
+$data = array('user_id' => '1');
+$name = htmlspecialchars($_POST['name'], ENT_QUOTES);
+$name_p = htmlspecialchars($_POST['name_p'], ENT_QUOTES);
 session_start();
 
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
@@ -16,9 +18,14 @@ if($conn) {
 		$data['user_id'] = $member_num + 1;		
 	}
 	$data['family_id'] = $_SESSION['family'];
-	$sql = 'INSERT INTO user (user_mail, user_name, family_id, user_id) VALUES ("' . $_SESSION['mail'] . '", NULL, ' . $data['family_id'] . ',' . $data['user_id'] .')';
+	$sql = "INSERT INTO user (user_mail, family_id, user_id, refresh_token, user_name, user_name_p) VALUES ('" . $_SESSION['email'] . "', '" . $data['family_id'] . "', '" . $data['user_id'] . "', '" . $_SESSION['refresh_token'] . "', '" . $name . "', '" . $name_p . "')";
 	mysql_query($sql, $conn);
-	header( "Content-Type: application/json; charset=utf-8" ) ;
+
+	unset($_SESSION['email']);
+	unset($_SESSION['name']);
+	unset($_SESSION['refresh_token']);
+
+	header('Content-Type: application/json; charset=utf-8');
 	echo json_encode($data);
 }
 ?>

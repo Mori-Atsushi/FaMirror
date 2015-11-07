@@ -1,6 +1,6 @@
 $(function() {
 	var flag = true; //tureなら撮影可能
-	var speed = 300; //アニメーションのスピード
+	var speed = 256; //アニメーションのスピード
 
 	//顔認証のあとの処理
 	var check_user = function(data) {
@@ -15,25 +15,33 @@ $(function() {
 
 	//音声案内用の文章を取得
 	var get_info = function(user) {
-		var url = './info.php';
+		var url = 'php/info.php';
 		var id = user.split(':');
 		var data = {
 			user_id: id[1]
 		};
-		$.ajax({
-			url: url,
-			type: 'POST',
-			data: data,
-			success: function(data, dataType) {
-				speak(data);
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				console.log('Error : ' + errorThrown);
-			}
+		send_db(url, data, speak);
+	};
+
+	//設定画面作成
+	var create_member_list = function() {
+		for(var i = 0; i < user_data.length; i++)
+			$('#user_list').append('<li id="member_' + (i + 1) + '" class="member" >' + user_data[i].user_name + '</li>');
+
+		//メンバー選択
+		$('#user_list li').click( function() {
+			create_detail($(this).attr('id').split('_')[1]);
 		});
 	};
 
-	start_mirror();
+	var create_detail = function(user_id) {
+		$('#detail_user_name').text(user_data[0].user_name);
+		$('#detail').animate({'left': '0%'}, speed);	
+		$('#setting').animate({'left': '-100%'}, speed);
+	};
+
+	start_mirror(); //鏡開始
+	get_data(create_member_list); //メンバーデータ取得
 
 	//認証開始
 	$('#auth').click( function() {
@@ -45,71 +53,20 @@ $(function() {
 		}
 	});
 
-	$('.start_submit').click( function() {
-		var seet = $(this).parents('.start_setting');
-		var url = './setting.php';
-		var data = {
-			user_id: $(seet).attr('id').split('_')[0],
-			name: $(seet).find('.name').val(),
-			name_p: $(seet).find('.name_p').val()
-		};
-		$.ajax({
-			url: url,
-			type: 'POST',
-			data: data,
-			success: function(data, dataType) {
-				if(data == true)
-					$(seet).fadeOut();
-				else
-					console.log(data);
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				console.log('Error : ' + errorThrown);
-			}
-		});
+	//設定ボタンクリック
+	$('#setting_b').click( function() {
+		$('#setting').animate({'left': '0%'}, speed);
 	});
 
-	$('#setting').click( function() {
-		$('#user_select').animate({'left': '0%'}, speed);
+	//設定画面から戻る
+	$('#setting_back').click( function() {
+		$('#setting').animate({'left': '100%'}, speed);
 	});
 
-	$('#back_top').click( function() {
-		$('#user_select').animate({'left': '100%'}, speed);
-	});
-
-	$('.submit').click( function() {
-		var seet = $(this).parents('.user_setting');
-		var url = './setting.php';
-		var data = {
-			user_id: $(seet).attr('id').split('_')[0],
-			name: $(seet).find('.name').val(),
-			name_p: $(seet).find('.name_p').val()
-		};
-		$.ajax({
-			url: url,
-			type: 'POST',
-			data: data,
-			success: function(data, dataType) {
-				if(data == true) {
-					$(seet).animate({'left': '100%'}, speed);
-					$('#user_select').animate({'left': '100%'}, speed);
-				} else {
-					console.log(data);
-				}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				console.log('Error : ' + errorThrown);
-			}
-		});
-	});
-
-	$('.user').click( function() {
-		var user_id = $(this).attr('id').split('_')[0];
-		$('#' + user_id + '_setting').animate({'left': '0%'}, speed);
-	});
-
-	$('.back_select').click( function() {
-		$(this).parents('.user_setting').animate({'left': '100%'}, speed);
+	//メンバー選択画面に戻る
+	$('#detail_back').click(function() {
+		$('#setting').animate({'left': '0%'}, speed);
+		$('#detail').animate({'left': '100%'}, speed);
 	});
 
 });

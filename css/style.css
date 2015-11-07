@@ -1,19 +1,46 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 html, body, header, div, h1, h2, h3, h4, h5, h6, p, small,
-footer, button, a {
+footer, button, a, ul, li {
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
 	font-size: 16px;
+	line-height: 1.5;
 	z-index: 0;
 	outline: none;
 	border: none;
 	font-family: 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
-	color: #333;
 }
 
-html, body {
+p, li, dd {
+	line-height: 1.8;
+}
+
+span {
+	margin: 0;
+	padding: 0;
+	z-index: 0;
+}
+
+table, th, td {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: solid 1px #333;
+}
+a { text-decoration: none; }
+ul { list-style: none; }
+img { border: none; }
+
+
+html {
+	-webkit-text-size-adjust: 100%;
+	color: #111;
+	height: 100%;
+	background: #888;
+}
+
+body {
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -27,38 +54,14 @@ html, body {
 	min-height: 100%;
 	transform: translateX(-50%) translateY(-50%)  scaleX(-1);
 	z-index: -99;
-    background-size: cover;
+	background-size: cover;
 }
 
 .temp_pic {
 	display: none;
 }
 
-.box {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	margin: auto;
-	width: 640px;
-	height: 480px;
-	transform: scaleX(-1);
-}
-
-.pic {
-	width: 100%;
-	height: 100%;
-	display: none;
-}
-
-
-/* ここからデザイン用 */
-
-h1 { font-size: 2rem; }  /* フォントサイズ。1rem=16px にしてる */
-p  { font-size: 1.2rem;}
-
-.site_header {
+.page_header {
 	position: absolute;
 	top: 0;
 	width: 100%;
@@ -68,7 +71,7 @@ p  { font-size: 1.2rem;}
 	background-position: center;
 }
 
-.site_header h1 {
+.page_header h1 {
 	margin-top: -16px;
 	width: 100%;
 	position: absolute;
@@ -77,20 +80,138 @@ p  { font-size: 1.2rem;}
 	color: #f9f9f9;
 	font-weight: normal;
 	line-height: 1;
+	font-size: 2rem;
 }
 
-.exp {
+
+/* *******************
+ *   top
+ * *******************/
+
+.top {
 	width: 100%;
+	height: 100%;
+	position: relative;
+	background: #f4f4f5;
+	background-image: url('../img/back.jpg');
+	background-position: center;
+	background-size: cover;
+}
+
+/* 中央のフレーズ部分 */
+.top h2 { font-size: 1.5rem; }  /* フォントサイズ。1rem=16px にしてる */
+@media screen and (min-width: 480px) {
+.top h2 { font-size: 2rem; }  /* フォントサイズ。1rem=16px にしてる */
+}
+
+.shadow1 {
+	box-shadow: 0 6px 6px rgba(0, 0, 0, 0.4);  /* 影 */
+}
+
+.top .siteheader {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 12%;    /* FaMirror ロゴの高さ */
+	background-image: url('../img/header.png');
+	background-size: cover;
+	background-position: center;
+}
+
+.top .main {
+	position: absolute;
+	width: 100%;
+	bottom: 45%;   /* 縦位置。下端から画面下端までの距離 */
+}
+
+.top .main h2 {
+	width: 100%;
+	text-align: center; /* 文字のセンタリング */
+	color: #f0f0f0;     /* 文字色 */
+	line-height: 2;     /* 行間。フォントサイズに対する倍率 */
+}
+
+.top .sitefooter {
+	height: 20%;  /* 黒い部分の高さ。画面の縦幅が100% */
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);  /* 黒い色。RGBA */
+}
+
+.top .sitefooter button {
+	margin-top: -36px;  /* センタリングのために、padding-top の -1/2 倍にする */
+	padding-top: 72px;  /* ボタンの縦幅。横幅は自動。 */
+	margin-left: -24%;
+	width: 48%;
+	background: none;
+	background-image: url('../img/google.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.sign_up p  { font-size: 1.2rem;}
+
+.sign_up .main {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 800px;
+	height: 72%;
+	position: absolute;
+	top: 8%;
+	left: 0;
+	right: 0;
+}
+
+.sign_up .main .square {
+	width: 80%;
+	padding-top: 80%;
+	border: solid 2px #ff0;
+	position: absolute;
+	top: 15%;
+	left: 10%;
+}
+
+.sign_up .exp {
+	width: 100%;
+	height: 20%;
 	position: absolute;
 	bottom: 0;
 	background: #d4d4de;
 }
 
-.exp p {
-	margin: 64px 16px 32px;
+.sign_up .exp p {
+	margin: 64px 16px 16px;
 }
 
-.exp .shot {
+.sign_up .exp .status {
+	margin: 0 16px 16px;
+	padding-right: 8px;
+	height: 24px;
+	border: solid 1px #333;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-align: right;
+	position: relative;
+}
+
+.sign_up .exp .status .gage {
+	width: 0%;                /* ゲージ横幅 */
+	height: 100%;
+	display: block;
+	background: #333;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.sign_up .exp .shot {
 	margin-top: -45px;
 	margin-left: -45px;
 	padding-top: 90px;
@@ -103,8 +224,9 @@ p  { font-size: 1.2rem;}
 	left: 50%;
 	top: 0;
 }
+
 @media screen and (min-width: 480px) {
-.exp .shot {
+.sign_up .exp .shot {
 	margin-top: -60px;
 	margin-left: -60px;
 	padding-top: 120px;
@@ -113,6 +235,172 @@ p  { font-size: 1.2rem;}
 }
 
 
-.site_header, .exp {
-//	display: none;
+.detail {
+	height: 100%;
 }
+
+.detail .siteheader {
+	height: 320px;
+	width: 100%;
+	background-color: #c68;
+	background-image: url('../img/header_bg.png');
+	background-size: cover;
+	background-position: center;
+	position: fixed;
+}
+
+.detail .siteheader .operate {
+	width: 100%;
+	position: absolute;
+}
+
+.detail .siteheader .operate .back {
+	padding: 40px;
+	background: none;
+	background-image: url('../img/camera_icon.png');
+	background-size: cover;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+}
+
+.detail .siteheader .operate .gear {
+	padding: 40px;
+	background: none;
+	background-image: url('../img/camera_icon.png');
+	background-size: cover;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.detail .siteheader .icon {
+	margin: 0 auto;
+	padding: 32px 0;
+	width: 160px;
+}
+
+.detail .siteheader .icon:after {
+	content: '';
+	padding-top: 100%;
+	width: 100%;
+	border-radius: 50%;
+	background: #ccc;
+	display: block;
+}
+
+.detail .siteheader h1 {
+	font-size: 2rem;
+	text-align: center;
+	color: #f0f0f0;
+}
+
+.detail .main {
+	width: 100%;
+	position: absolute;
+	top: 320px;
+	height: 75%;
+	overflow: auto;
+}
+
+.detail .main ul {
+	height: 100%;
+}
+
+.detail .main li {
+	height: 160px;
+	line-height: 160px;
+	background: #ccc;
+	font-size: 2rem;
+	border-top: solid 1px #000;
+}
+
+.detail .main li:first-child {
+	border: none;
+}
+
+.detail .main li:before {  /* アイコン */
+	content: '';
+	margin: 30px;
+	width: 100px;
+	height: 100px;
+	display: block;
+	float: left;
+	background: #c68;
+}
+
+.detail .main li:after {
+	content: '>';
+	margin: 0 30px;
+	display: block;
+	float: right;
+	color: #c68;
+}
+
+
+.setting .main {
+	width: 100%;
+	position: absolute;
+	top: 8%;
+	height: 92%;
+	overflow: auto;
+	background: #f0f0f0;
+}
+
+.setting .main ul {
+	height: 100%;
+}
+
+.setting .main li {
+	height: 160px;
+	line-height: 160px;
+	background: #ccc;
+	font-size: 2rem;
+	border-top: solid 1px #aaa;
+}
+
+.setting .main li:first-child {
+	border: none;
+}
+
+.setting .main li:before {  /* アイコン */
+	content: '';
+	margin: 30px;
+	width: 100px;
+	height: 100px;
+	display: block;
+	float: left;
+	background: #c68;
+	border-radius: 50%;
+}
+
+.setting .main li:after {
+	content: '';
+	margin: 16px 0;
+	width: 64px;
+	height: 128px;
+	display: block;
+	float: right;
+	background: rgba(255, 255, 255, .5);
+}
+
+.setting .main .add {
+	margin: 16px;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: #88f;
+	font-size: 3rem;
+	color: #f0f0f0;
+	border-radius: 50%;
+}
+
+/* Clearfix */
+.clearfix:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+

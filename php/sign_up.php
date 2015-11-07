@@ -2,7 +2,7 @@
 // アプリケーション設定
 define('CONSUMER_KEY', '482245107839-ltqcd5n13loc9oerhh00gpaehsn6okt3.apps.googleusercontent.com');
 define('CONSUMER_SECRET', '56bapESDOFaQgDdeBg-M4-_W');
-define('CALLBACK_URL', 'http://localhost/famirror/sign_up/');
+define('CALLBACK_URL', 'http://localhost/famirror/php/sign_up.php');
 
 // URL
 define('TOKEN_URL', 'https://accounts.google.com/o/oauth2/token');
@@ -34,67 +34,32 @@ if(isset($token['error'])){
 	echo 'エラー発生';
 	exit;
 }
+
 $access_token = $token['access_token'];
+$refresh_token = $token['refresh_token'];
 
 $params = array('access_token' => $access_token);
 $res = file_get_contents(INFO_URL . '?' . http_build_query($params));
 $array = json_decode($res, true);
 
-//セッションスタート
 session_start();
-
-
-if(empty($array['name'])) {
-	if($_SESSION['name'] == '')
-		header('Location: ../');
-	} else {
-		$_SESSION['name'] = $array['name'];
-		$_SESSION['mail'] = $array['email'];
-}
 
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
 	mysql_select_db('famirror', $conn);
-	$sql = 'SELECT family_id FROM user WHERE user_mail = "'. $_SESSION['mail'] .'"';
+	$sql = 'SELECT family_id FROM user WHERE user_mail = "'. $array['email'] .'"';
 	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0) {
 		$famiy_num = mysql_fetch_assoc(mysql_query($sql, $conn));
 		$_SESSION['family'] = $famiy_num['family_id'];
-		header('Location: ../mirror/');
+	} else {
+		$_SESSION['email'] = $array['email'];
+		$_SESSION['name'] = $array['name'];
+		$_SESSION['refresh_token'] = $refresh_token;
 	}
 }
+header('Location: ../');
 ?>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width,maximum-scale=1.0">
-	<link rel="stylesheet" href="../css/style.css">
-	<title>FaMirror | 新規登録</title>
-</head>
-<body>
-	<header class="site_header">
-		<h1>顔登録</h1>
-	</header>
-
-	<video id="mirror" class="mirror" autoplay></video>
-	<canvas id="canvas" class="temp_pic"></canvas>
-	
-	<section class="exp">
-		<p id="message">顔を登録します。<br>四角形の中に顔を入れてカメラボタンをタップしてください。</p>
-		<div id="shot" class="shot"></div>
-	</section>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="../js/facepp.js"></script>
-	<script src="../js/speak.js"></script>
-	<script src="../js/mirror.js"></script>
-	<script id="script" src="../js/sign_up.js"></script>
-</body>
-
-
-
 
 
 

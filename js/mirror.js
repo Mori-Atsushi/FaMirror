@@ -17,10 +17,6 @@ var onFailSoHard = function(e) {
 //カメラ画像キャプチャ
 var snapshot = function() {
 	if (localMediaStream) {
-		// var w = $('#mirror').width();
-		// var h = $('#mirror').height();
-		// $('#canvas').attr('width', w);
-		// $('#canvas').attr('height', h);
 		var w = video.offsetWidth;
 		var h = video.offsetHeight;
 		canvas.setAttribute("width", w);
@@ -56,4 +52,5 @@ var start_mirror = function() {
 		video.src = window.URL.createObjectURL(stream);
 		localMediaStream = stream;
 	}, onFailSoHard);
+
 };
