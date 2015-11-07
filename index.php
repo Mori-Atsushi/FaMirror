@@ -5,17 +5,16 @@ $sign_up_flag = !empty($_SESSION['email']);
 $mirror_flag = !empty($_SESSION['family']);
 
 $top = '<section class="top">
-		<header class="siteheader shadow1"></header>
+		<header class="siteheader"></header>
 		<div class="main">
 			<h2>一瞬の時間もムダにしない、<br>新しい朝を。</h2>
 		</div>
 		<footer class="sitefooter">
 			<button onclick="location.href=\'php/OAuth.php\'"></button>
 		</footer>
-	</section>
-	';
+	</section>';
 
-$sign_up = '<section class="sign_up">
+$sign_up = '<section id="sign_up" class="sign_up">
 		<header class="page_header">
 			<h1>顔登録</h1>
 		</header>
@@ -32,17 +31,16 @@ $sign_up = '<section class="sign_up">
 
 	<div id="black_screen" class="black_screen">
 		<div id="get_name_popup" class="get_name_popup">
-			<h2>名前と読みを入力してください</h2>
-			<label for="name">表示名；</label><br>
-			<input type="text" name="name" class="name" value="' . $_SESSION['name'] . '"><br>
-			<label for="name_p">読み方（ひらがな）：</label><br>
-			<input type="text" name="name_p" class="name_p" value=""><br>
-			<div id="get_name_submit">完了</div>
+			<h2>表示名と読み方を入力してください</h2>
+			<label for="name">表示名</label>
+			<input type="text" name="name" class="name" value="' . $_SESSION['name'] . '">
+			<label for="name_p">読み方(ひらがな)</label>
+			<input type="text" name="name_p" class="name_p" value="">
+			<button id="get_name_submit">完了</button>
 		</div>
-	</div>
-	';
+	</div>';
 
-$base = '<section class="base">
+$base = '<section id="base" class="base">
 		<h1 id="auth">認証</h1>
 		<p id="message"></p>
 		<div id="setting_b">設定</div>
@@ -79,8 +77,7 @@ $detail = '<section id="detail" class="detail">
 	</section>';
 
 $video = '<video id="mirror" class="mirror" autoplay></video>
-	<canvas id="canvas" class="temp_pic"></canvas>
-	';
+	<canvas id="canvas" class="temp_pic"></canvas>';
 ?>
 
 <!DOCTYPE html>
@@ -99,8 +96,10 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 <body>
 	<?php
 	if($sign_up_flag || $mirror_flag) {
-		if($sign_up_flag)
+		if($sign_up_flag) {
+			echo '<style type="text/css"><!-- #base { display : none; } --></style>';
 			echo $sign_up;
+		}
 		echo $video;
 		echo $base;
 		echo $setting;
@@ -116,8 +115,9 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 		echo '<script type="text/javascript" src="./js/facepp.js"></script>';
 		echo '<script type="text/javascript" src="./js/speak.js"></script>';
 		echo '<script type="text/javascript" src="./js/script.js"></script>';
-		if($sign_up_flag)
+		if($sign_up_flag) {
 			echo '<script type="text/javascript" src="./js/sign_up.js"></script>';
+		}
 	}
 	?>
 </body>

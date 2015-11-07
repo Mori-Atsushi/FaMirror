@@ -4,6 +4,7 @@ $(function() {
 	var face_id = new Array(max);
 	var speed_slow = 1000, speed_fast = 100;
 	var name, name_p;
+	var db_count = 0;
 
 	var flag = true; //trueなら撮影可能
 
@@ -20,7 +21,7 @@ $(function() {
 		if(data.face.length == 1) {
 			face_id[count++] = data.face[0].face_id;
 			if(count >= max) {
-				$('#message').text('登録中…');
+				$('#message').text('名前入力待ち');
 				$('#progress_gage').animate({width: '100%'}, speed_slow / 2);
 				get_name();				
 			} else {
@@ -40,7 +41,7 @@ $(function() {
 		var popup = $('#get_name_popup');
 		var seet = $('#black_screen');
 		seet.fadeIn();
-		popup.animate({top: '30%'});
+		popup.animate({bottom: '40%'});
 		$('#get_name_submit').click( function() {
 			name = popup.find('.name').val();
 			name_p = popup.find('.name_p').val();
@@ -53,6 +54,9 @@ $(function() {
 
 	//データベースにユーザー情報を登録する
 	var regist_db = function() {
+		$('#message').text('データベースに登録しています…');
+		speak('データベースに登録しています。');
+
 		var url = 'php/regist.php';
 		var data = {
 			name: name,
@@ -61,10 +65,16 @@ $(function() {
 		send_db(url, data, new_person_create);
 	};
 
+
 	//人を登録
 	var new_person_create = function(data) {
 		family_id = data.family_id;
 		user_id = data.user_id;
+
+		user_data[user_id - 1].user_name = name;
+		user_data[user_id - 1].user_name_p = name_p;
+		user_data[user_id - 1].img = data.img;
+
 		var person_name = family_id + ':' + user_id;
 		var callback;
 		if(user_id == 1)
@@ -77,8 +87,13 @@ $(function() {
 
 	//終了処理
 	var finish = function() {
+		db_gage();
 		$('#message').text('登録完了');
 		speak('登録が完了しました。');
+		$('#sign_up').fadeOut('normal', function() {
+			seet.remove();
+		});
+		$('#base').fadeIn();
 	};
 
 	//処理ここから
@@ -88,7 +103,7 @@ $(function() {
 	//ボタンイベント
 	$("#shot").click( function() {
 		if(flag == true) {
-			$('#message').text('そのままお待ち下さい…');
+			$('#message').text('撮影中です。そのままお待ち下さい…');
 			speak('撮影中です。しばらくそのまま、お待ちください。');
 			count = 0;
 			flag = false;

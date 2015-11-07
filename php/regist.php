@@ -18,12 +18,20 @@ if($conn) {
 		$data['user_id'] = $member_num + 1;		
 	}
 	$data['family_id'] = $_SESSION['family'];
-	$sql = "INSERT INTO user (user_mail, family_id, user_id, refresh_token, user_name, user_name_p) VALUES ('" . $_SESSION['email'] . "', '" . $data['family_id'] . "', '" . $data['user_id'] . "', '" . $_SESSION['refresh_token'] . "', '" . $name . "', '" . $name_p . "')";
+	$data['img'] = $_SESSION['picture'];
+	$img = file_get_contents($data['img']);
+	$extension = pathinfo($data['img'], PATHINFO_EXTENSION);
+	$file_name =  $data['family_id'] . '_' . $data['user_id'] . '.' . $extension;
+	$data['img'] = $file_name;
+	file_put_contents('../icon/' . $file_name, $img);
+
+	$sql = 'INSERT INTO user (user_mail, family_id, user_id, refresh_token, user_name, user_name_p, img) VALUES ("' . $_SESSION['email'] . '", "' . $data['family_id'] . '", "' . $data['user_id'] . '", "' . $_SESSION['refresh_token'] . '", "' . $name . '", "' . $name_p . '", "' . $file_name . '")';
 	mysql_query($sql, $conn);
 
 	unset($_SESSION['email']);
 	unset($_SESSION['name']);
 	unset($_SESSION['refresh_token']);
+	unset($_SESSION['picture']);
 
 	header('Content-Type: application/json; charset=utf-8');
 	echo json_encode($data);

@@ -52,12 +52,16 @@ if($conn) {
 	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0) {
 		$famiy_num = mysql_fetch_assoc(mysql_query($sql, $conn));
 		$_SESSION['family'] = $famiy_num['family_id'];
+		$sql = 'UPDATE user SET refresh_token = "' . $refresh_token . '" WHERE user_mail = "'. $array['email'] .'"';
+		mysql_query($sql, $conn);
 	} else {
 		$_SESSION['email'] = $array['email'];
 		$_SESSION['name'] = $array['name'];
+		$_SESSION['picture'] = $array['picture'];
 		$_SESSION['refresh_token'] = $refresh_token;
 	}
 }
+
 header('Location: ../');
 ?>
 

@@ -10,7 +10,7 @@ footer, button, a, ul, li {
 	z-index: 0;
 	outline: none;
 	border: none;
-	font-family: 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
 }
 
 p, li, dd {
@@ -234,9 +234,54 @@ body {
 }
 }
 
+.black_screen {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.7);
+	display: none;
+}
+
+.black_screen .get_name_popup {
+	margin: auto;
+	padding: 16px;
+	width: 80%;
+	max-width: 600px;
+	background: #e6e6e6;
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	right: 0;
+}
+
+.black_screen .get_name_popup h2 {
+	text-align: center;
+	margin-bottom: 16px;
+	font-size: 1.5rem;
+}
+
+.black_screen .get_name_popup input {
+	padding: 1%;
+	width: 98%;
+	display: block;
+	margin-bottom: 16px;
+}
+
+.black_screen .get_name_popup button {
+	margin: 96px auto 0;
+	width: 128px;
+	padding: 4px 16px;
+	border-radius: 4px;
+	background: #205ec5;
+	color: #f8f8f8;
+	display: block;
+}
 
 .detail {
+	position: fixed;
+	width: 100%;
 	height: 100%;
+	left: 100%;
 }
 
 .detail .siteheader {
@@ -337,6 +382,12 @@ body {
 	color: #c68;
 }
 
+.setting {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 100%;
+}
 
 .setting .main {
 	width: 100%;
@@ -345,6 +396,8 @@ body {
 	height: 92%;
 	overflow: auto;
 	background: #f0f0f0;
+	background-image: url('../img/back_image.png');
+	background-size: cover;
 }
 
 .setting .main ul {
@@ -354,13 +407,8 @@ body {
 .setting .main li {
 	height: 160px;
 	line-height: 160px;
-	background: #ccc;
 	font-size: 2rem;
-	border-top: solid 1px #aaa;
-}
-
-.setting .main li:first-child {
-	border: none;
+	border-bottom: solid 1px #aaa;
 }
 
 .setting .main li:before {  /* アイコン */
