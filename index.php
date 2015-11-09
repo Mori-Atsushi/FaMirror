@@ -75,7 +75,7 @@ $detail = '<section id="detail" class="detail">
 		<header class="siteheader">
 			<div class="operate">
 				<button id="detail_back" class="back"></button>
-				<button class="gear"></button>
+				<button id="item_profile" class="gear"></button>
 			</div>
 			<div class="icon"><div id="detail_icon"></div></div>
 			<h1 id="detail_user_name"></h1>
@@ -87,6 +87,31 @@ $detail = '<section id="detail" class="detail">
 				<li id="item_calendar"><div></div>カレンダー</li>
 			</ul>
 		</div>
+	</section>';
+
+$setting_profile = '<section id="setting_profile" class="setting_profile settings">
+		<header class="page_header">
+			<h1>ユーザ設定</h1>
+			<button id="profile_back" class="back"></button>
+		</header>
+		<div class="main">
+			<div class="area">
+				<!-- <h2>エリア</h2> -->
+				<label>表示名</label>
+				<input id="name" type="text">
+
+				<label>読み方(ひらがな)</label>
+				<input id="name_p" type="text">
+
+				<label>アイコン画像</label>
+				<img id="profile_icon">
+				<div class="file">
+					画像を参照...
+					<input type="file"/>
+				</div>
+				<span>camera.jpg</span>
+			</div>
+		</div> <!-- .main -->
 	</section>';
 
 $setting_weather = '<section id="setting_weather" class="setting_weather settings">
@@ -128,6 +153,37 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 		</div> <!-- .main -->
 	</section>';
 
+$setting_trash = '<section class="setting_trash settings">
+		<header class="page_header">
+			<h1>ゴミ</h1>
+			<button id="trash_back" class="back"></button>
+		</header>
+		<div class="main">
+			<div class="area">
+				<h2>エリア</h2>
+				<label>都道府県</label>
+				<select>
+					<option value="-1">選択してください</option>
+				</select>
+
+				<label>市区町村</label>
+				<select>
+					<option value="-1">先に都道府県を選択してください</option>
+				</select>
+
+				<label>地区&#9312;</label>
+				<select>
+					<option value="-1">先に都道府県を選択してください</option>
+				</select>
+
+				<label>地区&#9313;</label>
+				<select>
+					<option value="-1">先に都道府県を選択してください</option>
+				</select>
+			</div>
+		</div> <!-- .main -->
+	</section>';
+
 $video = '<video id="mirror" class="mirror" autoplay></video>
 	<canvas id="canvas" class="temp_pic"></canvas>';
 ?>
@@ -156,6 +212,7 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 		echo $base;
 		echo $setting;
 		echo $detail;
+		echo $setting_profile;
 		echo $setting_weather;
 	} else {
 		echo $top;
@@ -167,6 +224,7 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 		echo '<script type="text/javascript" src="./js/db.js"></script>';
 		echo '<script type="text/javascript" src="./js/facepp.js"></script>';
 		echo '<script type="text/javascript" src="./js/speak.js"></script>';
+		echo '<script type="text/javascript" src="./js/profile.js"></script>';
 		echo '<script type="text/javascript" src="./js/weather.js"></script>';
 		echo '<script type="text/javascript" src="./js/script.js"></script>';
 		if($sign_up_flag) {

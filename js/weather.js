@@ -1,4 +1,4 @@
-$(function() {
+var weather = function() {
 	var data;
 	var weather_id = 0;
 
@@ -94,7 +94,7 @@ $(function() {
 		];
 
 		send_setting(send_data);
-		$(this).parents('section').animate({'left': '100%'}, speed);
+		$('#setting_weather').animate({'left': '100%'}, speed);
 		$('#detail').animate({'left': '0%'}, speed);
 	});
-});
+};

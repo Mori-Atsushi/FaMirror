@@ -11,7 +11,9 @@ if($conn) {
 	$user = mysql_query($sql);
 	$num = 0;
 	while($row = mysql_fetch_assoc($user)) {
-		$member[$num] = $row;
+		$member[$num]['user_name'] = $row['user_name'];
+		$member[$num]['user_name_p'] = $row['user_name_p'];
+		$member[$num]['img'] = $row['img'];
 		$member[$num]['setting'] = array(
 			array(
 				'name' => 'weather',

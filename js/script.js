@@ -49,16 +49,10 @@ $(function() {
 		setting.animate({'left': '-100%'}, speed);
 	};
 
-	//各設定画面の作成
-	var create_setting = function(setting_name) {
-		var seen = $('#setting_' + setting_name);
-		var detail = $('#detail');
-		seen.animate({'left': '0%'}, speed);
-		detail.animate({'left': '-100%'}, speed);
-	};
-
 	start_mirror(); //鏡開始
 	get_data(); //メンバーデータ取得
+	profile(); //プロフィール設定
+	weather(); //天気設定
 
 	//認証開始
 	$('#auth').click( function() {
