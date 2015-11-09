@@ -38,8 +38,8 @@ $(function() {
 		var setting = $('#setting');
 		$('#detail_icon').css({ 'background-image' : 'url("./icon/' + user_data[user_id].img + '")'});
 		$('#detail_user_name').text(user_data[user_id].user_name);
-		for(var i = 0; i < user_notif[user_id].length ; i++) {
-			if(user_notif[user_id][i] == 1)
+		for(var i = 0; i < user_data[user_id]['setting'].length ; i++) {
+			if(user_data[user_id]['setting'][i]['notification'] == 1)
 				$('#detail_list li').eq(i).children('div').addClass('checked');
 			else
 				$('#detail_list li').eq(i).children('div').removeClass('checked');			

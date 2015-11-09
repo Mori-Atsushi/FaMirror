@@ -1,7 +1,6 @@
 var user_data, user_length;
 var speed = 256; //アニメーションのスピード
 var user_id;
-var user_notif = new Array;
 
 //サーバーにデータを送る
 var send_db = function(url, data, callback) {
@@ -27,23 +26,17 @@ var get_data = function() {
 
 //データをセット
 var set_data = function(data) {
+	console.log(data);
 	user_length = data.length;
-	for(var i = 0; i < user_length; i++) {
-		user_notif[i] = new Array();
-		user_notif[i][0] = data[i].weather_notification;
-		user_notif[i][1] = data[i].trash_notification;
-		user_notif[i][2] = data[i].calendar_notification;
-	}
 	user_data = data;
 };
 
 //設定を送る
-var send_setting = function(setting_array, data_array) {
+var send_setting = function(setting_array) {
 	var url = 'php/setting.php';
 	var data = {
 		user_id: (user_id + 1),
-		setting: setting_array,
-		data: data_array
+		set: setting_array,
 	}
 	send_db(url, data, function(data){console.log(data);} );	
 }
