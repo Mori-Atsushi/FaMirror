@@ -1,6 +1,5 @@
 $(function() {
 	var flag = true; //tureなら撮影可能
-	var speed = 256; //アニメーションのスピード
 
 	//顔認証のあとの処理
 	var check_user = function(data) {
@@ -25,19 +24,56 @@ $(function() {
 
 	//設定画面作成
 	var create_member_list = function() {
-		for(var i = 0; i < user_data.length; i++)
-			$('#user_list').append('<li id="member_' + (i + 1) + '" class="member" >' + user_data[i].user_name + '</li>');
+		for(var i = 0; i < user_data.length; i++) {
+			var id = 'member_' + (i + 1);
+			$('#user_list').append('<li id="' + id + '" class="member" ><div></div>' + user_data[i].user_name + '</li>');
+			$('#' + id).children('div').css({ 'background-image' : 'url("./icon/' + user_data[i].img + '")'});
+		}
 
 		//メンバー選択
 		$('#user_list li').click( function() {
-			create_detail($(this).attr('id').split('_')[1]);
+			user_id = $(this).attr('id').split('_')[1] - 1;
+			create_detail();
 		});
 	};
 
-	var create_detail = function(user_id) {
-		$('#detail_user_name').text(user_data[0].user_name);
-		$('#detail').animate({'left': '0%'}, speed);	
-		$('#setting').animate({'left': '-100%'}, speed);
+	//設定項目選択画面生成
+	var create_detail = function() {
+		var detail = $('#detail');
+		var setting = $('#setting');
+		$('#detail_icon').css({ 'background-image' : 'url("./icon/' + user_data[user_id].img + '")'});
+		$('#detail_user_name').text(user_data[user_id].user_name);
+		for(var i = 0; i < user_notif[user_id].length ; i++) {
+			if(user_notif[user_id][i] == 1)
+				$('#detail_list li').eq(i).children('div').addClass('checked');
+			else
+				$('#detail_list li').eq(i).children('div').removeClass('checked');			
+		}
+
+		detail.animate({'left': '0%'}, speed);	
+		setting.animate({'left': '-100%'}, speed);
+
+		$('#detail_back').click(function() {
+			detail.animate({'left': '100%'}, speed);
+			setting.animate({'left': '0%'}, speed);
+		});
+	};
+
+	//通知のオンオフ
+	var notification_toggle = function(icon_div) {
+		icon_div.toggleClass('checked');
+		var data = icon_div.attr('class')  == 'checked';
+		var setting_name = icon_div.parent('li').attr('id').split('_')[1];
+		var num = $('#detail_list li').index(icon_div.parent('li'));
+		send_notification(setting_name, data, num);
+	};
+
+	//各設定画面の作成
+	var create_setting = function(setting_name) {
+		var seen = $('#setting_' + setting_name);
+		var detail = $('#detail');
+		seen.animate({'left': '0%'}, speed);
+		detail.animate({'left': '-100%'}, speed);
 	};
 
 	start_mirror(); //鏡開始
@@ -63,10 +99,8 @@ $(function() {
 		$('#setting').animate({'left': '100%'}, speed);
 	});
 
-	//メンバー選択画面に戻る
-	$('#detail_back').click(function() {
-		$('#setting').animate({'left': '0%'}, speed);
-		$('#detail').animate({'left': '100%'}, speed);
+	$('#detail_list li div').click( function(e) {
+		e.stopPropagation();
+		notification_toggle($(this));
 	});
-
 });

@@ -41,20 +41,33 @@ $sign_up = '<section id="sign_up" class="sign_up">
 	</div>';
 
 $base = '<section id="base" class="base">
-		<h1 id="auth">認証</h1>
-		<p id="message"></p>
-		<div id="setting_b">設定</div>
+		<header class="page_header">
+			<h1></h1>
+			<button class="gear" id="setting_b"></button>
+		</header>
+
+		<div class="main">
+			<div class="square"></div>
+		</div>
+
+		<div class="exp">
+			<p id="message">四角形の中に顔を入れて、認証ボタンを押してください。</p>
+			<button id="auth">認証</button>
+		</div>
+
 	</section>';
 
 
 $setting = '<section id="setting" class="setting">
 		<header class="page_header">
-			<div id="setting_back">戻る</div>
 			<h1>設定</h1>
+			<button id="setting_back" class="back"></button>
 		</header>
 		<div class="main">
-			<ul id="user_list"></ul>
-			<button onclick="location.href=\'php/OAuth.php?id=add\'" class="add">+</button>
+			<ul id="user_list">
+				<!-- <li id="member_1" class="member" ><div></div></li> -->
+			</ul>
+			<button onclick="location.href=\'php/OAuth.php?id=add\'" class="add"></button>
 		</div>
 	</section>';
 
@@ -64,16 +77,55 @@ $detail = '<section id="detail" class="detail">
 				<button id="detail_back" class="back"></button>
 				<button class="gear"></button>
 			</div>
-			<div class="icon"></div>
+			<div class="icon"><div id="detail_icon"></div></div>
 			<h1 id="detail_user_name"></h1>
 		</header>
 		<div class="main">
-			<ul>
-				<li id="item_weather">天気</li>
-				<li id="item_trash">ごみ</li>
-				<li id="item_calender">カレンダー</li>
+			<ul id="detail_list">
+				<li id="item_weather"><div></div><span>天気</span></li>
+				<li id="item_trash"><div></div>ごみ</li>
+				<li id="item_calendar"><div></div>カレンダー</li>
 			</ul>
 		</div>
+	</section>';
+
+$setting_weather = '<section id="setting_weather" class="setting_weather settings">
+		<header class="page_header">
+			<h1>天気</h1>
+			<button id="weather_back" class="back"></button>
+		</header>
+		<div class="main">
+			<div class="area">
+				<h2>エリア</h2>
+				<label>都道府県</label>
+				<select id="weather_prefecture">
+					<option value="-1">選択してください</option>
+				</select>
+				<label>地区</label>
+				<select id="weather_area">
+					<option value="-1">先に都道府県を選択してください</option>
+				</select>
+			</div>
+
+			<div class="notification">
+				<h2>通知設定</h2>
+				<label>詳細情報</label>
+				<select id="weather_detail">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+				<label>最高気温/最低温度</label>
+				<select id="weather_temperature">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+				<label>明日の天気</label>
+				<select id="weather_tomorrow">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+			</div>
+		</div> <!-- .main -->
 	</section>';
 
 $video = '<video id="mirror" class="mirror" autoplay></video>
@@ -104,6 +156,7 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 		echo $base;
 		echo $setting;
 		echo $detail;
+		echo $setting_weather;
 	} else {
 		echo $top;
 	}
@@ -114,6 +167,7 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 		echo '<script type="text/javascript" src="./js/db.js"></script>';
 		echo '<script type="text/javascript" src="./js/facepp.js"></script>';
 		echo '<script type="text/javascript" src="./js/speak.js"></script>';
+		echo '<script type="text/javascript" src="./js/weather.js"></script>';
 		echo '<script type="text/javascript" src="./js/script.js"></script>';
 		if($sign_up_flag) {
 			echo '<script type="text/javascript" src="./js/sign_up.js"></script>';

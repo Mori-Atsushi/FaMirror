@@ -6,7 +6,8 @@ $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
 	mysql_select_db('famirror', $conn);
-	$sql = 'SELECT user_name, user_name_p, img FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
+	$take_info = 'user_name, user_name_p, img, weather_notification, weather_area, weather_region, weather_detail, weather_temperature, weather_tomorrow, trash_notification, calendar_notification';
+	$sql = 'SELECT ' . $take_info . ' FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
 	$user = mysql_query($sql);
 	$num = 0;
 	while($row = mysql_fetch_assoc($user)) {
