@@ -24,17 +24,12 @@ $(function() {
 
 	//設定画面作成
 	var create_member_list = function() {
+		$('#user_list').html('');
 		for(var i = 0; i < user_data.length; i++) {
 			var id = 'member_' + (i + 1);
 			$('#user_list').append('<li id="' + id + '" class="member" ><div></div>' + user_data[i].user_name + '</li>');
 			$('#' + id).children('div').css({ 'background-image' : 'url("./icon/' + user_data[i].img + '")'});
 		}
-
-		//メンバー選択
-		$('#user_list li').click( function() {
-			user_id = $(this).attr('id').split('_')[1] - 1;
-			create_detail();
-		});
 	};
 
 	//設定項目選択画面生成
@@ -52,20 +47,6 @@ $(function() {
 
 		detail.animate({'left': '0%'}, speed);	
 		setting.animate({'left': '-100%'}, speed);
-
-		$('#detail_back').click(function() {
-			detail.animate({'left': '100%'}, speed);
-			setting.animate({'left': '0%'}, speed);
-		});
-	};
-
-	//通知のオンオフ
-	var notification_toggle = function(icon_div) {
-		icon_div.toggleClass('checked');
-		var data = icon_div.attr('class')  == 'checked';
-		var setting_name = icon_div.parent('li').attr('id').split('_')[1];
-		var num = $('#detail_list li').index(icon_div.parent('li'));
-		send_notification(setting_name, data, num);
 	};
 
 	//各設定画面の作成
@@ -77,7 +58,7 @@ $(function() {
 	};
 
 	start_mirror(); //鏡開始
-	get_data(create_member_list); //メンバーデータ取得
+	get_data(); //メンバーデータ取得
 
 	//認証開始
 	$('#auth').click( function() {
@@ -91,6 +72,7 @@ $(function() {
 
 	//設定ボタンクリック
 	$('#setting_b').click( function() {
+		create_member_list();
 		$('#setting').animate({'left': '0%'}, speed);
 	});
 
@@ -99,8 +81,15 @@ $(function() {
 		$('#setting').animate({'left': '100%'}, speed);
 	});
 
-	$('#detail_list li div').click( function(e) {
-		e.stopPropagation();
-		notification_toggle($(this));
+	//メンバー選択
+	$('#user_list').on( 'click', 'li', function() {
+		user_id = $(this).attr('id').split('_')[1] - 1;
+		create_detail();
+	});
+
+	//メンバー選択に戻る
+	$('#detail_back').click(function() {
+		$('#detail').animate({'left': '100%'}, speed);
+		$('#setting').animate({'left': '0%'}, speed);
 	});
 });

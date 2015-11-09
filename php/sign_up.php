@@ -20,7 +20,6 @@ $params = array(
 	'client_secret' => CONSUMER_SECRET,
 );
 
-
 // POST送信
 $options = array('http' => array(
 	'method' => 'POST',

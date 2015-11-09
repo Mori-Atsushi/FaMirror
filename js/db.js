@@ -19,17 +19,14 @@ var send_db = function(url, data, callback) {
 }
 
 //ユーザー情報を取得する
-var get_data = function(callback) {
+var get_data = function() {
 	var url = 'php/data.php';
 	var data;
-	var func = function(data) {
-		set_data(data, callback);
-	}
-	send_db(url, data, func);
+	send_db(url, data, set_data);
 }
 
 //データをセット
-var set_data = function(data, callback) {
+var set_data = function(data) {
 	user_length = data.length;
 	for(var i = 0; i < user_length; i++) {
 		user_notif[i] = new Array();
@@ -38,7 +35,6 @@ var set_data = function(data, callback) {
 		user_notif[i][2] = data[i].calendar_notification;
 	}
 	user_data = data;
-	callback();
 };
 
 //設定を送る

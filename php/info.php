@@ -1,7 +1,6 @@
 <?php
 session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
-$_POST['user_id'] = 1;
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn && $_POST['user_id'] !== '') {
