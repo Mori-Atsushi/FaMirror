@@ -6,8 +6,7 @@ $_POST['user_id'] = 1;
 
 if($conn && $_POST['user_id'] !== '') {
 	mysql_select_db('famirror', $conn);
-	$take_info = 'user_name_p, weather_notification, weather_area, weather_detail, weather_temperature, weather_tomorrow';
-	$sql = 'SELECT ' . $take_info . ' FROM user WHERE user_id = ' . $_POST['user_id'] . ' AND family_id = ' . $_SESSION['family'];
+	$sql = 'SELECT * FROM user WHERE user_id = ' . $_POST['user_id'] . ' AND family_id = ' . $_SESSION['family'];
 	$user = mysql_fetch_assoc(mysql_query($sql));
 }
 
@@ -16,7 +15,8 @@ $message = $message . user_name($user);
 $message = $message . set_date($manth, $day, $week);
 if($user['weather_notification'])
 	$message = $message . weather($user);
-
+if($user['trash_notification'])
+	$message = $message . trash($user, $conn, $day, $week);
 echo $message;
 
 
@@ -61,5 +61,49 @@ function weather($user) {
 	if($user['weather_tomorrow'])
 		$return = $return . '明日の天気は、' . $res['forecasts'][0]['telop'] . '、になっています。';
 	return $return;
+}
+
+function trash($user, $conn, $day, $week) {
+	$return = '今日回収されるゴミは、';
+
+	if(($m = check_trash($conn, $day, $week, $user['trash_id'])) == '')
+		$return = $return . 'ありません。';
+	else
+		$return = $return . $m . 'です。';
+
+	if($user['trash_tomorrow']) {
+		$return = $return . '明日回収されるゴミは、';
+	if(($m = check_trash($conn, $day + 1, $week + 1, $user['trash_id'])) == '')
+		$return = $return . 'ありません。';		
+	else
+		$return = $return . $m . 'です。';
+	}
+
+	return $return;	
+}
+
+function check_trash($conn, $day, $week, $trash_id) {
+	$week_ja = array('日', '月', '火', '水', '木', '金', '土');
+	$week_num = ceil($day / 7);
+	$week_to = $week_ja[$week];
+
+	if($conn && $_POST['user_id'] !== '') {
+		mysql_select_db('famirror', $conn);
+		$sql = 'SELECT type, wday FROM trash_types WHERE trash_id = ' . $trash_id;
+		$result = mysql_query($sql);
+		while($row = mysql_fetch_assoc($result)) {
+			if(strpos($row['wday'], $week_to) !== false) {
+				for($i = 1; $i <= 5; $i++) {
+					if($i != $week_num && strpos($row['wday'], $week_to . $i) !== false) {
+						break;
+					}
+				}
+				if($i > 5)
+					$return = $return . $row['type'] . '、';
+			}
+		}
+	}
+
+	return $return;	
 }
 ?>
