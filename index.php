@@ -20,10 +20,10 @@ $sign_up = '<section id="sign_up" class="sign_up">
 		</header>
 		
 		<div class="main">
-			<div class="square"></div>
+			<!-- <div class="square"></div> -->
 		</div>
 		<div class="exp">
-			<p id="message">四角形の中に顔を入れてカメラボタンを押してください。</p>
+			<p id="message"><!-- 四角形の中に顔を入れて -->画面に顔が映るようにして、カメラボタンを押してください。</p>
 			<div class="status"><div id="progress_gage" class="gage"></div><span id="progress"></span></div>
 			<div id="shot" class="shot"></div>
 		</div>
@@ -47,12 +47,12 @@ $base = '<section id="base" class="base">
 		</header>
 
 		<div class="main">
-			<div class="square"></div>
+			<!-- <div class="square"></div> -->
 		</div>
 
 		<div class="exp">
-			<p id="message">四角形の中に顔を入れて、認証ボタンを押してください。</p>
-			<button id="auth">認証</button>
+			<p id="message"><!-- 四角形の中に顔を入れて、 -->画面に顔が映るようにして、認証ボタンを押してください。</p>
+			<button class="text_button" id="auth">認証</button>
 		</div>
 
 	</section>';
@@ -67,8 +67,8 @@ $setting = '<section id="setting" class="setting">
 			<ul id="user_list">
 				<!-- <li id="member_1" class="member" ><div></div></li> -->
 			</ul>
-			<button onclick="location.href=\'php/OAuth.php?id=add\'" class="add"></button>
 		</div>
+		<button onclick="location.href=\'php/OAuth.php?id=add\'" class="add"></button>
 	</section>';
 
 $detail = '<section id="detail" class="detail">
@@ -85,6 +85,9 @@ $detail = '<section id="detail" class="detail">
 				<li id="item_weather"><div></div><span>天気</span></li>
 				<li id="item_trash"><div></div>ごみ</li>
 				<li id="item_calendar"><div></div>カレンダー</li>
+				<li id="item_gmail"><div></div>Gmail</li>
+				<li id="item_timetable"><div></div>時間割</li>
+				<li id="item_transportation"><div></div>交通機関</li>
 			</ul>
 		</div>
 	</section>';
@@ -104,12 +107,15 @@ $setting_profile = '<section id="setting_profile" class="setting_profile setting
 				<input id="name_p" type="text">
 
 				<label>アイコン画像</label>
-				<img id="profile_icon">
+				<img id="profile_icon" class="profile_icon" alt="画像が設定されていません">
 				<div class="file">
 					画像を参照...
-					<input type="file"/>
+					<input id="profile_icon_file" type="file"/>
 				</div>
-				<span>camera.jpg</span>
+				<span id="profile_icon_file_name"></span>
+			</div>
+			<div class="delete_button">
+				<button id="delete_button" class="text_button">ユーザ削除</button>
 			</div>
 		</div> <!-- .main -->
 	</section>';
@@ -184,8 +190,42 @@ $setting_trash = '<section class="setting_trash settings">
 		</div> <!-- .main -->
 	</section>';
 
-$video = '<video id="mirror" class="mirror" autoplay></video>
-	<canvas id="canvas" class="temp_pic"></canvas>';
+$setting_calendar = '<section id="setting_calendar" class="setting_calendar settings">
+		<header class="page_header">
+			<h1>カレンダー</h1>
+			<button id="calendar_back" class="back"></button>
+		</header>
+		<div class="main">
+			<div class="notification">
+				<h2>通知設定</h2>
+				<label>開始時間</label>
+				<select id="calendar_1">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+				<label>終了時間</label>
+				<select id="calendar_1">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+				<label>場所</label>
+				<select id="calendar_1">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+				<label>説明(詳細内容)</label>
+				<select id="calendar_1">
+					<option value="1">通知する</option>
+					<option value="0">通知しない</option>
+				</select>
+			</div>
+		</div> <!-- .main -->
+	</section>';
+
+$video = '<section id="video" class="video">
+		<video id="mirror" class="mirror" autoplay></video>
+		<canvas id="canvas" class="temp_pic"></canvas>
+	</section>';
 ?>
 
 <!DOCTYPE html>
@@ -196,8 +236,15 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width,maximum-scale=1.0">
+	<link rel="stylesheet" href="css/forKappa.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/test.css">
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/top.css">
+	<link rel="stylesheet" href="css/sign_up.css">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/detail.css">
+	<link rel="stylesheet" href="css/setting.css">
+	<link rel="stylesheet" href="css/settings.css">
 	<title>FaMirror</title>
 </head>
 
@@ -208,12 +255,12 @@ $video = '<video id="mirror" class="mirror" autoplay></video>
 			echo '<style type="text/css"><!-- #base { display : none; } --></style>';
 			echo $sign_up;
 		}
-		echo $video;
-		echo $base;
 		echo $setting;
 		echo $detail;
 		echo $setting_profile;
 		echo $setting_weather;
+		echo $video;
+		echo $base;
 	} else {
 		echo $top;
 	}

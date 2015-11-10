@@ -1,6 +1,7 @@
 var user_data, user_length;
 var speed = 256; //アニメーションのスピード
 var user_id;
+var member_list_flag = true; //メンバーリストを生成したらfalseへ
 
 //サーバーにデータを送る
 var send_db = function(url, data, callback) {
@@ -39,8 +40,7 @@ var send_setting = function(setting_array) {
 		set: setting_array,
 	}
 	send_db(url, data, function(data){console.log(data);} );	
-}
-
+};
 
 //通知情報の設定を行う
 var send_notification = function(setting_name, data, num) {
@@ -53,5 +53,36 @@ var send_notification = function(setting_name, data, num) {
 	var data_array = [data];
 	user_notif[user_id][num] = data;
 	send_setting(setting_array, data_array);
-}
+};
+
+//アイコンを送る
+var send_icon = function(file, callback) {
+	var url = 'php/upload_icon.php';
+	var fd = new FormData();
+	fd.append('img', file);
+	fd.append('user_id', (user_id + 1));
+
+	$.ajax({
+		processData: false,
+		contentType: false,
+		url: url,
+		type: 'POST',
+		data: fd,
+		success: function(data, dataType) {
+			callback(data);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			console.log('Error : ' + errorThrown);
+		}
+	});
+};
+
+//ユーザー削除
+var send_delete = function(callback) {
+	var url = 'php/user_delete.php';
+	var data = {
+		user_id : (user_id + 1)
+	};
+	send_db(url, data, callback);	
+};
 

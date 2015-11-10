@@ -1,0 +1,129 @@
+﻿@charset "UTF-8";
+
+.page_header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	/*height: 8%;*/
+	height: 80px;
+	background-image: url('../img/header_bg.png');
+	background-size: cover;
+	background-position: center;
+	z-index: 1;
+}
+
+.siteheader {
+	z-index: 1;
+}
+
+.page_header h1 {
+	margin-top: -16px;
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	color: #f9f9f9;
+	font-weight: normal;
+	line-height: 1;
+	font-size: 2rem;
+}
+
+.page_header .back {
+	padding: 0 3%;
+	height: 60%;
+	background: none;
+	background-image: url('../img/back_button.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 20%;
+	left: 16px;
+	z-index: 10;
+}
+
+.siteheader, .page_header {
+	box-shadow: 0 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+
+.top .siteheader {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	/*height: 12%;*/
+	height: 120px;
+	background-image: url('../img/header.png');
+	background-size: cover;
+	background-position: center;
+}
+
+
+/**********************
+ * ヘッダによるズレの修正
+ **********************/
+.setting .main ul,
+.settings .main {
+	margin-top: 80px;
+}
+
+.setting_profile .delete_button {
+	margin-bottom: 112px; /* 80+32*/
+}
+
+
+/**********************
+ * detail
+ **********************/
+
+.detail .siteheader {
+	height: 320px;
+	width: 100%;
+	background-image: url('../img/detail_header.png');
+	background-size: cover;
+	background-position: center;
+	position: fixed;
+}
+.detail .siteheader .operate {
+	width: 100%;
+	position: absolute;
+}
+.detail .siteheader .operate .back {
+	margin: 8px;
+	padding: 32px;
+	background: none;
+	background-image: url('../img/back_button.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+}
+.detail .siteheader .operate .gear {
+	padding: 40px;
+	background: none;
+	background-image: url('../img/setting_icon.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+.detail .siteheader .icon {
+	margin: 0 auto;
+	padding: 32px 0;
+	width: 160px;
+}
+.detail .siteheader .icon div { /* アイコン */
+	padding-top: 100%;
+	width: 100%;
+	border-radius: 50%;
+	background: #ccc;
+	background-size: cover;
+	background-position: center center;
+}
+.detail .siteheader h1 {
+	font-size: 2rem;
+	text-align: center;
+	color: #f0f0f0;
+}
+

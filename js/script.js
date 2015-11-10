@@ -24,10 +24,9 @@ $(function() {
 
 	//設定画面作成
 	var create_member_list = function() {
-		$('#user_list').html('');
 		for(var i = 0; i < user_data.length; i++) {
 			var id = 'member_' + (i + 1);
-			$('#user_list').append('<li id="' + id + '" class="member" ><div></div>' + user_data[i].user_name + '</li>');
+			$('#user_list').append('<li id="' + id + '" class="member" ><div></div><span>' + user_data[i].user_name + '</span></li>');
 			$('#' + id).children('div').css({ 'background-image' : 'url("./icon/' + user_data[i].img + '")'});
 		}
 	};
@@ -66,13 +65,20 @@ $(function() {
 
 	//設定ボタンクリック
 	$('#setting_b').click( function() {
-		create_member_list();
+		if(member_list_flag == true) {
+			create_member_list(); //メンバー選択画面生成
+			member_list_flag = false;
+		}
 		$('#setting').animate({'left': '0%'}, speed);
+		$('#base').animate({'left': '-100%'}, speed);
+		$('#video').animate({'left': '-100%'}, speed);
 	});
 
 	//設定画面から戻る
 	$('#setting_back').click( function() {
 		$('#setting').animate({'left': '100%'}, speed);
+		$('#base').animate({'left': '0%'}, speed);
+		$('#video').animate({'left': '0%'}, speed);
 	});
 
 	//メンバー選択

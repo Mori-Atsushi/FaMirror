@@ -1,0 +1,9 @@
+﻿@charset "UTF-8";
+
+/*
+	left: 100%; など。
+*/
+
+.setting, .detail, .settings {
+	left: 100%;
+}

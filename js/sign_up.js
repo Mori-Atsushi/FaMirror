@@ -1,6 +1,6 @@
 $(function() {
 	var count, max = 5; //写真を撮る枚数
-	var family_id, user_id;
+	var family_id;
 	var face_id = new Array(max);
 	var speed_slow = 1000, speed_fast = 100;
 	var name, name_p;
@@ -55,7 +55,6 @@ $(function() {
 	//データベースにユーザー情報を登録する
 	var regist_db = function() {
 		$('#message').text('データベースに登録しています…');
-		speak('データベースに登録しています。');
 
 		var url = 'php/regist.php';
 		var data = {
@@ -69,15 +68,29 @@ $(function() {
 	//人を登録
 	var new_person_create = function(data) {
 		family_id = data.family_id;
-		user_id = data.user_id;
+		user_id = data.user_id - 1;
+		person_id = data.user_id;
 
-		user_data[user_id - 1].user_name = name;
-		user_data[user_id - 1].user_name_p = name_p;
-		user_data[user_id - 1].img = data.img;
+		user_data[user_id].user_name = name;
+		user_data[user_id].user_name_p = name_p;
+		user_data[user_id].img = data.img;
+		user_data[user_id].setting = [
+			{
+				name : 'weather',
+				notification : 0
+			}, {
+				name : 'trash',
+				notification : 0
+			}, {
+				name : 'calendar',
+				notification : 0
+			}
+		];
 
-		var person_name = family_id + ':' + user_id;
+
+		var person_name = family_id + ':' + person_id;
 		var callback;
-		if(user_id == 1)
+		if(person_id == 1)
 			callback = function(){ group_create(family_id, person_name, finish); };
 		else
 			callback = function(){ group_add_person(family_id, person_name, finish); };

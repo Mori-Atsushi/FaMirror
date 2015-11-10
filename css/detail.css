@@ -1,0 +1,67 @@
+﻿@charset "UTF-8";
+
+#item_weather   div { background-image: url('../img/weather_icon.png');  }
+#item_trash     div { background-image: url('../img/trash_icon.png');    }
+#item_calendar  div { background-image: url('../img/calendar_icon.png'); }
+#item_gmail     div { background-image: url('../img/mail_icon.png'); }
+#item_timetable div { background-image: url('../img/timetable_icon.png'); }
+#item_transportation div { background-image: url('../img/train_icon.png'); }
+
+.detail {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #d4d4dd;
+	/*left: 100%;*/
+}
+
+.detail .main {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: auto;
+}
+
+.detail .main::-webkit-scrollbar {
+	display: none;
+}
+
+.detail .main ul {
+	margin-top: 320px;
+}
+
+.detail .main li {
+	height: 136px;
+	line-height: 136px;
+	background: none;
+	font-size: 2rem;
+	border-bottom: solid 1px #aaa;
+}
+
+
+.detail .main li div {  /* アイコン */
+	margin: 25px;
+	width: 100px;
+	height: 86px;
+	float: left;
+	/*background: #c68;*/
+	background: none;
+	background-size: contain;
+}
+
+.detail .main li .checked:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	display: block;
+	background-image: url('../img/check_icon.png');
+	background-size: contain;
+}
+
+.detail .main li:after {
+	content: '>';
+	margin: 0 30px;
+	display: block;
+	float: right;
+	color: #c68;
+}

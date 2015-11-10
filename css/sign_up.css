@@ -1,0 +1,122 @@
+﻿@charset "UTF-8";
+
+.sign_up p, .base p { font-size: 1.2rem;}
+
+.sign_up .main {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 800px;
+	height: 72%;
+	position: absolute;
+	top: 80px;
+	left: 0;
+	right: 0;
+}
+
+.sign_up .main .square {
+	width: 80%;
+	padding-top: 80%;
+	border: solid 2px #ff0;
+	position: absolute;
+	top: 15%;
+	left: 10%;
+}
+
+.sign_up .exp {
+	width: 100%;
+	height: 20%;
+	position: absolute;
+	bottom: 0;
+	background: #d4d4dd;
+}
+
+.sign_up .exp p {
+	margin: 64px 16px 16px;
+}
+
+.sign_up .exp .status {
+	margin: 0 16px 16px;
+	padding-right: 8px;
+	height: 24px;
+	border: solid 1px #333;
+	font-size: 1rem;
+	line-height: 1.5;
+	text-align: right;
+	position: relative;
+}
+
+.sign_up .exp .status .gage {
+	width: 0%;                /* ゲージ横幅 */
+	height: 100%;
+	display: block;
+	background: #333;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.sign_up .exp .shot {
+	margin-top: -45px;
+	margin-left: -45px;
+	padding-top: 90px;
+	width: 90px;
+	background-color: #333;
+	background-image: url('../img/camera_icon.png');
+	background-size: 100%;
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	top: 0;
+}
+
+@media screen and (min-width: 480px) {
+.sign_up .exp .shot {
+	margin-top: -60px;
+	margin-left: -60px;
+	padding-top: 120px;
+	width: 120px;
+}
+}
+
+.black_screen {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.7);
+	display: none;
+}
+
+.black_screen .get_name_popup {
+	margin: auto;
+	padding: 16px;
+	width: 80%;
+	max-width: 600px;
+	background: #e6e6e6;
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	right: 0;
+}
+
+.black_screen .get_name_popup h2 {
+	text-align: center;
+	margin-bottom: 16px;
+	font-size: 1.5rem;
+}
+
+.black_screen .get_name_popup input {
+	padding: 1%;
+	width: 98%;
+	display: block;
+	margin-bottom: 16px;
+}
+
+.black_screen .get_name_popup button {
+	margin: 96px auto 0;
+	width: 128px;
+	padding: 4px 16px;
+	border-radius: 4px;
+	background: #205ec5;
+	color: #f8f8f8;
+	display: block;
+}

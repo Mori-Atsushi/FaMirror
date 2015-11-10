@@ -2,10 +2,11 @@
 session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
+$_POST['user_id'] = 1;
 
 if($conn && $_POST['user_id'] !== '') {
 	mysql_select_db('famirror', $conn);
-	$take_info = 'user_name_p, weather_notification, weather_region, weather_detail, weather_temperature, weather_tomorrow';
+	$take_info = 'user_name_p, weather_notification, weather_area, weather_detail, weather_temperature, weather_tomorrow';
 	$sql = 'SELECT ' . $take_info . ' FROM user WHERE user_id = ' . $_POST['user_id'] . ' AND family_id = ' . $_SESSION['family'];
 	$user = mysql_fetch_assoc(mysql_query($sql));
 }
@@ -38,7 +39,7 @@ function set_date($manth, $day, $week) {
 }
 
 function weather($user) {
-	$url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=' . $user['weather_region'];
+	$url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=' . $user['weather_area'];
 	$res = json_decode(file_get_contents($url), true );
 	$return = '今日の' . $res['location']['city'] . 'の天気は、' . $res['forecasts'][0]['telop'] . '、です。';
 

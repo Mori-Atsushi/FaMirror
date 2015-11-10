@@ -21,7 +21,7 @@ if($conn) {
 	$data['img'] = $_SESSION['picture'];
 	$img = file_get_contents($data['img']);
 	$extension = pathinfo($data['img'], PATHINFO_EXTENSION);
-	$file_name =  $data['family_id'] . '_' . $data['user_id'] . '.' . $extension;
+	$file_name = $data['family_id'] . '_' . $data['user_id'] . '.' . $extension;
 	$data['img'] = $file_name;
 	file_put_contents('../icon/' . $file_name, $img);
 
