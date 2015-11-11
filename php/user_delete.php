@@ -46,4 +46,6 @@ if($conn) {
 		session_destroy();
 	}	
 }
+
+header('Location: ../');
 ?>

@@ -77,12 +77,21 @@ var send_icon = function(file, callback) {
 	});
 };
 
+var postForm = function(url, data) {
+
+};
+
 //ユーザー削除
-var send_delete = function(callback) {
+var send_delete = function() {
 	var url = 'php/user_delete.php';
 	var data = {
 		user_id : (user_id + 1)
 	};
-	send_db(url, data, callback);	
+
+	var $form = $('<form/>', {'action': url, 'method': 'post'});
+	for(var key in data)
+		$form.append($('<input/>', {'type': 'hidden', 'name': key, 'value': data[key]}));
+	$form.appendTo(document.body);
+	$form.submit();
 };
 

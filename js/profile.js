@@ -11,11 +11,6 @@ var profile = function() {
 		$('#member_' + (user_id + 1) + ' div').css({ 'background-image' : 'url("./icon/' + user_data[user_id].img + '")'});
 	};
 
-	var delete_user = function(data) {
-		location.reload();
-	};
-
-
 	//プロフィールを開く
 	$('#item_profile').click( function() {
 		$('#name').val(user_data[user_id]['user_name']);
@@ -56,6 +51,6 @@ var profile = function() {
 
 	//ユーザー削除ボタン
 	$('#delete_button').click( function() {
-		send_delete(delete_user);
+		send_delete();
 	});
 }
