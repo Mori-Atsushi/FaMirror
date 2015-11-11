@@ -126,8 +126,13 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 			<button id="weather_back" class="back"></button>
 		</header>
 		<div class="main">
+			<span>通知</span>
+			<div class="onoff">
+				<input  id="weather_notification" type="checkbox" checked>
+				<div></div>
+			</div>
 			<div class="area">
-				<h2>エリア</h2>
+				<h2>地域設定</h2>
 				<label>都道府県</label>
 				<select id="weather_prefecture">
 					<option value="-1">選択してください</option>
@@ -140,33 +145,46 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 
 			<div class="notification">
 				<h2>通知設定</h2>
-				<label>詳細情報</label>
-				<select id="weather_detail">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
-				<label>最高気温/最低温度</label>
-				<select id="weather_temperature">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
-				<label>明日の天気</label>
-				<select id="weather_tomorrow">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
+				<ul>
+					<li>
+						<input id="weather_detail" type="checkbox" name="weather_detail">
+						<label for="weather_detail">詳細情報</label>
+						<p>天気の詳細をお知らせします。</p>
+					</li>
+					<li>
+						<input id="weather_temperature" type="checkbox" name="weather_temperature">
+						<label for="weather_temperature">最高気温/最低温度</label>
+						<p>天気の詳細をお知らせします。</p>
+					</li>
+					<li>
+						<input id="weather_tomorrow" type="checkbox" name="weather_tomorrow">
+						<label for="weather_tomorrow">明日の天気</label>
+						<p>天気の詳細をお知らせします。</p>
+					</li>
+				</ul>
 			</div>
+
+			<div class="sample">
+				<h3>サンプル音声</h3>
+				<button id="weather_sample">再生</button>
+			</div>
+
 		</div> <!-- .main -->
 	</section>';
 
-$setting_trash = '<section class="setting_trash settings">
+$setting_trash = '<section id="setting_trash" class="setting_trash settings">
 		<header class="page_header">
 			<h1>ゴミ</h1>
 			<button id="trash_back" class="back"></button>
 		</header>
 		<div class="main">
+			<span>通知</span>
+			<div class="onoff">
+				<input type="checkbox" checked>
+				<div></div>
+			</div>
 			<div class="area">
-				<h2>エリア</h2>
+				<h2>地域設定</h2>
 				<label>都道府県</label>
 				<select>
 					<option value="-1">選択してください</option>
@@ -187,6 +205,21 @@ $setting_trash = '<section class="setting_trash settings">
 					<option value="-1">先に都道府県を選択してください</option>
 				</select>
 			</div>
+			<div class="notification">
+				<h2>通知設定</h2>
+				<ul>
+					<li>
+						<input type="checkbox" name="weather_detail">
+						<label for="weather_detail">明日のごみ回収</label>
+						<p>翌日にごみ回収がある場合お知らせします。</p>
+					</li>
+				</ul>
+			</div>
+			<div class="sample">
+				<h3>サンプル音声</h3>
+				<button>再生</button>
+			</div>
+
 		</div> <!-- .main -->
 	</section>';
 
@@ -196,29 +229,41 @@ $setting_calendar = '<section id="setting_calendar" class="setting_calendar sett
 			<button id="calendar_back" class="back"></button>
 		</header>
 		<div class="main">
+			<span>通知</span>
+			<div class="onoff">
+				<input type="checkbox" checked>
+				<div></div>
+			</div>
 			<div class="notification">
 				<h2>通知設定</h2>
-				<label>開始時間</label>
-				<select id="calendar_1">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
-				<label>終了時間</label>
-				<select id="calendar_1">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
-				<label>場所</label>
-				<select id="calendar_1">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
-				<label>説明(詳細内容)</label>
-				<select id="calendar_1">
-					<option value="1">通知する</option>
-					<option value="0">通知しない</option>
-				</select>
+				<ul>
+					<li>
+						<input type="checkbox" name="weather_detail">
+						<label for="weather_detail">開始時間</label>
+						<p>カレンダーに登録されているスケジュールの開始時刻をお知らせします。</p>
+					</li>
+					<li>
+						<input type="checkbox" name="weather_detail">
+						<label for="weather_detail">終了時刻</label>
+						<p>カレンダーに登録されているスケジュールの終了時刻をお知らせします。</p>
+					</li>
+					<li>
+						<input type="checkbox" name="weather_detail">
+						<label for="weather_detail">場所</label>
+						<p>カレンダーに登録されているスケジュールの場所をお知らせします。</p>
+					</li>
+					<li>
+						<input type="checkbox" name="weather_detail">
+						<label for="weather_detail">詳細説明</label>
+						<p>カレンダーに登録されているスケジュールの詳細説明をお知らせします。</p>
+					</li>
+				</ul>
 			</div>
+			<div class="sample">
+				<h3>サンプル音声</h3>
+				<button>再生</button>
+			</div>
+
 		</div> <!-- .main -->
 	</section>';
 
@@ -259,6 +304,8 @@ $video = '<section id="video" class="video">
 		echo $detail;
 		echo $setting_profile;
 		echo $setting_weather;
+		echo $setting_trash;
+		echo $setting_calendar;
 		echo $video;
 		echo $base;
 	} else {
@@ -273,6 +320,8 @@ $video = '<section id="video" class="video">
 		echo '<script type="text/javascript" src="./js/speak.js"></script>';
 		echo '<script type="text/javascript" src="./js/profile.js"></script>';
 		echo '<script type="text/javascript" src="./js/weather.js"></script>';
+		echo '<script type="text/javascript" src="./js/trash.js"></script>';
+		echo '<script type="text/javascript" src="./js/calendar.js"></script>';
 		echo '<script type="text/javascript" src="./js/script.js"></script>';
 		if($sign_up_flag) {
 			echo '<script type="text/javascript" src="./js/sign_up.js"></script>';

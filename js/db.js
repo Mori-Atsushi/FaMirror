@@ -33,13 +33,13 @@ var set_data = function(data) {
 };
 
 //設定を送る
-var send_setting = function(setting_array) {
+var send_setting = function(setting_array, callback) {
 	var url = 'php/setting.php';
 	var data = {
 		user_id: (user_id + 1),
 		set: setting_array,
 	}
-	send_db(url, data, function(data){console.log(data);} );	
+	send_db(url, data, callback);
 };
 
 //通知情報の設定を行う
@@ -54,6 +54,18 @@ var send_notification = function(setting_name, data, num) {
 	user_notif[user_id][num] = data;
 	send_setting(setting_array, data_array);
 };
+
+var listen_sample = function(type) {
+	var url = 'php/sample.php';
+	var data = {
+		user_id : (user_id + 1),
+		type : type
+	};
+	var callback = function(data) {
+		speak(data);
+	}
+	send_db(url, data, callback );
+}
 
 //アイコンを送る
 var send_icon = function(file, callback) {
@@ -75,10 +87,6 @@ var send_icon = function(file, callback) {
 			console.log('Error : ' + errorThrown);
 		}
 	});
-};
-
-var postForm = function(url, data) {
-
 };
 
 //ユーザー削除

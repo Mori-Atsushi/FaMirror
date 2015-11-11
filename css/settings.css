@@ -42,7 +42,7 @@
 	width: 100%;
 }
 
-.settings .main select, .settings .main input {
+.settings .main select, .settings .main input[type="text"] {
 	margin: 8px 0 16px;
 	padding: 8px;
 	width: 100%;
@@ -55,6 +55,26 @@
 	height: 128px;
 	display: block;
 }
+
+
+.settings .main .notification input[type="checkbox"] {
+	margin: 0;
+	padding: 4px;
+	width: 16px;
+	height: 16px;
+	-webkit-appearance: none;
+	outline: none;
+	border: solid 1px #000;
+	border-radius: 50%;
+}
+
+.settings .main .notification input[type="checkbox"]:checked {
+	padding: 0;
+	background: #333;
+	border: double 4px #bb5d7f;
+}
+
+
 
 .setting_profile .profile_icon {
 	border-radius: 50%;

@@ -21,19 +21,30 @@ if($conn) {
 				'config' => array(
 					'prefecture' => $row['weather_prefecture'],
 					'area' => $row['weather_area'],
-					'detail' => $row['weather_detail'],
-					'temperature' => $row['weather_temperature'],
-					'tomorrow' => $row['weather_tomorrow']
+					'onof' => array(
+						array(
+							'name' => 'detail',
+							'notification' => $row['weather_detail']
+						),
+						array(
+							'name' => 'temperature',
+							'notification' => $row['weather_temperature']
+						),
+						array(
+							'name' => 'tomorrow',
+							'notification' => $row['weather_tomorrow']
+						)
 					)
-				),
+				)
+			),
 			array(
 				'name' => 'trash',
 				'notification' => $row['trash_notification']
-				),
+			),
 			array(
 				'name' => 'calendar',
 				'notification' => $row['calendar_notification']
-				)
+			)
 		);
 		$num++;
 	}

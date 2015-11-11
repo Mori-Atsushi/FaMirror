@@ -35,7 +35,7 @@ var profile = function() {
 				data : user_data[user_id]['user_name_p']
 			}
 		];
-		send_setting(send_data);
+		send_setting(send_data, function(data) { console.log(data); });
 		$('#member_' + (user_id + 1) + ' span').text(user_data[user_id].user_name);
 		$('#detail_user_name').text(user_data[user_id].user_name);
 		$('#setting_profile').animate({'left': '100%'}, speed);

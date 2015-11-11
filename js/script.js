@@ -4,7 +4,8 @@ $(function() {
 	//顔認証のあとの処理
 	var check_user = function(data) {
 		if(data.face.length == 1) {
-			$('#message').text(data.face[0].candidate[0].confidence + '%あなたは' + data.face[0].candidate[0].person_name + 'です。');
+			user_id = data.face[0].candidate[0].person_name.split(':')[1] - 1;
+			$('#message').text(user_data[user_id]['user_name']);
 			get_info(data.face[0].candidate[0].person_name);
 		} else {
 			$('#message').text('認証失敗');			
@@ -41,7 +42,7 @@ $(function() {
 			if(user_data[user_id]['setting'][i]['notification'] == 1)
 				$('#detail_list li').eq(i).children('div').addClass('checked');
 			else
-				$('#detail_list li').eq(i).children('div').removeClass('checked');			
+				$('#detail_list li').eq(i).children('div').removeClass('checked');
 		}
 
 		detail.animate({'left': '0%'}, speed);	
@@ -52,6 +53,8 @@ $(function() {
 	get_data(); //メンバーデータ取得
 	profile(); //プロフィール設定
 	weather(); //天気設定
+	trash(); //ゴミ設定
+	calendar(); //カレンダー設定
 
 	//認証開始
 	$('#auth').click( function() {
