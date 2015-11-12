@@ -6,8 +6,7 @@ $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
 	mysql_select_db('famirror', $conn);
-	$take_info = 'user_name, user_name_p, img, weather_notification, weather_prefecture, weather_area, weather_detail, weather_temperature, weather_tomorrow, trash_notification, calendar_notification';
-	$sql = 'SELECT ' . $take_info . ' FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
+	$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
 	$user = mysql_query($sql);
 	$num = 0;
 	while($row = mysql_fetch_assoc($user)) {
@@ -19,8 +18,16 @@ if($conn) {
 				'name' => 'weather',
 				'notification' => $row['weather_notification'],
 				'config' => array(
-					'prefecture' => $row['weather_prefecture'],
-					'area' => $row['weather_area'],
+					'select' => array(
+						array(
+							'name' => 'prefecture',
+							'val' => $row['weather_prefecture']
+						),
+						array(
+							'name' => 'area',
+							'val' => $row['weather_area']
+						)
+					),
 					'onof' => array(
 						array(
 							'name' => 'detail',
@@ -43,7 +50,27 @@ if($conn) {
 			),
 			array(
 				'name' => 'calendar',
-				'notification' => $row['calendar_notification']
+				'notification' => $row['calendar_notification'],
+				'config' => array(
+					'onof' => array(
+						array(
+							'name' => 'start',
+							'notification' => $row['calendar_start']
+						),
+						array(
+							'name' => 'end',
+							'notification' => $row['calendar_end']
+						),
+						array(
+							'name' => 'location',
+							'notification' => $row['calendar_location']
+						),
+						array(
+							'name' => 'description',
+							'notification' => $row['calendar_description']
+						)
+					)
+				)
 			)
 		);
 		$num++;

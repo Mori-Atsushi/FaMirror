@@ -33,17 +33,23 @@
 }*/
 
 .settings .main h2 {
-	margin: 16px 0;
+	margin: 16px 0 8px;
 	font-size: 1.5rem;
 }
 
+.settings .main > h2 {
+	margin: 0 16px 0 0;
+	display: inline-block;
+	font-size: 2rem;
+}
+
 .settings .main .area {
-	margin-bottom: 64px;
+	margin-bottom: 48px;
 	width: 100%;
 }
 
 .settings .main select, .settings .main input[type="text"] {
-	margin: 8px 0 16px;
+	margin: 4px 0 16px;
 	padding: 8px;
 	width: 100%;
 	display: block;
@@ -56,24 +62,97 @@
 	display: block;
 }
 
+.settings .main .notification {
+	margin-bottom: 48px;
+}
+
+.settings .main .notification li {
+	margin: 8px 0;
+	width: 100%;
+}
+
+.settings .main .notification label {
+	padding-left: 48px;
+	font-size: 1.25rem;
+	position: relative;
+	display: inline-block;
+}
 
 .settings .main .notification input[type="checkbox"] {
-	margin: 0;
-	padding: 4px;
-	width: 16px;
-	height: 16px;
+	margin-top: -16px;
+	width: 32px;
+	height: 32px;
 	-webkit-appearance: none;
+	appearance: none;
 	outline: none;
-	border: solid 1px #000;
-	border-radius: 50%;
+	border: solid 1px #bb5d7f;
+	border-radius: 50px;
+	background: #ccc;
+	border: none;
+	position: absolute;
+	top: 50%;
+	left: 0;
 }
 
 .settings .main .notification input[type="checkbox"]:checked {
-	padding: 0;
-	background: #333;
-	border: double 4px #bb5d7f;
+	background: #bb5d7f;
 }
 
+.settings .main .notification input[type="checkbox"]:after,
+.settings .main .notification input[type="checkbox"]:checked:after {
+	content: '';
+	width: 50%;
+	height: 20%;
+	border-bottom: solid 4px #f0f0f0;
+	border-left: solid 4px #f0f0f0;
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 30%;
+	left: 15%;
+}
+
+.settings .main .notification p {
+	line-height: 1.2;
+}
+
+.settings .main .sample button {
+	margin-left: 4px;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 16px 0 32px;
+	border: solid 1px #333;
+	border-radius: 4px;
+	background: none;
+	position: relative;
+}
+
+.settings .main .play button:after {
+	content: '再生';
+}
+
+.settings .main .stop button:after {
+	content: '停止';
+}
+
+.settings .main .sample button:before {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	display: block;
+}
+
+.settings .main .play button:before {
+	border-top: solid 10px rgba(0,0,0,0);
+	border-left: solid 20px #333;
+	border-bottom: solid 10px rgba(0,0,0,0);
+}
+
+.settings .main .stop button:before {
+	width: 20px;
+	height: 20px;
+	background: #333;
+}
 
 
 .setting_profile .profile_icon {

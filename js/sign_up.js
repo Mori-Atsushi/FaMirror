@@ -100,6 +100,7 @@ $(function() {
 
 	//終了処理
 	var finish = function() {
+		get_data();
 		$('#message').text('登録完了');
 		speak('登録が完了しました。');
 		$('#sign_up').fadeOut('normal', function() {

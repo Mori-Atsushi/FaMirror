@@ -1,4 +1,40 @@
 <?php
+$access_token = ''; //google用
+
+function google($user) {
+	global $access_token;
+	// アプリケーション設定
+	define('CONSUMER_KEY', '482245107839-ltqcd5n13loc9oerhh00gpaehsn6okt3.apps.googleusercontent.com');
+	define('CONSUMER_SECRET', '56bapESDOFaQgDdeBg-M4-_W');
+
+	// URL
+	define('TOKEN_URL', 'https://accounts.google.com/o/oauth2/token');
+
+	$params = array(
+		'grant_type' => 'refresh_token',
+		'refresh_token' => $user['refresh_token'],
+		'client_id' => CONSUMER_KEY,
+		'client_secret' => CONSUMER_SECRET,
+	);
+
+	// POST送信
+	$options = array('http' => array(
+		'method' => 'POST',
+		'content' => http_build_query($params)
+	));
+	$res = file_get_contents(TOKEN_URL, false, stream_context_create($options));
+
+	// レスポンス取得
+	$token = json_decode($res, true);
+
+	if(isset($token['error'])){
+		echo 'エラー発生';
+		exit;
+	}
+
+	$access_token = $token['access_token'];
+}
+
 function set_date($manth, $day, $week) {
 	$week_ja = array('日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日');
 	return '今日は' . $manth . '月' . $day . '日、' . $week_ja[$week] . 'です。';
@@ -25,7 +61,7 @@ function weather($user) {
 		$return = $return . $res['description']['text'];
 
 	if($user['weather_tomorrow'])
-		$return = $return . '明日の天気は、' . $res['forecasts'][0]['telop'] . '、になっています。';
+		$return = $return . '明日の天気は、' . $res['forecasts'][0]['telop'] . 'でしょう。';
 	return $return;
 }
 
@@ -73,7 +109,12 @@ function check_trash($conn, $day, $week, $trash_id) {
 	return $return;	
 }
 
-function calender($user, $access_token) {
+function calendar($user) {
+	global $access_token;
+	if($access_token == '') {
+		google($user);
+	}
+
 	$year = date(Y); $month = date(m); $day = date(d);
 	$today = $year . '-' . $month . '-' . $day;
 	$url = 'https://www.googleapis.com/calendar/v3/calendars/' . $user['user_mail'] . '/events';
@@ -116,8 +157,7 @@ function calender($user, $access_token) {
 			if(isset($cal['items'][$i]['start']['dateTime']))
 				$return = $return . change_time($cal['items'][$i]['start']['dateTime'], $month, $day) . 'から';				
 		}
-		if($user['calendar_end'])
-		if($user['calendar_start']) {
+		if($user['calendar_end']) {
 			if(isset($cal['items'][$i]['start']['dateTime']))
 				$return = $return . change_time($cal['items'][$i]['end']['dateTime'], $month, $day) . 'まで';
 			else

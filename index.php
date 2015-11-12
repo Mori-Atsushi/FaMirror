@@ -123,12 +123,12 @@ $setting_profile = '<section id="setting_profile" class="setting_profile setting
 $setting_weather = '<section id="setting_weather" class="setting_weather settings">
 		<header class="page_header">
 			<h1>天気</h1>
-			<button id="weather_back" class="back"></button>
+			<button class="settings_back back"></button>
 		</header>
 		<div class="main">
-			<span>通知</span>
+			<h2>通知</h2>
 			<div class="onoff">
-				<input  id="weather_notification" type="checkbox" checked>
+				<input id="weather_notification" class="settings_notification" type="checkbox">
 				<div></div>
 			</div>
 			<div class="area">
@@ -147,26 +147,28 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 				<h2>通知設定</h2>
 				<ul>
 					<li>
-						<input id="weather_detail" type="checkbox" name="weather_detail">
-						<label for="weather_detail">詳細情報</label>
-						<p>天気の詳細をお知らせします。</p>
+						<label>詳細情報
+							<input id="weather_detail" type="checkbox">
+							<p>天気の詳細をお知らせします。</p>
+						</label>
 					</li>
 					<li>
-						<input id="weather_temperature" type="checkbox" name="weather_temperature">
-						<label for="weather_temperature">最高気温/最低温度</label>
-						<p>天気の詳細をお知らせします。</p>
+						<label>最高気温/最低温度
+							<input id="weather_temperature" type="checkbox">
+							<p>天気の詳細をお知らせします。</p>
+						</label>
 					</li>
 					<li>
-						<input id="weather_tomorrow" type="checkbox" name="weather_tomorrow">
-						<label for="weather_tomorrow">明日の天気</label>
-						<p>天気の詳細をお知らせします。</p>
+						<label>明日の天気
+							<input id="weather_tomorrow" type="checkbox">
+							<p>天気の詳細をお知らせします。</p>
+						</label>
 					</li>
 				</ul>
 			</div>
-
-			<div class="sample">
-				<h3>サンプル音声</h3>
-				<button id="weather_sample">再生</button>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
 			</div>
 
 		</div> <!-- .main -->
@@ -175,12 +177,12 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 $setting_trash = '<section id="setting_trash" class="setting_trash settings">
 		<header class="page_header">
 			<h1>ゴミ</h1>
-			<button id="trash_back" class="back"></button>
+			<button class="settings_back back"></button>
 		</header>
 		<div class="main">
-			<span>通知</span>
+			<h2>通知</h2>
 			<div class="onoff">
-				<input type="checkbox" checked>
+				<input class="settings_notification" type="checkbox" checked>
 				<div></div>
 			</div>
 			<div class="area">
@@ -209,15 +211,16 @@ $setting_trash = '<section id="setting_trash" class="setting_trash settings">
 				<h2>通知設定</h2>
 				<ul>
 					<li>
-						<input type="checkbox" name="weather_detail">
-						<label for="weather_detail">明日のごみ回収</label>
-						<p>翌日にごみ回収がある場合お知らせします。</p>
+						<label>明日のごみ回収
+							<input id="trash_tomorrow" type="checkbox">
+							<p>翌日にごみ回収がある場合お知らせします。</p>
+						</label>
 					</li>
 				</ul>
 			</div>
-			<div class="sample">
-				<h3>サンプル音声</h3>
-				<button>再生</button>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
 			</div>
 
 		</div> <!-- .main -->
@@ -226,42 +229,45 @@ $setting_trash = '<section id="setting_trash" class="setting_trash settings">
 $setting_calendar = '<section id="setting_calendar" class="setting_calendar settings">
 		<header class="page_header">
 			<h1>カレンダー</h1>
-			<button id="calendar_back" class="back"></button>
+			<button class="settings_back back"></button>
 		</header>
 		<div class="main">
-			<span>通知</span>
+			<h2>通知</h2>
 			<div class="onoff">
-				<input type="checkbox" checked>
+				<input id="calendar_notification" class="settings_notification" type="checkbox">
 				<div></div>
 			</div>
 			<div class="notification">
 				<h2>通知設定</h2>
 				<ul>
 					<li>
-						<input type="checkbox" name="weather_detail">
-						<label for="weather_detail">開始時間</label>
-						<p>カレンダーに登録されているスケジュールの開始時刻をお知らせします。</p>
+						<label>開始時刻
+							<input type="checkbox" id="calendar_start">
+							<p>カレンダーに登録されているスケジュールの開始時刻をお知らせします。</p>
+						</label>
 					</li>
 					<li>
-						<input type="checkbox" name="weather_detail">
-						<label for="weather_detail">終了時刻</label>
-						<p>カレンダーに登録されているスケジュールの終了時刻をお知らせします。</p>
+						<label>終了時刻
+							<input type="checkbox" id="calendar_end">
+							<p>カレンダーに登録されているスケジュールの終了時刻をお知らせします。</p>
+						</label>
 					</li>
 					<li>
-						<input type="checkbox" name="weather_detail">
-						<label for="weather_detail">場所</label>
-						<p>カレンダーに登録されているスケジュールの場所をお知らせします。</p>
+						<label>場所
+							<input type="checkbox" id="calendar_location">
+							<p>カレンダーに登録されているスケジュールの場所をお知らせします。</p>
+						</label>
 					</li>
 					<li>
-						<input type="checkbox" name="weather_detail">
-						<label for="weather_detail">詳細説明</label>
-						<p>カレンダーに登録されているスケジュールの詳細説明をお知らせします。</p>
+						<label>詳細説明
+							<input type="checkbox" id="calendar_description">
+							<p>カレンダーに登録されているスケジュールの詳細説明をお知らせします。</p></label>
 					</li>
 				</ul>
 			</div>
-			<div class="sample">
-				<h3>サンプル音声</h3>
-				<button>再生</button>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
 			</div>
 
 		</div> <!-- .main -->
@@ -300,13 +306,13 @@ $video = '<section id="video" class="video">
 			echo '<style type="text/css"><!-- #base { display : none; } --></style>';
 			echo $sign_up;
 		}
-		echo $setting;
-		echo $detail;
-		echo $setting_profile;
+		echo $video;
 		echo $setting_weather;
 		echo $setting_trash;
 		echo $setting_calendar;
-		echo $video;
+		echo $setting_profile;
+		echo $detail;
+		echo $setting;
 		echo $base;
 	} else {
 		echo $top;
@@ -319,9 +325,7 @@ $video = '<section id="video" class="video">
 		echo '<script type="text/javascript" src="./js/facepp.js"></script>';
 		echo '<script type="text/javascript" src="./js/speak.js"></script>';
 		echo '<script type="text/javascript" src="./js/profile.js"></script>';
-		echo '<script type="text/javascript" src="./js/weather.js"></script>';
-		echo '<script type="text/javascript" src="./js/trash.js"></script>';
-		echo '<script type="text/javascript" src="./js/calendar.js"></script>';
+		echo '<script type="text/javascript" src="./js/setting.js"></script>';
 		echo '<script type="text/javascript" src="./js/script.js"></script>';
 		if($sign_up_flag) {
 			echo '<script type="text/javascript" src="./js/sign_up.js"></script>';

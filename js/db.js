@@ -64,7 +64,7 @@ var listen_sample = function(type) {
 	var callback = function(data) {
 		speak(data);
 	}
-	send_db(url, data, callback );
+	send_db(url, data, callback);
 }
 
 //アイコンを送る

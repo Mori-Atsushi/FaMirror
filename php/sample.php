@@ -1,6 +1,9 @@
 <?php
 require 'collect.php';
 
+//$_POST['type'] = 'calendar';
+//$_POST['user_id'] = 1;
+
 session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
@@ -14,6 +17,9 @@ if($conn && $_POST['user_id'] !== '') {
 switch ($_POST['type']) {
 	case 'weather':
 		echo weather($user);
+		break;
+	case 'calendar':
+		echo calendar($user);
 		break;
 	default:
 		echo 'error';

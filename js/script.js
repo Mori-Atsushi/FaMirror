@@ -52,9 +52,7 @@ $(function() {
 	start_mirror(); //鏡開始
 	get_data(); //メンバーデータ取得
 	profile(); //プロフィール設定
-	weather(); //天気設定
-	trash(); //ゴミ設定
-	calendar(); //カレンダー設定
+	setting();
 
 	//認証開始
 	$('#auth').click( function() {
@@ -72,6 +70,8 @@ $(function() {
 			create_member_list(); //メンバー選択画面生成
 			member_list_flag = false;
 		}
+
+		speakInit();
 		$('#setting').animate({'left': '0%'}, speed);
 		$('#base').animate({'left': '-100%'}, speed);
 		$('#video').animate({'left': '-100%'}, speed);
