@@ -24,6 +24,12 @@ switch ($_POST['type']) {
 	case 'calendar':
 		echo calendar($user);
 		break;
+	case 'timetable':
+		echo timetable($user, $conn, $week);
+		break;
+	case 'horoscope':
+		echo horoscope($user);
+		break;
 	default:
 		echo 'error';
 }

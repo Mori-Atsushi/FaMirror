@@ -89,7 +89,7 @@ function check_trash($conn, $day, $week, $trash_id) {
 	$week_num = ceil($day / 7);
 	$week_to = $week_ja[$week];
 
-	if($conn && $_POST['user_id'] !== '') {
+	if($conn) {
 		mysql_select_db('famirror', $conn);
 		$sql = 'SELECT type, wday FROM trash_types WHERE trash_id = ' . $trash_id;
 		$result = mysql_query($sql);
@@ -212,5 +212,55 @@ function check_zero($str) {
 	if($str[0] == '0')
 		return $str[1];
 	return $str;
+}
+
+function horoscope($user) {
+	$year = date(Y); $month = date(m); $day = date(d);
+	$today = $year . '/' . $month . '/' . $day;
+	$url = 'http://api.jugemkey.jp/api/horoscope/free/' . $today;
+	$res = json_decode(file_get_contents($url), true);
+	$res = $res['horoscope'][$today][$user['horoscope_star']];
+
+	$message = '今日の' . $res['sign'] . 'の運勢は、第' . $res['rank'] . '位です。';
+	if($user['horoscope_detail'])
+		$message = $message . $res['content'];
+	if($user['horoscope_item'])
+		$message = $message . 'ラッキーアイテムは、' . $res['item'] . 'です。';
+	if($user['horoscope_color'])
+		$message = $message . 'ラッキーカラーは、' . $res['color'] . 'です。';
+	return $message;
+}
+
+function timetable($user, $conn, $week) {
+	$week = 1;
+	if($conn) {
+		mysql_select_db('famirror', $conn);
+		$sql = 'SELECT name, start_time FROM subjects WHERE timetable_id = ' . $user['timetable_class'] . ' AND wday = ' . $week . ' ORDER BY start_time ASC';
+		$result = mysql_query($sql);
+		$message = '今日の授業は、';
+		$i = 0;
+		while($row = mysql_fetch_assoc($result)) {
+			if($user['timetable_start'])
+				$message = $message . timetable_change_time($row['start_time']) . 'から、';
+			$message = $message . $row['name'] . '、';
+			$i++;
+		}
+		if($i == 0)
+			$message = $message . 'ありません。';
+		else
+			$message = $message . 'です。';
+		return $message;
+	}
+}
+
+function timetable_change_time($time) {
+	$h = $time[0] . $time[1];
+	$m = $time[3] . $time[4];
+
+	$return = check_zero($h) . '時';
+	if($m != '00')
+		$return = $return . check_zero($m) . '分';	
+
+	return $return;
 }
 ?>

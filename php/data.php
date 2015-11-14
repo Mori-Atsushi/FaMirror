@@ -151,12 +151,6 @@ if($conn) {
 				)
 			),
 			array(
-				'name' => 'alarm',
-				'notification' => $row['alarm_notification'],
-				'config' => array(
-				)
-			),
-			array(
 				'name' => 'horoscope',
 				'notification' => $row['horoscope_notification'],
 				'config' => array(
@@ -202,6 +196,12 @@ if($conn) {
 							'notification' => $row['lunch_tomorrow']
 						)
 					)
+				)
+			),
+			array(
+				'name' => 'alarm',
+				'notification' => $row['alarm_notification'],
+				'config' => array(
 				)
 			)
 		);

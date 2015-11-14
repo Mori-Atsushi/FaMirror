@@ -217,7 +217,7 @@ var setting = function() {
 	});
 
 	//ゴミ地域設定
-	jQuery.getJSON('data/timetableState.json', function(d) {
+	jQuery.getJSON('data/schoolCourse.json', function(d) {
 		console.log(d);
 		regional_data[timetable] = d;
 		var select = $('#timetable_school');

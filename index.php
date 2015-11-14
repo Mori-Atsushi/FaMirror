@@ -108,9 +108,9 @@ $detail = '<section id="detail" class="detail">
 				<li id="item_calendar"><div></div>カレンダー</li>
 				<li id="item_timetable"><div></div>時間割</li>
 				<li id="item_bus"><div></div>バス</li>
-				<li id="item_alarm"><div></div>残り時間</li>
 				<li id="item_horoscope"><div></div>星座占い</li>
 				<li id="item_lunch"><div></div>給食・学食</li>
+				<li id="item_alarm"><div></div>あと何分</li>
 			</ul>
 		</div>
 	</section>';
@@ -330,7 +330,7 @@ $setting_timetable = '<section id="setting_timetable" class="settings">
 			</div>
 			<div class="sample play">
 				<h2>サンプル音声</h2>
-				<button></button>
+				<button class="listen_sample"></button>
 			</div>
 
 		</div> <!-- .main -->
@@ -373,60 +373,6 @@ $setting_bus = '<section id="setting_bus" class="settings">
 
 			<div class="sample play">
 				<h2>サンプル音声</h2>
-				<button></button>
-			</div>
-
-		</div> <!-- .main -->
-	</section>';
-
-$setting_alarm = '<section id="setting_alarm" class="settings">
-		<header class="page_header">
-			<h1>残り時間</h1>
-			<button class="settings_back back"></button>
-		</header>
-		<div class="main">
-			<h2>通知</h2>
-			<div class="onoff">
-				<input id="alarm_notification" class="settings_notification" type="checkbox">
-				<div></div>
-			</div><!-- 
-			<div class="area">
-				<h2>地域設定</h2>
-				<label>都道府県</label>
-				<select id="weather_prefecture">
-					<option value="-1">選択してください</option>
-				</select>
-				<label>地区</label>
-				<select id="weather_area">
-					<option value="-1">先に都道府県を選択してください</option>
-				</select>
-			</div>
-
-			<div class="notification">
-				<h2>通知設定</h2>
-				<ul>
-					<li>
-						<label>詳細情報
-							<input id="weather_detail" type="checkbox">
-							<p>天気の詳細をお知らせします。</p>
-						</label>
-					</li>
-					<li>
-						<label>最高気温/最低温度
-							<input id="weather_temperature" type="checkbox">
-							<p>天気の詳細をお知らせします。</p>
-						</label>
-					</li>
-					<li>
-						<label>明日の天気
-							<input id="weather_tomorrow" type="checkbox">
-							<p>天気の詳細をお知らせします。</p>
-						</label>
-					</li>
-				</ul>
-			</div> -->
-			<div class="sample play">
-				<h2>サンプル音声</h2>
 				<button class="listen_sample"></button>
 			</div>
 
@@ -449,18 +395,18 @@ $setting_horoscope = '<section id="setting_horoscope" class="settings">
 				<label>星座</label>
 				<select id="horoscope_star">
 					<option value="-1">選択してください</option>
-					<option value="1">牡羊座</option>
-					<option value="2">牡牛座</option>
-					<option value="3">双子座</option>
-					<option value="4">蟹座</option>
-					<option value="5">獅子座</option>
-					<option value="6">乙女座</option>
-					<option value="7">天秤座</option>
-					<option value="8">蠍座</option>
-					<option value="9">射手座</option>
-					<option value="10">山羊座</option>
-					<option value="11">水瓶座</option>
-					<option value="12">魚座</option>
+					<option value="0">牡羊座</option>
+					<option value="1">牡牛座</option>
+					<option value="2">双子座</option>
+					<option value="3">蟹座</option>
+					<option value="4">獅子座</option>
+					<option value="5">乙女座</option>
+					<option value="6">天秤座</option>
+					<option value="7">蠍座</option>
+					<option value="8">射手座</option>
+					<option value="9">山羊座</option>
+					<option value="10">水瓶座</option>
+					<option value="11">魚座</option>
 				</select>
 			</div>
 
@@ -539,6 +485,75 @@ $setting_lunch = '<section id="setting_lunch" class="settings">
 		</div> <!-- .main -->
 	</section>';
 
+$setting_alarm = '<section id="setting_alarm" class="settings">
+		<header class="page_header">
+			<h1>残り時間</h1>
+			<button class="settings_back back"></button>
+		</header>
+		<div class="main">
+			<h2>通知</h2>
+			<div class="onoff">
+				<input id="alarm_notification" class="settings_notification" type="checkbox">
+				<div></div>
+			</div>
+			<div class="area">
+				<h2>設定</h2>
+
+				<label>時刻</label>
+				<input id="name" type="text">
+
+				<label>内容</label>
+				<input id="name" type="text">
+			</div>
+
+			<div class="notification">
+				<h2>通知設定</h2>
+				<ul>
+					<li>
+						<label>月曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+					<li>
+						<label>火曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+					<li>
+						<label>水曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+					<li>
+						<label>木曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+					<li>
+						<label>金曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+					<li>
+						<label>土曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+					<li>
+						<label>日曜日
+							<input id="" type="checkbox">
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
+			</div>
+
+		</div> <!-- .main -->
+	</section>';
+
 $video = '<section id="video" class="video">
 		<video id="mirror" class="mirror" autoplay></video>
 		<canvas id="canvas" class="temp_pic"></canvas>
@@ -580,9 +595,9 @@ $video = '<section id="video" class="video">
 		echo $setting_calendar;
 		echo $setting_timetable;
 		echo $setting_bus;
-		echo $setting_alarm;
 		echo $setting_horoscope;
 		echo $setting_lunch;
+		echo $setting_alarm;
 		echo $setting_profile;
 		echo $detail;
 		echo $setting;

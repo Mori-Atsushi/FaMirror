@@ -64,7 +64,7 @@ var speak = function (message, callback, initFlag) {
 	if(initFlag === true)
 		speakInit();
 	message = message.replace(/ /g, '').replace(/・/g, '、');
-	var texts = message.split(/[。！？.!?]/);
+	var texts = message.split(/[。！？.!?☆★]/);
 	var len = texts.length;
 
 	for(var i = 0; i < len; i++) {
