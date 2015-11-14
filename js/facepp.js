@@ -14,6 +14,7 @@ var send_info = function(url, callback) {
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log('Error : ' + errorThrown);
+			setTimeout( function() { send_info(url, callback); } , 1000);
 		}
 	});
 };

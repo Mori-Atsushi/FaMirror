@@ -3,13 +3,11 @@ session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 if($conn) {
 	mysql_select_db('famirror', $conn);
+	$data = '';
 	for($i = 0; $i < count($_POST['set']); $i++) {
 		if($i != 0)
 			$data = $data . ', ';
 		switch($_POST['set'][$i]['data']) {
-			case 'null':
-				$data = $data . $_POST['set'][$i]['name'] . '=NULL';
-				break;
 			case 'false';
 				$data = $data . $_POST['set'][$i]['name'] . '=0';
 				break;

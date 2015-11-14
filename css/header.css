@@ -78,7 +78,7 @@
 .detail .siteheader {
 	height: 320px;
 	width: 100%;
-	background-image: url('../img/detail_header.png');
+	/*background-image: url('../img/colors/pink/header.png');*/  /* detail.cssへ*/
 	background-size: cover;
 	background-position: center;
 	position: fixed;
@@ -127,3 +127,18 @@
 	color: #f0f0f0;
 }
 
+
+
+@media screen and (max-width: 599px) and (orientation: portrait) {
+.top .siteheader {
+	height: 80px;
+}
+
+} /* (max-width: 599px) */
+
+
+@media screen and (max-width: 374px) and (orientation: portrait) {
+.top .siteheader {
+	height: 64px;
+}
+} /* (max-width: 374px) */

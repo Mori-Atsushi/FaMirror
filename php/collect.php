@@ -35,11 +35,6 @@ function google($user) {
 	$access_token = $token['access_token'];
 }
 
-function set_date($manth, $day, $week) {
-	$week_ja = array('日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日');
-	return '今日は' . $manth . '月' . $day . '日、' . $week_ja[$week] . 'です。';
-}
-
 function weather($user) {
 	$url = 'http://weather.livedoor.com/forecast/webservice/json/v1?city=' . $user['weather_area'];
 	$res = json_decode(file_get_contents($url), true );
@@ -68,14 +63,19 @@ function weather($user) {
 function trash($user, $conn, $day, $week) {
 	$return = '今日回収されるゴミは、';
 
-	if(($m = check_trash($conn, $day, $week, $user['trash_id'])) == '')
+	if($user['trash_area2'] == '-3')
+		$trash_id = $user['trash_area1'];
+	else
+		$trash_id = $user['trash_area2'];
+
+	if(($m = check_trash($conn, $day, $week, $trash_id)) == '')
 		$return = $return . 'ありません。';
 	else
 		$return = $return . $m . 'です。';
 
 	if($user['trash_tomorrow']) {
 		$return = $return . '明日回収されるゴミは、';
-	if(($m = check_trash($conn, $day + 1, $week + 1, $user['trash_id'])) == '')
+	if(($m = check_trash($conn, $day + 1, $week + 1, $trash_id)) == '')
 		$return = $return . 'ありません。';		
 	else
 		$return = $return . $m . 'です。';
@@ -95,13 +95,17 @@ function check_trash($conn, $day, $week, $trash_id) {
 		$result = mysql_query($sql);
 		while($row = mysql_fetch_assoc($result)) {
 			if(strpos($row['wday'], $week_to) !== false) {
-				for($i = 1; $i <= 5; $i++) {
-					if($i != $week_num && strpos($row['wday'], $week_to . $i) !== false) {
-						break;
-					}
-				}
-				if($i > 5)
+				if(strpos($row['wday'], $week_to . '2') !== false) {
 					$return = $return . $row['type'] . '、';
+				} else {
+					for($i = 1; $i <= 5; $i++) {
+						if(strpos($row['wday'], $week_to . $i) !== false) {
+							break;
+						}
+					}
+					if($i > 5)
+						$return = $return . $row['type'] . '、';
+				}
 			}
 		}
 	}

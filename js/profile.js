@@ -17,7 +17,7 @@ var profile = function() {
 		$('#name_p').val(user_data[user_id]['user_name_p']);
 		$('#profile_icon').attr('src', 'icon/' + user_data[user_id]['img']);
 
-		$('#setting_profile').animate({'left': '0%'}, speed);
+		$('#setting_profile').addClass(color[user_id % 5]).animate({'left': '0%'}, speed);
 		$('#detail').animate({'left': '-100%'}, speed);
 	});
 
@@ -38,7 +38,9 @@ var profile = function() {
 		send_setting(send_data, function(data) { console.log(data); });
 		$('#member_' + (user_id + 1) + ' span').text(user_data[user_id].user_name);
 		$('#detail_user_name').text(user_data[user_id].user_name);
-		$('#setting_profile').animate({'left': '100%'}, speed);
+		$('#setting_profile').animate({'left': '100%'}, speed, function() {
+			$('#setting_profile').removeClass(color[user_id % 5]);
+		});
 		$('#detail').animate({'left': '0%'}, speed);
 	});
 

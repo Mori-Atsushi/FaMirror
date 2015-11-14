@@ -18,6 +18,9 @@ switch ($_POST['type']) {
 	case 'weather':
 		echo weather($user);
 		break;
+	case 'trash':
+		echo trash($user, $conn, $day, $week);
+		break;
 	case 'calendar':
 		echo calendar($user);
 		break;

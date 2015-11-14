@@ -9,6 +9,11 @@ session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 if($conn) {
 	mysql_select_db('famirror', $conn);
+	$sql = 'SELECT img FROM user WHERE family_id = "' . $_SESSION['family'] . '" AND user_id = "' . $_POST['user_id'] . '"';
+	$old = mysql_fetch_assoc(mysql_query($sql));
+	$old_path = '../icon/' . $old['img'];
+	unlink($old_path);
+	
 	$sql = 'DELETE FROM user WHERE family_id = "' . $_SESSION['family'] . '" AND user_id = "' . $_POST['user_id'] . '"';
 	mysql_query($sql);
 

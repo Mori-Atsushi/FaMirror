@@ -80,12 +80,6 @@ body {
 	display: block;
 }
 
-/* Clearfix */
-.clearfix:after {
-	content: "";
-	clear: both;
-	display: block;
-}
 
 
 /* ファイルを選択ボタン */
@@ -140,7 +134,7 @@ body {
 
 .onoff:after {
 	content: 'ON';
-	background: #bb5d7f;
+	/*background: #bb5d7f;*/
 	color: #f0f0f0;
 	left: 50%;
 }
@@ -170,3 +164,20 @@ body {
 .onoff input:checked + div {
 	left: 0;
 }
+
+
+
+/* Clearfix */
+.clearfix:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+
+@media screen and (max-width: 599px) {
+} /* (max-width: 599px) */
+
+
+@media screen and (max-width: 374px) {
+} /* (max-width: 374px) */

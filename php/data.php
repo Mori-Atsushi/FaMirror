@@ -46,7 +46,33 @@ if($conn) {
 			),
 			array(
 				'name' => 'trash',
-				'notification' => $row['trash_notification']
+				'notification' => $row['trash_notification'],
+				'config' => array(
+					'select' => array(
+						array(
+							'name' => 'prefecture',
+							'val' => $row['trash_prefecture']
+						),
+						array(
+							'name' => 'city',
+							'val' => $row['trash_city']
+						),
+						array(
+							'name' => 'area1',
+							'val' => $row['trash_area1']
+						),
+						array(
+							'name' => 'area2',
+							'val' => $row['trash_area2']
+						),
+					),
+					'onof' => array(
+						array(
+							'name' => 'tomorrow',
+							'notification' => $row['trash_tomorrow']
+						)
+					)
+				)
 			),
 			array(
 				'name' => 'calendar',
@@ -68,6 +94,112 @@ if($conn) {
 						array(
 							'name' => 'description',
 							'notification' => $row['calendar_description']
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'timetable',
+				'notification' => $row['timetable_notification'],
+				'config' => array(
+					'select' => array(
+						array(
+							'name' => 'school',
+							'val' => $row['timetable_school']
+						),
+						array(
+							'name' => 'grade',
+							'val' => $row['timetable_grade']
+						),
+						array(
+							'name' => 'class',
+							'val' => $row['timetable_class']
+						)
+					),
+					'onof' => array(
+						array(
+							'name' => 'start',
+							'notification' => $row['timetable_start']
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'bus',
+				'notification' => $row['bus_notification'],
+				'config' => array(
+					'select' => array(
+						array(
+							'name' => 'busname',
+							'val' => $row['bus_busname']
+						),
+						array(
+							'name' => 'stopname',
+							'val' => $row['bus_stopname']
+						),
+						array(
+							'name' => 'route',
+							'val' => $row['bus_route']
+						)
+					),
+					'choose' => array(
+						array(
+							'name' => 'howmany',
+							'val' => $row['bus_howmany']
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'alarm',
+				'notification' => $row['alarm_notification'],
+				'config' => array(
+				)
+			),
+			array(
+				'name' => 'horoscope',
+				'notification' => $row['horoscope_notification'],
+				'config' => array(
+					'choose' => array(
+						array(
+							'name' => 'star',
+							'val' => $row['horoscope_star']
+						)
+					),
+					'onof' => array(
+						array(
+							'name' => 'detail',
+							'notification' => $row['horoscope_detail']
+						),
+						array(
+							'name' => 'item',
+							'notification' => $row['horoscope_item']
+						),
+						array(
+							'name' => 'color',
+							'notification' => $row['horoscope_color']
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'lunch',
+				'notification' => $row['lunch_notification'],
+				'config' => array(
+					'select' => array(
+						array(
+							'name' => 'school',
+							'val' => $row['lunch_school']
+						)
+					),
+					'onof' => array(
+						array(
+							'name' => 'calorie',
+							'notification' => $row['lunch_calorie']
+						),
+						array(
+							'name' => 'tomorrow',
+							'notification' => $row['lunch_tomorrow']
 						)
 					)
 				)

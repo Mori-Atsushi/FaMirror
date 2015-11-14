@@ -7,3 +7,20 @@
 .setting, .detail, .settings {
 	left: 100%;
 }
+
+.base .exp {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background: rgba(255, 255, 255, .7);
+	display: block; /**/
+}
+
+.base .bottom {
+	height: 200px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	display: none;
+	/*bottom: -200px;*/
+}

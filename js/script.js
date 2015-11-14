@@ -45,7 +45,7 @@ $(function() {
 				$('#detail_list li').eq(i).children('div').removeClass('checked');
 		}
 
-		detail.animate({'left': '0%'}, speed);	
+		detail.addClass(color[user_id % 5]).animate({'left': '0%'}, speed);	
 		setting.animate({'left': '-100%'}, speed);
 	};
 
@@ -70,8 +70,6 @@ $(function() {
 			create_member_list(); //メンバー選択画面生成
 			member_list_flag = false;
 		}
-
-		speakInit();
 		$('#setting').animate({'left': '0%'}, speed);
 		$('#base').animate({'left': '-100%'}, speed);
 		$('#video').animate({'left': '-100%'}, speed);
@@ -92,7 +90,9 @@ $(function() {
 
 	//メンバー選択に戻る
 	$('#detail_back').click(function() {
-		$('#detail').animate({'left': '100%'}, speed);
+		$('#detail').animate({'left': '100%'}, speed, function() {
+			$('#detail').removeClass(color[user_id % 5]);
+		});
 		$('#setting').animate({'left': '0%'}, speed);
 	});
 });

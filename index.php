@@ -43,7 +43,9 @@ $sign_up = '<section id="sign_up" class="sign_up">
 $base = '<section id="base" class="base">
 		<header class="page_header">
 			<h1></h1>
+			<button class="volume"></button>
 			<button class="gear" id="setting_b"></button>
+			<button class="info"></button>
 		</header>
 
 		<div class="main">
@@ -53,6 +55,25 @@ $base = '<section id="base" class="base">
 		<div class="exp">
 			<p id="message"><!-- 四角形の中に顔を入れて、 -->画面に顔が映るようにして、認証ボタンを押してください。</p>
 			<button class="text_button" id="auth">認証</button>
+		</div>
+
+		<div class="bottom show">
+			<button class="text_button" id="auth">認証解除</button>
+			<div class="showhide"></div>
+			<div class="message">
+				<p>おはようございます、○○さん。</p>
+				<div class="list">
+					<p>今日の予定は</p>
+					<ul>
+						<li>可燃ごみの回収</li>
+						<li>ホリケンさんの誕生日</li>
+						<li>しゃべくり0007の記録</li>
+						<li>ジャンプの発売日</li>
+					</ul>
+				</div>
+				<p>今日の天気は、晴れのち曇りです。</p>
+				<p>バスは…</p>
+			</div>
 		</div>
 
 	</section>';
@@ -82,12 +103,14 @@ $detail = '<section id="detail" class="detail">
 		</header>
 		<div class="main">
 			<ul id="detail_list">
-				<li id="item_weather"><div></div><span>天気</span></li>
+				<li id="item_weather"><div></div>天気</li>
 				<li id="item_trash"><div></div>ごみ</li>
 				<li id="item_calendar"><div></div>カレンダー</li>
-				<li id="item_gmail"><div></div>Gmail</li>
 				<li id="item_timetable"><div></div>時間割</li>
-				<li id="item_transportation"><div></div>交通機関</li>
+				<li id="item_bus"><div></div>バス</li>
+				<li id="item_alarm"><div></div>残り時間</li>
+				<li id="item_horoscope"><div></div>星座占い</li>
+				<li id="item_lunch"><div></div>給食・学食</li>
 			</ul>
 		</div>
 	</section>';
@@ -120,7 +143,7 @@ $setting_profile = '<section id="setting_profile" class="setting_profile setting
 		</div> <!-- .main -->
 	</section>';
 
-$setting_weather = '<section id="setting_weather" class="setting_weather settings">
+$setting_weather = '<section id="setting_weather" class="settings">
 		<header class="page_header">
 			<h1>天気</h1>
 			<button class="settings_back back"></button>
@@ -134,12 +157,11 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 			<div class="area">
 				<h2>地域設定</h2>
 				<label>都道府県</label>
-				<select id="weather_prefecture">
+				<select id="weather_prefecture" class="setting_select">
 					<option value="-1">選択してください</option>
 				</select>
 				<label>地区</label>
 				<select id="weather_area">
-					<option value="-1">先に都道府県を選択してください</option>
 				</select>
 			</div>
 
@@ -174,7 +196,7 @@ $setting_weather = '<section id="setting_weather" class="setting_weather setting
 		</div> <!-- .main -->
 	</section>';
 
-$setting_trash = '<section id="setting_trash" class="setting_trash settings">
+$setting_trash = '<section id="setting_trash" class="settings">
 		<header class="page_header">
 			<h1>ゴミ</h1>
 			<button class="settings_back back"></button>
@@ -182,29 +204,26 @@ $setting_trash = '<section id="setting_trash" class="setting_trash settings">
 		<div class="main">
 			<h2>通知</h2>
 			<div class="onoff">
-				<input class="settings_notification" type="checkbox" checked>
+				<input id="trash_notification" class="settings_notification" type="checkbox" checked>
 				<div></div>
 			</div>
 			<div class="area">
 				<h2>地域設定</h2>
 				<label>都道府県</label>
-				<select>
+				<select id="trash_prefecture" class="setting_select">
 					<option value="-1">選択してください</option>
 				</select>
 
 				<label>市区町村</label>
-				<select>
-					<option value="-1">先に都道府県を選択してください</option>
+				<select id="trash_city" class="setting_select">
 				</select>
 
 				<label>地区&#9312;</label>
-				<select>
-					<option value="-1">先に都道府県を選択してください</option>
+				<select id="trash_area1" class="setting_select">
 				</select>
 
 				<label>地区&#9313;</label>
-				<select>
-					<option value="-1">先に都道府県を選択してください</option>
+				<select id="trash_area2">
 				</select>
 			</div>
 			<div class="notification">
@@ -226,7 +245,7 @@ $setting_trash = '<section id="setting_trash" class="setting_trash settings">
 		</div> <!-- .main -->
 	</section>';
 
-$setting_calendar = '<section id="setting_calendar" class="setting_calendar settings">
+$setting_calendar = '<section id="setting_calendar" class="settings">
 		<header class="page_header">
 			<h1>カレンダー</h1>
 			<button class="settings_back back"></button>
@@ -273,6 +292,253 @@ $setting_calendar = '<section id="setting_calendar" class="setting_calendar sett
 		</div> <!-- .main -->
 	</section>';
 
+$setting_timetable = '<section id="setting_timetable" class="settings">
+		<header class="page_header">
+			<h1>時間割</h1>
+			<button class="settings_back back"></button>
+		</header>
+		<div class="main">
+			<h2>通知</h2>
+			<div class="onoff">
+				<input id="timetable_notification" class="settings_notification" type="checkbox" checked>
+				<div></div>
+			</div>
+			<div class="area">
+				<h2>学校設定</h2>
+				<label>学校名</label>
+				<select id="timetable_school" class="setting_select">
+					<option value="-1">選択してください</option>
+				</select>
+				<label>学年</label>
+				<select id="timetable_grade" class="setting_select">
+				</select>
+				<label>クラス・学科</label>
+				<select id="timetable_class">
+				</select>
+			</div>
+
+			<div class="notification">
+				<h2>通知設定</h2>
+				<ul>
+					<li>
+						<label>開始時刻
+							<input id="timetable_start" type="checkbox">
+							<p>授業の開始時刻をお知らせします。</p>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button></button>
+			</div>
+
+		</div> <!-- .main -->
+	</section>';
+
+$setting_bus = '<section id="setting_bus" class="settings">
+		<header class="page_header">
+			<h1>バス</h1>
+			<button class="settings_back back"></button>
+		</header>
+		<div class="main">
+			<h2>通知</h2>
+			<div class="onoff">
+				<input id="bus_notification" class="settings_notification" type="checkbox" checked>
+				<div></div>
+			</div>
+			<div class="area">
+				<h2>バス設定</h2>
+				<label>バス名</label>
+				<select id="bus_busname">
+					<option value="-1">選択してください</option>
+				</select>
+				<label>バス停名</label>
+				<select id="bus_stopname">
+					<option value="-1">先にバス名を選択してください</option>
+				</select>
+				<label>ルート・方面</label>
+				<select id="bus_route">
+					<option value="-1">先にバス名を選択してください</option>
+				</select>
+				<label>通知する本数</label>
+				<select id="bus_howmany">
+					<option value="1">1本</option>
+					<option value="2">2本</option>
+					<option value="3">3本</option>
+					<option value="4">4本</option>
+					<option value="5">5本</option>
+				</select>
+			</div>
+
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button></button>
+			</div>
+
+		</div> <!-- .main -->
+	</section>';
+
+$setting_alarm = '<section id="setting_alarm" class="settings">
+		<header class="page_header">
+			<h1>残り時間</h1>
+			<button class="settings_back back"></button>
+		</header>
+		<div class="main">
+			<h2>通知</h2>
+			<div class="onoff">
+				<input id="alarm_notification" class="settings_notification" type="checkbox">
+				<div></div>
+			</div><!-- 
+			<div class="area">
+				<h2>地域設定</h2>
+				<label>都道府県</label>
+				<select id="weather_prefecture">
+					<option value="-1">選択してください</option>
+				</select>
+				<label>地区</label>
+				<select id="weather_area">
+					<option value="-1">先に都道府県を選択してください</option>
+				</select>
+			</div>
+
+			<div class="notification">
+				<h2>通知設定</h2>
+				<ul>
+					<li>
+						<label>詳細情報
+							<input id="weather_detail" type="checkbox">
+							<p>天気の詳細をお知らせします。</p>
+						</label>
+					</li>
+					<li>
+						<label>最高気温/最低温度
+							<input id="weather_temperature" type="checkbox">
+							<p>天気の詳細をお知らせします。</p>
+						</label>
+					</li>
+					<li>
+						<label>明日の天気
+							<input id="weather_tomorrow" type="checkbox">
+							<p>天気の詳細をお知らせします。</p>
+						</label>
+					</li>
+				</ul>
+			</div> -->
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
+			</div>
+
+		</div> <!-- .main -->
+	</section>';
+
+$setting_horoscope = '<section id="setting_horoscope" class="settings">
+		<header class="page_header">
+			<h1>占い</h1>
+			<button class="settings_back back"></button>
+		</header>
+		<div class="main">
+			<h2>通知</h2>
+			<div class="onoff">
+				<input id="horoscope_notification" class="settings_notification" type="checkbox">
+				<div></div>
+			</div>
+			<div class="area">
+				<h2>星座設定</h2>
+				<label>星座</label>
+				<select id="horoscope_star">
+					<option value="-1">選択してください</option>
+					<option value="1">牡羊座</option>
+					<option value="2">牡牛座</option>
+					<option value="3">双子座</option>
+					<option value="4">蟹座</option>
+					<option value="5">獅子座</option>
+					<option value="6">乙女座</option>
+					<option value="7">天秤座</option>
+					<option value="8">蠍座</option>
+					<option value="9">射手座</option>
+					<option value="10">山羊座</option>
+					<option value="11">水瓶座</option>
+					<option value="12">魚座</option>
+				</select>
+			</div>
+
+			<div class="notification">
+				<h2>通知設定</h2>
+				<ul>
+					<li>
+						<label>コメント
+							<input id="horoscope_detail" type="checkbox">
+							<p>コメントをお知らせします。</p>
+						</label>
+					</li>
+					<li>
+						<label>ラッキーアイテム
+							<input id="horoscope_item" type="checkbox">
+							<p>ラッキーアイテムをお知らせします。</p>
+						</label>
+					</li>
+					<li>
+						<label>ラッキーカラー
+							<input id="horoscope_color" type="checkbox">
+							<p>ラッキーカラーをお知らせします。</p>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
+			</div>
+
+		</div> <!-- .main -->
+	</section>';
+
+$setting_lunch = '<section id="setting_lunch" class="settings">
+		<header class="page_header">
+			<h1>給食</h1>
+			<button class="settings_back back"></button>
+		</header>
+		<div class="main">
+			<h2>通知</h2>
+			<div class="onoff">
+				<input id="lunch_notification" class="settings_notification" type="checkbox">
+				<div></div>
+			</div>
+			<div class="area">
+				<h2>学校設定</h2>
+				<label>学校名</label>
+				<select id="lunch_school">
+					<option value="-1">選択してください</option>
+				</select>
+			</div>
+
+			<div class="notification">
+				<h2>通知設定</h2>
+				<ul>
+					<li>
+						<label>摂取カロリー
+							<input id="lunch_calorie" type="checkbox">
+							<p>摂取カロリーをお知らせします。</p>
+						</label>
+					</li>
+					<li>
+						<label>明日の給食
+							<input id="lunch_tomorrow" type="checkbox">
+							<p>明日の給食もお知らせします。</p>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="sample play">
+				<h2>サンプル音声</h2>
+				<button class="listen_sample"></button>
+			</div>
+
+		</div> <!-- .main -->
+	</section>';
+
 $video = '<section id="video" class="video">
 		<video id="mirror" class="mirror" autoplay></video>
 		<canvas id="canvas" class="temp_pic"></canvas>
@@ -286,8 +552,9 @@ $video = '<section id="video" class="video">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="apple-touch-icon" href="img/webclipicon.png">
 	<meta name="viewport" content="width=device-width,maximum-scale=1.0">
-	<link rel="stylesheet" href="css/forKappa.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/top.css">
@@ -296,6 +563,7 @@ $video = '<section id="video" class="video">
 	<link rel="stylesheet" href="css/detail.css">
 	<link rel="stylesheet" href="css/setting.css">
 	<link rel="stylesheet" href="css/settings.css">
+	<link rel="stylesheet" href="css/forKappa.css">
 	<title>FaMirror</title>
 </head>
 
@@ -310,6 +578,11 @@ $video = '<section id="video" class="video">
 		echo $setting_weather;
 		echo $setting_trash;
 		echo $setting_calendar;
+		echo $setting_timetable;
+		echo $setting_bus;
+		echo $setting_alarm;
+		echo $setting_horoscope;
+		echo $setting_lunch;
 		echo $setting_profile;
 		echo $detail;
 		echo $setting;

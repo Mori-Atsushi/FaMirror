@@ -15,9 +15,9 @@
 }
 
 /* 中央のフレーズ部分 */
-.top h2 { font-size: 1.5rem; }  /* フォントサイズ。1rem=16px にしてる */
-@media screen and (min-width: 480px) {
-.top h2 { font-size: 2rem; }  /* フォントサイズ。1rem=16px にしてる */
+.top h2 { font-size: 2rem; }
+@media screen and (max-width: 480px) {
+.top h2 { font-size: 1.5rem; }
 }
 
 .top .main {
@@ -34,7 +34,7 @@
 }
 
 .top .sitefooter {
-	height: 20%;  /* 黒い部分の高さ。画面の縦幅が100% */
+	height: 200px;
 	width: 100%;
 	position: absolute;
 	left: 0;
@@ -45,8 +45,8 @@
 .top .sitefooter button {
 	margin-top: -36px;  /* センタリングのために、padding-top の -1/2 倍にする */
 	padding-top: 72px;  /* ボタンの縦幅。横幅は自動。 */
-	margin-left: -24%;
-	width: 48%;
+	margin-left: -145px;
+	width: 290px;
 	background: none;
 	background-image: url('../img/google.png');
 	background-size: contain;
@@ -57,3 +57,28 @@
 	top: 50%;
 	left: 50%;
 }
+
+
+@media screen and (max-width: 599px) {
+.top .sitefooter {
+	height: 160px;
+}
+
+} /* (max-width: 599px) */
+
+
+@media screen and (max-width: 374px) {
+.top .main {
+	bottom: 35%;
+}
+.top .sitefooter {
+	height: 96px;
+}
+.top .sitefooter button {
+	margin-top: -24px;
+	padding-top: 48px;
+	margin-left: -96.5px;
+	width: 193px;
+}
+
+} /* (max-width: 374px) */

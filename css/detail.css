@@ -1,11 +1,6 @@
 ﻿@charset "UTF-8";
 
-#item_weather   div { background-image: url('../img/weather_icon.png');  }
-#item_trash     div { background-image: url('../img/trash_icon.png');    }
-#item_calendar  div { background-image: url('../img/calendar_icon.png'); }
-#item_gmail     div { background-image: url('../img/mail_icon.png'); }
-#item_timetable div { background-image: url('../img/timetable_icon.png'); }
-#item_transportation div { background-image: url('../img/train_icon.png'); }
+
 
 .detail {
 	position: fixed;
@@ -62,6 +57,53 @@
 	content: '>';
 	margin: 0 30px;
 	display: block;
+	/*color: #bb5d7f;*/
 	float: right;
-	color: #c68;
 }
+
+
+/*
+	色の変更設定
+*/
+
+.pink   .siteheader { background-image: url('../img/colors/pink/header.png'); }
+.blue   .siteheader { background-image: url('../img/colors/blue/header.png'); }
+.green  .siteheader { background-image: url('../img/colors/green/header.png'); }
+.red    .siteheader { background-image: url('../img/colors/red/header.png'); }
+.bgreen .siteheader { background-image: url('../img/colors/bluegreen/header.png'); }
+
+.pink   #item_weather div { background-image: url('../img/colors/pink/weather_icon.png'); }
+.blue   #item_weather div { background-image: url('../img/colors/blue/weather_icon.png'); }
+.green  #item_weather div { background-image: url('../img/colors/green/weather_icon.png'); }
+.red    #item_weather div { background-image: url('../img/colors/red/weather_icon.png'); }
+.bgreen #item_weather div { background-image: url('../img/colors/bluegreen/weather_icon.png'); }
+
+.pink   #item_trash div { background-image: url('../img/colors/pink/trash_icon.png'); }
+.blue   #item_trash div { background-image: url('../img/colors/blue/trash_icon.png'); }
+.green  #item_trash div { background-image: url('../img/colors/green/trash_icon.png'); }
+.red    #item_trash div { background-image: url('../img/colors/red/trash_icon.png'); }
+.bgreen #item_trash div { background-image: url('../img/colors/bluegreen/trash_icon.png'); }
+
+.pink   #item_calendar  div { background-image: url('../img/colors/pink/calendar_icon.png'); }
+.blue   #item_calendar  div { background-image: url('../img/colors/blue/calendar_icon.png'); }
+.green  #item_calendar  div { background-image: url('../img/colors/green/calendar_icon.png'); }
+.red    #item_calendar  div { background-image: url('../img/colors/red/calendar_icon.png'); }
+.bgreen #item_calendar  div { background-image: url('../img/colors/bluegreen/calendar_icon.png'); }
+
+.pink   #item_timetable div { background-image: url('../img/colors/pink/timetable_icon.png'); }
+.blue   #item_timetable div { background-image: url('../img/colors/blue/timetable_icon.png'); }
+.green  #item_timetable div { background-image: url('../img/colors/green/timetable_icon.png'); }
+.red    #item_timetable div { background-image: url('../img/colors/red/timetable_icon.png'); }
+.bgreen #item_timetable div { background-image: url('../img/colors/bluegreen/timetable_icon.png'); }
+
+.pink   #item_bus div { background-image: url('../img/colors/pink/bus_icon.png'); }
+.blue   #item_bus div { background-image: url('../img/colors/blue/bus_icon.png'); }
+.green  #item_bus div { background-image: url('../img/colors/green/bus_icon.png'); }
+.red    #item_bus div { background-image: url('../img/colors/red/bus_icon.png'); }
+.bgreen #item_bus div { background-image: url('../img/colors/bluegreen/bus_icon.png'); }
+
+.pink   .main li:after { color: #bb5d7f; }
+.blue   .main li:after { color: #2980b9; }
+.green  .main li:after { color: #259956; }
+.red    .main li:after { color: #c0392b; }
+.bgreen .main li:after { color: #16a085; }

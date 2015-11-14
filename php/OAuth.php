@@ -10,7 +10,7 @@ define('AUTH_URL', 'https://accounts.google.com/o/oauth2/auth');
 $params = array(
 	'client_id' => CONSUMER_KEY,
 	'redirect_uri' => CALLBACK_URL,
-	'scope' => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/gmail.readonly',
+	'scope' => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar.readonly',
 	'response_type' => 'code',
 	'access_type' => 'offline',
 	'approval_prompt' => 'force',

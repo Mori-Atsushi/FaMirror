@@ -35,4 +35,9 @@ function greeting($time) {
 function user_name($user) {
 	return $user['user_name_p'] . 'さん。';
 }
+
+function set_date($manth, $day, $week) {
+	$week_ja = array('日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日');
+	return '今日は' . $manth . '月' . $day . '日、' . $week_ja[$week] . 'です。';
+}
 ?>

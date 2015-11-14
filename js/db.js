@@ -2,6 +2,7 @@ var user_data, user_length;
 var speed = 256; //アニメーションのスピード
 var user_id;
 var member_list_flag = true; //メンバーリストを生成したらfalseへ
+var color = ['pink', 'blue', 'green', 'red', 'bgreen'];
 
 //サーバーにデータを送る
 var send_db = function(url, data, callback) {
@@ -55,16 +56,16 @@ var send_notification = function(setting_name, data, num) {
 	send_setting(setting_array, data_array);
 };
 
-var listen_sample = function(type) {
+var listen_sample = function(type, callback) {
 	var url = 'php/sample.php';
 	var data = {
 		user_id : (user_id + 1),
 		type : type
 	};
-	var callback = function(data) {
-		speak(data);
+	var back = function(data) {
+		speak(data, callback);
 	}
-	send_db(url, data, callback);
+	send_db(url, data, back);
 }
 
 //アイコンを送る

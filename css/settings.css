@@ -3,6 +3,7 @@
 /* *******************
  *   settings
  * *******************/
+
 .settings {
 	position: fixed;
 	width: 100%;
@@ -10,9 +11,9 @@
 	/*left: 100%;*/
 }
 
-.settings .page_header {
+/*.settings .page_header {
 	background-image: url('../img/detail_header.png');
-}
+}*/
 
 .settings .main {
 	width: 80%;
@@ -85,17 +86,12 @@
 	-webkit-appearance: none;
 	appearance: none;
 	outline: none;
-	border: solid 1px #bb5d7f;
 	border-radius: 50px;
 	background: #ccc;
 	border: none;
 	position: absolute;
 	top: 50%;
 	left: 0;
-}
-
-.settings .main .notification input[type="checkbox"]:checked {
-	background: #bb5d7f;
 }
 
 .settings .main .notification input[type="checkbox"]:after,
@@ -166,6 +162,46 @@
 }
 
 .setting_profile .delete_button .text_button {
-	background: #bb5d7f;
 	color: #f0f0f0;
+}
+
+
+/*
+	色の変更設定
+*/
+
+.pink   .page_header { background-image: url('../img/colors/pink/header.png'); }
+.blue   .page_header { background-image: url('../img/colors/blue/header.png'); }
+.green  .page_header { background-image: url('../img/colors/green/header.png'); }
+.red    .page_header { background-image: url('../img/colors/red/header.png'); }
+.bgreen .page_header { background-image: url('../img/colors/bluegreen/header.png'); }
+
+.pink   .onoff:after,
+.pink   .notification input[type="checkbox"]:checked,
+.pink   .delete_button .text_button { background-color: #bb5d7f; }
+
+.blue   .onoff:after,
+.blue   .notification input[type="checkbox"]:checked,
+.blue   .delete_button .text_button { background-color: #2980b9; }
+
+.green  .onoff:after,
+.green  .notification input[type="checkbox"]:checked,
+.green  .delete_button .text_button { background-color: #259956; }
+
+.red    .onoff:after,
+.red    .notification input[type="checkbox"]:checked,
+.red    .delete_button .text_button { background-color: #c0392b; }
+
+.bgreen .onoff:after,
+.bgreen .notification input[type="checkbox"]:checked,
+.bgreen .delete_button .text_button { background-color: #16a085; }
+
+
+.disabled .notification,
+.disabled .area {
+	color: #999;
+}
+
+.disabled .notification input[type="checkbox"]:checked {
+	background-color: #888;
 }
