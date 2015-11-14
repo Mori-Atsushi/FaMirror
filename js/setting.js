@@ -1,9 +1,11 @@
 var setting = function() {
-	var weather = 0, trash = 1, calendar = 2, timetable = 3;
+	var weather = 0, trash = 1, calendar = 2, timetable = 3, bus = 4, lunch = 6;
 	var data, id, name, i;
 	var regional_data = new Array(); //天気地域データ
-	var regional_trash = ['都道府県', '市区町村', '地域１', '地域２'];
-	var regional_timetable = ['学校名', '学年', 'クラス・学科'];
+	var regional = new Array();
+	regional[trash] = ['都道府県', '市区町村', '地域１', '地域２'];
+	regional[timetable] = ['学校名', '学年', 'クラス・学科'];
+	regional[bus] = ['バス名', 'バス停名', 'ルート・方面'];
 	var listen_div = 0;
 	var next = new Array();
 
@@ -17,6 +19,9 @@ var setting = function() {
 				trash_change(no);
 				break;
 			case timetable :
+				timetable_change(no);
+				break;
+			case bus :
 				timetable_change(no);
 				break;
 		}
@@ -43,7 +48,7 @@ var setting = function() {
 				if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -1) {
 					for(var i = no + 1; i < data['select'].length; i++) {
 						var select = $('#' + name + '_' + data['select'][i]['name']);
-						select.html('<option value="-1">先に' + regional_trash[no] + 'を選択してください</option>');
+						select.html('<option value="-1">先に' + regional[trash][no] + 'を選択してください</option>');
 					}
 				}
 			} else {
@@ -87,17 +92,19 @@ var setting = function() {
 				if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -1) {
 					for(var i = no + 1; i < data['select'].length; i++) {
 						var select = $('#' + name + '_' + data['select'][i]['name']);
-						select.html('<option value="-1">先に' + regional_timetable[no] + 'を選択してください</option>');
+						select.html('<option value="-1">先に' + regional[id][no] + 'を選択してください</option>');
 					}
 				}
 			} else {
 				var next_name = data['select'][no + 1]['name'];
 				if(no == 0)
-					next[no] = regional_data[timetable][num]['grade'];
+					next[no] = regional_data[id][num][next_name];
 				else
 					next[no] = next[no - 1][num][next_name];
+
+
 				var select = $('#' + name + '_' + next_name);
-				select.html('<option value="-2">' + regional_timetable[no + 1] + 'を選択してください</option>');
+				select.html('<option value="-2">' + regional[id][no + 1] + 'を選択してください</option>');
 
 				for(var i = 0; i < next[no].length; i++) {
 					if(no == 0)
@@ -108,7 +115,7 @@ var setting = function() {
 
 				for(var i = no + 2; i < data['select'].length; i++) {
 					select = $('#' + name + '_' + data['select'][i]['name']);
-					select.html('<option value="-1">先に' + regional_timetable[no + 1] + 'を選択してください</option>');
+					select.html('<option value="-1">先に' + regional[id][no + 1] + 'を選択してください</option>');
 				}
 			}
 		}
@@ -216,13 +223,33 @@ var setting = function() {
 		}
 	});
 
-	//ゴミ地域設定
+	//学校時間割設定
 	jQuery.getJSON('data/schoolCourse.json', function(d) {
 		console.log(d);
 		regional_data[timetable] = d;
 		var select = $('#timetable_school');
 		for(var i = 0; i < regional_data[timetable].length; i++) {
 			select.append('<option value="' + i + '">' + regional_data[timetable][i]['school'] + '</option>');
+		}
+	});
+
+	//バス設定
+	jQuery.getJSON('data/busStop.json', function(d) {
+		console.log(d);
+		regional_data[bus] = d;
+		var select = $('#bus_busname');
+		for(var i = 0; i < regional_data[bus].length; i++) {
+			select.append('<option value="' + i + '">' + regional_data[bus][i]['bus'] + '</option>');
+		}
+	});
+
+	//給食学食設定
+	jQuery.getJSON('data/schoolLunch.json', function(d) {
+		console.log(d);
+		regional_data[lunch] = d;
+		var select = $('#lunch_school');
+		for(var i = 0; i < regional_data[bus].length; i++) {
+			select.append('<option value="' + (i + 1)+ '">' + regional_data[lunch][i]['school'] + '</option>');
 		}
 	});
 
@@ -242,10 +269,15 @@ var setting = function() {
 	$('.listen_sample').click( function() {
 		if(listen_div == 0) {
 			listen_div = $(this).parent('div');
+			listen_div.removeClass('play').addClass('stop');
+
 			send_data( function(data) {
-				listen_div.removeClass('play').addClass('stop');
-				listen_sample(name, listen_finish);
+				if(name == 'alarm')
+					start_alarm(listen_finish);
+				else
+					listen_sample(name, listen_finish);
 			});
+
 		} else {
 			speakInit();
 			listen_div.removeClass('stop').addClass('play');

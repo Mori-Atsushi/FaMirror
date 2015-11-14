@@ -20,10 +20,14 @@ if($user['trash_notification'])
 	$message = $message . trash($user, $conn, $day, $week);
 if($user['calendar_notification'])
 	$message = $message . calendar($user);
-if($user['horoscope_notification'])
-	$message = $message . horoscope($user);
 if($user['timetable_notification'])
 	$message = $message . timetable($user, $conn, $week);
+if($user['bus_notification'])
+	$message = $message . bus($user, $conn);
+if($user['horoscope_notification'])
+	$message = $message . horoscope($user);
+if($user['lunch_notification'])
+	$message = $message . lunch($user, $conn);
 echo $message;
 
 

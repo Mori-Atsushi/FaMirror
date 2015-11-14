@@ -350,16 +350,14 @@ $setting_bus = '<section id="setting_bus" class="settings">
 			<div class="area">
 				<h2>バス設定</h2>
 				<label>バス名</label>
-				<select id="bus_busname">
+				<select id="bus_busname" class="setting_select">
 					<option value="-1">選択してください</option>
 				</select>
 				<label>バス停名</label>
-				<select id="bus_stopname">
-					<option value="-1">先にバス名を選択してください</option>
+				<select id="bus_stop" class="setting_select">
 				</select>
 				<label>ルート・方面</label>
 				<select id="bus_route">
-					<option value="-1">先にバス名を選択してください</option>
 				</select>
 				<label>通知する本数</label>
 				<select id="bus_howmany">
@@ -485,7 +483,7 @@ $setting_lunch = '<section id="setting_lunch" class="settings">
 		</div> <!-- .main -->
 	</section>';
 
-$setting_alarm = '<section id="setting_alarm" class="settings">
+$setting_alarm = '<section id="setting_alarm" class="settings setting_alarm">
 		<header class="page_header">
 			<h1>残り時間</h1>
 			<button class="settings_back back"></button>
@@ -497,51 +495,47 @@ $setting_alarm = '<section id="setting_alarm" class="settings">
 				<div></div>
 			</div>
 			<div class="area">
-				<h2>設定</h2>
-
-				<label>時刻</label>
-				<input id="name" type="text">
-
-				<label>内容</label>
-				<input id="name" type="text">
+				<h2>時刻と内容</h2>
+				<input id="alarm_time" type="time">
+				<input id="alarm_content" type="text">
 			</div>
 
 			<div class="notification">
 				<h2>通知設定</h2>
 				<ul>
 					<li>
+					<li>
+						<label>日曜日
+							<input id="alarm_sun" type="checkbox">
+						</label>
+					</li>
 						<label>月曜日
-							<input id="" type="checkbox">
+							<input id="alarm_mon" type="checkbox">
 						</label>
 					</li>
 					<li>
 						<label>火曜日
-							<input id="" type="checkbox">
+							<input id="alarm_tue" type="checkbox">
 						</label>
 					</li>
 					<li>
 						<label>水曜日
-							<input id="" type="checkbox">
+							<input id="alarm_wed" type="checkbox">
 						</label>
 					</li>
 					<li>
 						<label>木曜日
-							<input id="" type="checkbox">
+							<input id="alarm_thu" type="checkbox">
 						</label>
 					</li>
 					<li>
 						<label>金曜日
-							<input id="" type="checkbox">
+							<input id="alarm_fri" type="checkbox">
 						</label>
 					</li>
 					<li>
 						<label>土曜日
-							<input id="" type="checkbox">
-						</label>
-					</li>
-					<li>
-						<label>日曜日
-							<input id="" type="checkbox">
+							<input id="alarm_sat" type="checkbox">
 						</label>
 					</li>
 				</ul>
@@ -614,6 +608,7 @@ $video = '<section id="video" class="video">
 		echo '<script type="text/javascript" src="./js/speak.js"></script>';
 		echo '<script type="text/javascript" src="./js/profile.js"></script>';
 		echo '<script type="text/javascript" src="./js/setting.js"></script>';
+		echo '<script type="text/javascript" src="./js/alarm.js"></script>';
 		echo '<script type="text/javascript" src="./js/script.js"></script>';
 		if($sign_up_flag) {
 			echo '<script type="text/javascript" src="./js/sign_up.js"></script>';

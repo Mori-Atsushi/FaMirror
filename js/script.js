@@ -20,7 +20,9 @@ $(function() {
 		var data = {
 			user_id: id[1]
 		};
-		send_db(url, data, speak);
+		send_db(url, data, function(data) {
+			speak(data, check_alarm)
+		});
 	};
 
 	//設定画面作成
@@ -70,6 +72,7 @@ $(function() {
 			create_member_list(); //メンバー選択画面生成
 			member_list_flag = false;
 		}
+		speakInit();
 		$('#setting').animate({'left': '0%'}, speed);
 		$('#base').animate({'left': '-100%'}, speed);
 		$('#video').animate({'left': '-100%'}, speed);

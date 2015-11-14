@@ -27,8 +27,14 @@ switch ($_POST['type']) {
 	case 'timetable':
 		echo timetable($user, $conn, $week);
 		break;
+	case 'bus':
+		echo bus($user, $conn);
+		break;
 	case 'horoscope':
 		echo horoscope($user);
+		break;
+	case 'lunch':
+		echo lunch($user, $conn);
 		break;
 	default:
 		echo 'error';

@@ -232,7 +232,6 @@ function horoscope($user) {
 }
 
 function timetable($user, $conn, $week) {
-	$week = 1;
 	if($conn) {
 		mysql_select_db('famirror', $conn);
 		$sql = 'SELECT name, start_time FROM subjects WHERE timetable_id = ' . $user['timetable_class'] . ' AND wday = ' . $week . ' ORDER BY start_time ASC';
@@ -262,5 +261,69 @@ function timetable_change_time($time) {
 		$return = $return . check_zero($m) . '分';	
 
 	return $return;
+}
+
+function bus($user, $conn) {
+	$h = date(H); $m = date(i);
+	$now = $h . ':' . $m . ':00';
+	if($conn) {
+		mysql_select_db('famirror', $conn);
+		$sql = 'SELECT start_time FROM bus_tables WHERE bus_stop_id = ' . $user['bus_route'] . ' ORDER BY start_time ASC';
+		$result = mysql_query($sql);
+		$message = '次に来るバスは、';
+		$i = 0;
+		while($row = mysql_fetch_assoc($result)) {
+			if(strnatcmp($now, $row['start_time']) == -1) {
+				if($i == 1)
+					$message = $message . '続いて、';
+				$message = $message . timetable_change_time($row['start_time']) . '、';
+				$i++;
+				if($i >= $user['bus_howmany'])
+					break;
+			}
+		}
+		if($i == 0)
+			$message = $message . 'もうありません。';
+		else
+			$message = $message . 'です。';
+		return $message;
+	}
+}
+
+function lunch($user, $conn) {
+	$year = date(Y); $month = date(m); $day = date(d);
+	$today = $year . '-' . $month . '-' . $day;
+	$message = '今日の給食は、';
+	$message = $message . get_lunch($user, $conn, $today);
+	if($user['lunch_tomorrow']) {
+		$day = $day + 1;
+		$today = $year . '-' . $month . '-' . $day;
+		$message = $message . '明日の給食は、';
+		$message = $message . get_lunch($user, $conn, $today);
+	}
+
+	return $message;
+}
+
+function get_lunch($user, $conn, $today) {
+	if($conn) {
+		mysql_select_db('famirror', $conn);
+		$sql = 'SELECT menu, calorie FROM cafemenus WHERE school_id = ' . $user['lunch_school'] . ' AND date = "' . $today . '"';
+		$result = mysql_query($sql);
+		$i = 0;
+		while($row = mysql_fetch_assoc($result)) {
+			if($i > 0)
+				$message = $message . 'もしくは、';
+			$message = $message . $row['menu'] . '、';
+			if($user['lunch_calorie'])
+				$message = $message . 'カロリーは、' . $row['calorie'] . 'キロカロリー、';
+			$i++;
+		}
+		if($i == 0)
+			$message = $message . 'ありません。';
+		else
+			$message = $message . 'です。';
+		return $message;
+	}
 }
 ?>

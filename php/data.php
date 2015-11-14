@@ -134,8 +134,8 @@ if($conn) {
 							'val' => $row['bus_busname']
 						),
 						array(
-							'name' => 'stopname',
-							'val' => $row['bus_stopname']
+							'name' => 'stop',
+							'val' => $row['bus_stop']
 						),
 						array(
 							'name' => 'route',
@@ -202,6 +202,46 @@ if($conn) {
 				'name' => 'alarm',
 				'notification' => $row['alarm_notification'],
 				'config' => array(
+					'choose' => array(
+						array(
+							'name' => 'content',
+							'val' => $row['alarm_content']
+						),
+						array(
+							'name' => 'time',
+							'val' => $row['alarm_time']
+						)
+					),
+					'onof' => array(
+						array(
+							'name' => 'sun',
+							'notification' => $row['alarm_sun']
+						),
+						array(
+							'name' => 'mon',
+							'notification' => $row['alarm_mon']
+						),
+						array(
+							'name' => 'tue',
+							'notification' => $row['alarm_tue']
+						),
+						array(
+							'name' => 'wed',
+							'notification' => $row['alarm_wed']
+						),
+						array(
+							'name' => 'thu',
+							'notification' => $row['alarm_thu']
+						),
+						array(
+							'name' => 'fri',
+							'notification' => $row['alarm_fri']
+						),
+						array(
+							'name' => 'sat',
+							'notification' => $row['alarm_sat']
+						)
+					)
 				)
 			)
 		);

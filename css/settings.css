@@ -165,6 +165,24 @@
 	color: #f0f0f0;
 }
 
+.setting_alarm label {
+	display: block;
+}
+.setting_alarm .main input[type="text"],
+.setting_alarm .main input[type="time"] {
+	margin: 4px 0 16px;
+	padding: 8px;
+	height: 20px;
+	display: inline-block;
+}
+.setting_alarm .main input[type="time"] {
+	/*margin-right: 4px;*/
+	width: 80px;
+}
+.setting_alarm .main input[type="text"] {
+	width: 70%;
+}
+
 
 /*
 	色の変更設定
