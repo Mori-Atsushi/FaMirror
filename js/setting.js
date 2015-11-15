@@ -1,13 +1,18 @@
 var setting = function() {
-	var weather = 0, trash = 1, calendar = 2, timetable = 3, bus = 4, lunch = 6;
+	var weather = 0, trash = 1, calendar = 2, timetable = 3, bus = 4, horoscope = 5, lunch = 6, alarm = 7;
 	var data, id, name, i;
 	var regional_data = new Array(); //天気地域データ
 	var regional = new Array();
+	regional[weather] = ['都道府県', '地区'];
 	regional[trash] = ['都道府県', '市区町村', '地域１', '地域２'];
 	regional[timetable] = ['学校名', '学年', 'クラス・学科'];
 	regional[bus] = ['バス名', 'バス停名', 'ルート・方面'];
+	regional[horoscope] = ['星座'];
+	regional[lunch] = ['学校名'];
+	regional[alarm] = ['内容', '時間'];
 	var listen_div = 0;
 	var next = new Array();
+	var setting_data = new Array();
 
 	//セレクタが入れ替わった時の動作
 	var change_celect = function(no) {
@@ -42,7 +47,8 @@ var setting = function() {
 	};
 
 	var trash_change = function(no) {
-		if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -3) {
+		var num = $('#' + name + '_' + data['select'][no + 1]['name']).val();
+		if(num != 'ok') {
 			var num = $('#' + name + '_' + data['select'][no]['name']).val();
 			if(num < 0) {
 				if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -1) {
@@ -63,7 +69,7 @@ var setting = function() {
 						last = true;
 				}
 				var select = $('#' + name + '_' + next_name);
-				select.html('<option value="-2">' + regional_trash[no + 1] + 'を選択してください</option>');
+				select.html('<option value="-2">' + regional[trash][no + 1] + 'を選択してください</option>');
 
 				for(var i = 0; i < next[no].length; i++) {
 					if(last)
@@ -74,11 +80,11 @@ var setting = function() {
 
 				if(last && no < 2) {
 					select = $('#' + name + '_' + data['select'][no + 2]['name']);
-					select.html('<option value="-3">選択する必要はありません。</option>');
+					select.html('<option value="ok">選択する必要はありません。</option>');
 				} else {
 					for(var i = no + 2; i < data['select'].length; i++) {
 						select = $('#' + name + '_' + data['select'][i]['name']);
-						select.html('<option value="-1">先に' + regional_trash[no + 1] + 'を選択してください</option>');
+						select.html('<option value="-1">先に' + regional[trash][no + 1] + 'を選択してください</option>');
 					}
 				}
 			}
@@ -86,37 +92,35 @@ var setting = function() {
 	};
 
 	var timetable_change = function(no) {
-		if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -3) {
-			var num = $('#' + name + '_' + data['select'][no]['name']).val();
-			if(num < 0) {
-				if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -1) {
-					for(var i = no + 1; i < data['select'].length; i++) {
-						var select = $('#' + name + '_' + data['select'][i]['name']);
-						select.html('<option value="-1">先に' + regional[id][no] + 'を選択してください</option>');
-					}
+		var num = $('#' + name + '_' + data['select'][no]['name']).val();
+		if(num < 0) {
+			if($('#' + name + '_' + data['select'][no + 1]['name']).val() != -1) {
+				for(var i = no + 1; i < data['select'].length; i++) {
+					var select = $('#' + name + '_' + data['select'][i]['name']);
+					select.html('<option value="-1">先に' + regional[id][no] + 'を選択してください</option>');
 				}
-			} else {
-				var next_name = data['select'][no + 1]['name'];
+			}
+		} else {
+			var next_name = data['select'][no + 1]['name'];
+			if(no == 0)
+				next[no] = regional_data[id][num][next_name];
+			else
+				next[no] = next[no - 1][num][next_name];
+
+
+			var select = $('#' + name + '_' + next_name);
+			select.html('<option value="-2">' + regional[id][no + 1] + 'を選択してください</option>');
+
+			for(var i = 0; i < next[no].length; i++) {
 				if(no == 0)
-					next[no] = regional_data[id][num][next_name];
+					select.append('<option value="' + i + '">' + next[no][i]['name'] + '</option>');
 				else
-					next[no] = next[no - 1][num][next_name];
+					select.append('<option value="' + next[no][i]['id'] + '">' + next[no][i]['name'] + '</option>');
+			}
 
-
-				var select = $('#' + name + '_' + next_name);
-				select.html('<option value="-2">' + regional[id][no + 1] + 'を選択してください</option>');
-
-				for(var i = 0; i < next[no].length; i++) {
-					if(no == 0)
-						select.append('<option value="' + i + '">' + next[no][i]['name'] + '</option>');
-					else
-						select.append('<option value="' + next[no][i]['id'] + '">' + next[no][i]['name'] + '</option>');
-				}
-
-				for(var i = no + 2; i < data['select'].length; i++) {
-					select = $('#' + name + '_' + data['select'][i]['name']);
-					select.html('<option value="-1">先に' + regional[id][no + 1] + 'を選択してください</option>');
-				}
+			for(var i = no + 2; i < data['select'].length; i++) {
+				select = $('#' + name + '_' + data['select'][i]['name']);
+				select.html('<option value="-1">先に' + regional[id][no + 1] + 'を選択してください</option>');
 			}
 		}
 	};
@@ -146,52 +150,77 @@ var setting = function() {
 	};
 
 	// データを送信する
-	var send_data = function(callback) {
-		var d, num = 0;
-		var setting_data = new Array();
+	var send_data = function(flag, callback) {
+		var d, select, text = '', t;
+		setting_data = new Array();
+
+		user_data[user_id]['setting'][id]['notification'] = $('#' + name + '_notification').prop('checked');
+		if(flag)
+			flag = user_data[user_id]['setting'][id]['notification'];
+		else
+			flag = true;
 
 		if(typeof(data['select']) != 'undefined') {
 			for(var i = 0; i < data['select'].length; i++) {
-				data['select'][i]['val'] = $('#' + name + '_' + data['select'][i]['name']).val();
-				setting_data[num] = {
-					name : name + '_' + data['select'][i]['name'],
-					data : data['select'][i]['val']
+				if((t = check_data(i, 'select', flag)) != '') {
+					if(text != '')
+						text += '、';
+					text += t;
 				}
-				num++;
 			}
 		}
 
 		if(typeof(data['onof']) != 'undefined') {
 			for(var i = 0; i < data['onof'].length; i++) {
 				data['onof'][i]['notification'] = $('#' + name + '_' + data['onof'][i]['name']).prop('checked');
-				setting_data[num] = {
+				setting_data[setting_data.length] = {
 					name : name + '_' + data['onof'][i]['name'],
 					data : data['onof'][i]['notification']
 				}
-				num++;
 			}
 		}
 
 		if(typeof(data['choose']) != 'undefined') {
 			for(var i = 0; i < data['choose'].length; i++) {
-				data['choose'][i]['val'] = $('#' + name + '_' + data['choose'][i]['name']).val();
-				setting_data[num] = {
-					name : name + '_' + data['choose'][i]['name'],
-					data : data['choose'][i]['val']
+				if((t = check_data(i, 'choose', flag)) != '') {
+					if(text != '')
+						text += '、';
+					text += t;
 				}
-				num++;
 			}
+		}
+
+		if(text != '') {
+			var popup = $('#deta_error');
+			popup.find('span').text(text);
+			$('#black_screen').fadeIn(speed);
+			popup.animate({bottom: '40%'}, speed);
+			return -1;
 		}
 
 		user_data[user_id]['setting'][id]['notification'] = $('#' + name + '_notification').prop('checked');
 
-		setting_data[num] = {
+		setting_data[setting_data.length] = {
 			name : name + '_notification',
-			data : user_data[user_id]['setting'][id]['notification']
+			data : flag
 		}
 
 		user_data[user_id]['setting'][id]['config'] = data;
 		send_setting(setting_data, callback);
+	};
+
+	var check_data = function(i, target, flag) {
+		select = $('#' + name + '_' + data[target][i]['name']);
+		d = select.val();
+		if((d < 0 || d == '') && select.hasClass('necessary') && flag)
+			return regional[id][i];
+
+		data[target][i]['val'] = d;
+		setting_data[setting_data.length] = {
+			name : name + '_' + data[target][i]['name'],
+			data : data[target][i]['val']
+		}
+		return '';
 	};
 
 	var listen_finish = function() {
@@ -248,7 +277,7 @@ var setting = function() {
 		console.log(d);
 		regional_data[lunch] = d;
 		var select = $('#lunch_school');
-		for(var i = 0; i < regional_data[bus].length; i++) {
+		for(var i = 0; i < regional_data[lunch].length; i++) {
 			select.append('<option value="' + (i + 1)+ '">' + regional_data[lunch][i]['school'] + '</option>');
 		}
 	});
@@ -268,16 +297,17 @@ var setting = function() {
 	//サンプル再生
 	$('.listen_sample').click( function() {
 		if(listen_div == 0) {
-			listen_div = $(this).parent('div');
-			listen_div.removeClass('play').addClass('stop');
-
-			send_data( function(data) {
+			var result = send_data( false, function(data) {
 				if(name == 'alarm')
 					start_alarm(listen_finish);
 				else
 					listen_sample(name, listen_finish);
 			});
 
+			if(result != -1) {
+				listen_div = $(this).parent('div');
+				listen_div.removeClass('play').addClass('stop');				
+			}
 		} else {
 			speakInit();
 			listen_div.removeClass('stop').addClass('play');
@@ -323,17 +353,25 @@ var setting = function() {
 	//データを送信して戻る
 	$('.settings_back').click( function() {
 
-		send_data( function(data) { console.log(data); });
+		var result = send_data( true, function(data) { console.log(data); });
 
-		if(user_data[user_id]['setting'][id]['notification'] == 1)
-			$('#item_' + name + ' div').addClass('checked');
-		else
-			$('#item_' + name + ' div').removeClass('checked');
+		if(result != -1) {
+			if(user_data[user_id]['setting'][id]['notification'] == 1)
+				$('#item_' + name + ' div').addClass('checked');
+			else
+				$('#item_' + name + ' div').removeClass('checked');
 
-		speakInit();
-		$('#setting_' + name).animate({'left': '100%'}, speed, function() {
-			$('#setting_' + name).removeClass(color[user_id % 5]);
+			speakInit();
+			$('#setting_' + name).animate({'left': '100%'}, speed, function() {
+				$('#setting_' + name).removeClass(color[user_id % 5]);
+			});
+			$('#detail').animate({'left': '0%'}, speed);
+		}
+	});
+
+	$('#data_error_ok').click( function() {
+		$('#black_screen').fadeOut(speed, function() {
+			$('#deta_error').css({bottom: '100%'});
 		});
-		$('#detail').animate({'left': '0%'}, speed);
 	});
 };

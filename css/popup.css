@@ -1,0 +1,69 @@
+﻿@charset "UTF-8";
+
+.black_screen {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.7);
+	display: none;
+	z-index: 100;
+}
+
+.black_screen .get_name_popup,
+.black_screen .OK_popup,
+.black_screen .OK_Cancel_popup {
+	margin: auto;
+	padding: 16px;
+	width: 80%;
+	max-width: 600px;
+	background: #e6e6e6;
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	right: 0;
+	z-index: 2;
+}
+
+.black_screen .get_name_popup h2,
+.black_screen .OK_popup h2,
+.black_screen .OK_Cancel_popup h2 {
+	text-align: center;
+	margin-bottom: 16px;
+	font-size: 1.5rem;
+}
+
+.black_screen .get_name_popup input {
+	padding: 1%;
+	width: 98%;
+	display: block;
+	margin-bottom: 16px;
+}
+
+.black_screen .get_name_popup button,
+.black_screen .OK_popup button,
+.black_screen .OK_Cancel_popup button {
+	margin: 96px auto 0;
+	width: 128px;
+	padding: 4px 16px;
+	border-radius: 4px;
+	background: #205ec5;
+	color: #f8f8f8;
+	display: block;
+}
+
+.black_screen .OK_Cancel_popup div {
+	float: left;
+	width: 50%;
+}
+
+.black_screen .OK_Cancel_popup button,
+.black_screen .OK_popup button {
+	margin-top: 24px;
+}
+
+.black_screen .OK_popup p,
+.black_screen .OK_Cancel_popup p {
+	text-align: center;
+	padding-right: 1%;
+	padding-left: 1%;
+}

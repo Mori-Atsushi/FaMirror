@@ -56,10 +56,10 @@
 }
 
 .sign_up .exp .shot {
-	margin-top: -45px;
-	margin-left: -45px;
-	padding-top: 90px;
-	width: 90px;
+	margin-top: -60px;
+	margin-left: -60px;
+	padding-top: 120px;
+	width: 120px;
 	background-color: #333;
 	background-image: url('../img/camera_icon.png');
 	background-size: 100%;
@@ -69,54 +69,11 @@
 	top: 0;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 479px) {
 .sign_up .exp .shot {
-	margin-top: -60px;
-	margin-left: -60px;
-	padding-top: 120px;
-	width: 120px;
+	margin-top: -45px;
+	margin-left: -45px;
+	padding-top: 90px;
+	width: 90px;
 }
-}
-
-.black_screen {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	background: rgba(0,0,0,.7);
-	display: none;
-}
-
-.black_screen .get_name_popup {
-	margin: auto;
-	padding: 16px;
-	width: 80%;
-	max-width: 600px;
-	background: #e6e6e6;
-	position: absolute;
-	bottom: 100%;
-	left: 0;
-	right: 0;
-}
-
-.black_screen .get_name_popup h2 {
-	text-align: center;
-	margin-bottom: 16px;
-	font-size: 1.5rem;
-}
-
-.black_screen .get_name_popup input {
-	padding: 1%;
-	width: 98%;
-	display: block;
-	margin-bottom: 16px;
-}
-
-.black_screen .get_name_popup button {
-	margin: 96px auto 0;
-	width: 128px;
-	padding: 4px 16px;
-	border-radius: 4px;
-	background: #205ec5;
-	color: #f8f8f8;
-	display: block;
 }

@@ -63,7 +63,7 @@ function weather($user) {
 function trash($user, $conn, $day, $week) {
 	$return = '今日回収されるゴミは、';
 
-	if($user['trash_area2'] == '-3')
+	if($user['trash_area2'] == 'ok')
 		$trash_id = $user['trash_area1'];
 	else
 		$trash_id = $user['trash_area2'];

@@ -38,19 +38,9 @@ $(function() {
 
 	//表示名と読み仮名を取得
 	var get_name = function() {
-		var popup = $('#get_name_popup');
-		var seet = $('#black_screen');
-		seet.fadeIn();
-		popup.animate({bottom: '40%'});
-		$('#get_name_submit').click( function() {
-			name = popup.find('.name').val();
-			name_p = popup.find('.name_p').val();
-			seet.fadeOut('normal', function() {
-				seet.remove();
-			});
-			regist_db();
-		});
-	};
+		$('#black_screen').fadeIn();
+		$('#get_name_popup').animate({bottom: '40%'});
+	}
 
 	//データベースにユーザー情報を登録する
 	var regist_db = function() {
@@ -103,10 +93,10 @@ $(function() {
 		get_data();
 		$('#message').text('登録完了');
 		speak('登録が完了しました。');
-		$('#sign_up').fadeOut('normal', function() {
+		$('#sign_up').fadeOut(speed, function() {
 			$('#sign_up').remove();
 		});
-		$('#base').fadeIn();
+		$('#base').fadeIn(speed);
 	};
 
 	//処理ここから
@@ -123,4 +113,15 @@ $(function() {
 			roop();
 		}
 	});
+
+	//名前入力
+	$('#get_name_submit').click( function() {
+		var popup = $('#get_name_popup');
+		name = popup.find('.name').val();
+		name_p = popup.find('.name_p').val();
+		$('#black_screen').fadeOut(speed, function() {
+			popup.css({bottom: '100%'});
+		});
+		regist_db();
+	});	
 });

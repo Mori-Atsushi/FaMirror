@@ -154,7 +154,7 @@ if($conn) {
 				'name' => 'horoscope',
 				'notification' => $row['horoscope_notification'],
 				'config' => array(
-					'choose' => array(
+					'select' => array(
 						array(
 							'name' => 'star',
 							'val' => $row['horoscope_star']

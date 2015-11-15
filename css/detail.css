@@ -102,6 +102,24 @@
 .red    #item_bus div { background-image: url('../img/colors/red/bus_icon.png'); }
 .bgreen #item_bus div { background-image: url('../img/colors/bluegreen/bus_icon.png'); }
 
+.pink   #item_horoscope div { background-image: url('../img/colors/pink/horoscope_icon.png'); }
+.blue   #item_horoscope div { background-image: url('../img/colors/blue/horoscope_icon.png'); }
+.green  #item_horoscope div { background-image: url('../img/colors/green/horoscope_icon.png'); }
+.red    #item_horoscope div { background-image: url('../img/colors/red/horoscope_icon.png'); }
+.bgreen #item_horoscope div { background-image: url('../img/colors/bluegreen/horoscope_icon.png'); }
+
+.pink   #item_lunch div { background-image: url('../img/colors/pink/lunch_icon.png'); }
+.blue   #item_lunch div { background-image: url('../img/colors/blue/lunch_icon.png'); }
+.green  #item_lunch div { background-image: url('../img/colors/green/lunch_icon.png'); }
+.red    #item_lunch div { background-image: url('../img/colors/red/lunch_icon.png'); }
+.bgreen #item_lunch div { background-image: url('../img/colors/bluegreen/lunch_icon.png'); }
+
+.pink   #item_alarm div { background-image: url('../img/colors/pink/alarm_icon.png'); }
+.blue   #item_alarm div { background-image: url('../img/colors/blue/alarm_icon.png'); }
+.green  #item_alarm div { background-image: url('../img/colors/green/alarm_icon.png'); }
+.red    #item_alarm div { background-image: url('../img/colors/red/alarm_icon.png'); }
+.bgreen #item_alarm div { background-image: url('../img/colors/bluegreen/alarm_icon.png'); }
+
 .pink   .main li:after { color: #bb5d7f; }
 .blue   .main li:after { color: #2980b9; }
 .green  .main li:after { color: #259956; }

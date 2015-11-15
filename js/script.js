@@ -98,4 +98,18 @@ $(function() {
 		});
 		$('#setting').animate({'left': '0%'}, speed);
 	});
+
+	//フルスクリーン
+	$('#fullscreen').click(function() {
+		if(document.webkitIsFullScreen) {
+			if(document.webkitCancelFullScreen)
+				document.webkitCancelFullScreen();
+		} else {
+			if(document.body.webkitRequestFullScreen) {
+				document.body.webkitRequestFullScreen();
+				start_mirror(); //鏡開始
+			}
+		}
+
+	});
 });

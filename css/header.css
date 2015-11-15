@@ -62,7 +62,7 @@
  * ヘッダによるズレの修正
  **********************/
 .setting .main ul,
-.settings .main {
+.settings .main > :first-child {
 	margin-top: 80px;
 }
 

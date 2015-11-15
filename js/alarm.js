@@ -21,7 +21,7 @@ var start_alarm = function(callback) {
 	var target = t - now;
 	var target_m = target % 60;
 	var target_h = (target - target_m) / 60;
-	var message = alarm_data['choose'][content]['val'] + '時間';
+	var message = alarm_data['choose'][content]['val'];
 	if(target_m >= 0)
 		message += 'まで、';
 	else

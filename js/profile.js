@@ -53,6 +53,19 @@ var profile = function() {
 
 	//ユーザー削除ボタン
 	$('#delete_button').click( function() {
+		var popup = $('#user_delete');
+		popup.children('p').text(user_data[user_id]['user_name']);
+		$('#black_screen').fadeIn(speed);
+		popup.animate({bottom: '40%'}, speed);		
+	});
+
+	$('#user_delete_ok').click( function() {
 		send_delete();
+	});
+
+	$('#user_delete_cancel').click( function() {
+		$('#black_screen').fadeOut(speed, function() {
+			$('#user_delete').css({bottom: '100%'});
+		});
 	});
 }

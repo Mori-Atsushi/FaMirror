@@ -2,6 +2,7 @@
 
 /* *******************
  *   settings
+ *   -> setting_*.html
  * *******************/
 
 .settings {
@@ -18,12 +19,17 @@
 .settings .main {
 	width: 80%;
 	height: 100%;
-	padding: 32px 10% 0;
+	padding: 0 10% 0;
 	position: absolute;
 	/*top: 80px;*/
 	background: #e6e6e6;
 	/*background-image: url('../img/back_image.png');*/
 	background-size: cover;
+	overflow: auto;
+}
+
+.settings .main::-webkit-scrollbar {
+	display: none;
 }
 /*
 .settings .main:before {
@@ -39,9 +45,15 @@
 }
 
 .settings .main > h2 {
-	margin: 0 16px 0 0;
+	/*margin-top: 80px;*/ /* header.css */
+	margin-right: 16px;
 	display: inline-block;
 	font-size: 2rem;
+}
+
+.settings .main > :first-child {
+	padding-top: 32px;
+
 }
 
 .settings .main .area {
@@ -111,6 +123,11 @@
 	line-height: 1.2;
 }
 
+
+.settings .main .sample {
+	margin-bottom: 48px;
+}
+
 .settings .main .sample button {
 	margin-left: 4px;
 	height: 32px;
@@ -158,7 +175,8 @@
 .setting_profile .delete_button {
 	width: 80%;
 	position: absolute;
-	bottom: 64px;
+	/*bottom: 64px;*/
+	bottom: 0;
 }
 
 .setting_profile .delete_button .text_button {
@@ -181,6 +199,11 @@
 }
 .setting_alarm .main input[type="text"] {
 	width: 70%;
+}
+
+.setting_alarm .main input[type="time"]:disabled,
+.setting_alarm .main input[type="text"]:disabled {
+	color: #888;
 }
 
 

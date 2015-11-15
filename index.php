@@ -27,23 +27,12 @@ $sign_up = '<section id="sign_up" class="sign_up">
 			<div class="status"><div id="progress_gage" class="gage"></div><span id="progress"></span></div>
 			<div id="shot" class="shot"></div>
 		</div>
-	</section>
-
-	<div id="black_screen" class="black_screen">
-		<div id="get_name_popup" class="get_name_popup">
-			<h2>表示名と読み方を入力してください</h2>
-			<label for="name">表示名</label>
-			<input type="text" name="name" class="name" value="' . $_SESSION['name'] . '">
-			<label for="name_p">読み方(ひらがな)</label>
-			<input type="text" name="name_p" class="name_p" value="">
-			<button id="get_name_submit">完了</button>
-		</div>
-	</div>';
+	</section>';
 
 $base = '<section id="base" class="base">
 		<header class="page_header">
 			<h1></h1>
-			<button class="volume"></button>
+			<button id="fullscreen" class="volume"></button>
 			<button class="gear" id="setting_b"></button>
 			<button class="info"></button>
 		</header>
@@ -157,11 +146,11 @@ $setting_weather = '<section id="setting_weather" class="settings">
 			<div class="area">
 				<h2>地域設定</h2>
 				<label>都道府県</label>
-				<select id="weather_prefecture" class="setting_select">
+				<select id="weather_prefecture" class="setting_select necessary">
 					<option value="-1">選択してください</option>
 				</select>
 				<label>地区</label>
-				<select id="weather_area">
+				<select id="weather_area" class="necessary">
 				</select>
 			</div>
 
@@ -210,20 +199,20 @@ $setting_trash = '<section id="setting_trash" class="settings">
 			<div class="area">
 				<h2>地域設定</h2>
 				<label>都道府県</label>
-				<select id="trash_prefecture" class="setting_select">
+				<select id="trash_prefecture" class="setting_select necessary">
 					<option value="-1">選択してください</option>
 				</select>
 
 				<label>市区町村</label>
-				<select id="trash_city" class="setting_select">
+				<select id="trash_city" class="setting_select necessary">
 				</select>
 
 				<label>地区&#9312;</label>
-				<select id="trash_area1" class="setting_select">
+				<select id="trash_area1" class="setting_select necessary">
 				</select>
 
 				<label>地区&#9313;</label>
-				<select id="trash_area2">
+				<select id="trash_area2" class="necessary">
 				</select>
 			</div>
 			<div class="notification">
@@ -306,14 +295,14 @@ $setting_timetable = '<section id="setting_timetable" class="settings">
 			<div class="area">
 				<h2>学校設定</h2>
 				<label>学校名</label>
-				<select id="timetable_school" class="setting_select">
+				<select id="timetable_school" class="setting_select necessary">
 					<option value="-1">選択してください</option>
 				</select>
 				<label>学年</label>
-				<select id="timetable_grade" class="setting_select">
+				<select id="timetable_grade" class="setting_select necessary">
 				</select>
 				<label>クラス・学科</label>
-				<select id="timetable_class">
+				<select id="timetable_class" class="necessary">
 				</select>
 			</div>
 
@@ -350,14 +339,14 @@ $setting_bus = '<section id="setting_bus" class="settings">
 			<div class="area">
 				<h2>バス設定</h2>
 				<label>バス名</label>
-				<select id="bus_busname" class="setting_select">
+				<select id="bus_busname" class="setting_select necessary">
 					<option value="-1">選択してください</option>
 				</select>
 				<label>バス停名</label>
-				<select id="bus_stop" class="setting_select">
+				<select id="bus_stop" class="setting_select necessary">
 				</select>
 				<label>ルート・方面</label>
-				<select id="bus_route">
+				<select id="bus_route" class="necessary">
 				</select>
 				<label>通知する本数</label>
 				<select id="bus_howmany">
@@ -391,7 +380,7 @@ $setting_horoscope = '<section id="setting_horoscope" class="settings">
 			<div class="area">
 				<h2>星座設定</h2>
 				<label>星座</label>
-				<select id="horoscope_star">
+				<select id="horoscope_star" class="necessary">
 					<option value="-1">選択してください</option>
 					<option value="0">牡羊座</option>
 					<option value="1">牡牛座</option>
@@ -453,7 +442,7 @@ $setting_lunch = '<section id="setting_lunch" class="settings">
 			<div class="area">
 				<h2>学校設定</h2>
 				<label>学校名</label>
-				<select id="lunch_school">
+				<select id="lunch_school" class="necessary">
 					<option value="-1">選択してください</option>
 				</select>
 			</div>
@@ -496,8 +485,8 @@ $setting_alarm = '<section id="setting_alarm" class="settings setting_alarm">
 			</div>
 			<div class="area">
 				<h2>時刻と内容</h2>
-				<input id="alarm_time" type="time">
-				<input id="alarm_content" type="text">
+				<input id="alarm_time" class="necessary" type="time">
+				<input id="alarm_content" class="necessary" type="text" placeholder="例) 家を出る時間">
 			</div>
 
 			<div class="notification">
@@ -548,6 +537,33 @@ $setting_alarm = '<section id="setting_alarm" class="settings setting_alarm">
 		</div> <!-- .main -->
 	</section>';
 
+$popup = '	<div id="black_screen" class="black_screen">
+			<div id="get_name_popup" class="get_name_popup">
+			<h2>表示名と読み方を入力してください</h2>
+			<label for="name">表示名</label>
+			<input type="text" name="name" class="name" value="' . $_SESSION['name'] . '">
+			<label for="name_p">読み方(ひらがな)</label>
+			<input type="text" name="name_p" class="name_p" value="">
+			<button id="get_name_submit">完了</button>
+		</div>
+		<div id="user_delete" class="OK_Cancel_popup">
+			<h2>次のユーザを削除してよろしいですか</h2>
+			<p></p>
+			<div class="OK_button">
+				<button id="user_delete_ok">OK</button>
+			</div>
+			<div class="Cancel_button">
+				<button id="user_delete_cancel">Cancel</button>
+			</div>
+		</div>
+		<div id="deta_error" class="OK_popup">
+			<h2>未記入項目があります</h2>
+			<p>未記入項目 : <span></span></p>
+			<button id="data_error_ok">OK</button>
+		</div>
+ 
+	</div>';
+
 $video = '<section id="video" class="video">
 		<video id="mirror" class="mirror" autoplay></video>
 		<canvas id="canvas" class="temp_pic"></canvas>
@@ -572,6 +588,7 @@ $video = '<section id="video" class="video">
 	<link rel="stylesheet" href="css/detail.css">
 	<link rel="stylesheet" href="css/setting.css">
 	<link rel="stylesheet" href="css/settings.css">
+	<link rel="stylesheet" href="css/popup.css">
 	<link rel="stylesheet" href="css/forKappa.css">
 	<title>FaMirror</title>
 </head>
@@ -579,6 +596,7 @@ $video = '<section id="video" class="video">
 <body>
 	<?php
 	if($sign_up_flag || $mirror_flag) {
+		echo $popup;
 		if($sign_up_flag) {
 			echo '<style type="text/css"><!-- #base { display : none; } --></style>';
 			echo $sign_up;
