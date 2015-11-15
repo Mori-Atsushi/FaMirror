@@ -2,10 +2,11 @@
 var alarm = 7, content = 0, time = 1;
 
 var check_alarm = function() {
-	if(user_data[user_id]['setting'][alarm]['notification']) {
+	var flag = change_flag(user_data[user_id]['setting'][alarm]['notification']);
+	if(flag) {
 		var onof = user_data[user_id]['setting'][alarm]['config']['onof'];
 		var D = new Date();
-		if(onof[D.getDay()]['notification'])
+		if(change_flag(onof[D.getDay()]['notification']))
 			start_alarm(function(){});
 	}
 }
@@ -37,4 +38,12 @@ var start_alarm = function(callback) {
 		message += '経ちました。';
 
 	speak(message, callback);
+}
+
+var change_flag = function(flag) {
+	if(flag == 0)
+		flag = false;
+	if(flag == 1)
+		flag = true;
+	return flag;
 }

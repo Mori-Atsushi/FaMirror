@@ -13,8 +13,11 @@ var profile = function() {
 
 	//プロフィールを開く
 	$('#item_profile').click( function() {
+		var d;
 		$('#name').val(user_data[user_id]['user_name']);
 		$('#name_p').val(user_data[user_id]['user_name_p']);
+		if((d = user_data[user_id]['birthday']) != '')
+			$('#birthday').val(d);
 		$('#profile_icon').attr('src', 'icon/' + user_data[user_id]['img']);
 
 		$('#setting_profile').addClass(color[user_id % 5]).animate({'left': '0%'}, speed);
@@ -25,6 +28,7 @@ var profile = function() {
 	$('#profile_back').click( function() {
 		user_data[user_id]['user_name'] = $('#name').val();
 		user_data[user_id]['user_name_p'] = $('#name_p').val();
+		user_data[user_id]['birthday'] = $('#birthday').val();
 
 		var send_data = [
 			{
@@ -33,6 +37,9 @@ var profile = function() {
 			}, {
 				name : 'user_name_p',
 				data : user_data[user_id]['user_name_p']
+			}, {
+				name : 'birthday',
+				data : user_data[user_id]['birthday']
 			}
 		];
 		send_setting(send_data, function(data) { console.log(data); });

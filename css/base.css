@@ -10,9 +10,10 @@
 	margin: 0 auto;
 	width: 100%;
 	max-width: 800px;
-	height: 72%;
+	/*height: 72%;*/
+	height: 100%;
 	position: absolute;
-	top: 80px;
+	/*top: 80px;*/
 	left: 0;
 	right: 0;
 }
@@ -26,38 +27,6 @@
 	left: 10%;
 }
 
-.base .page_header h1 {
-	margin: 0;
-	height: 50%;
-	top: 25%;
-	background-image: url('../img/logo.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	z-index: -10;
-}
-
-.base .page_header button {
-	margin: 16px 8px;
-	height: 48px;
-	width: 48px;
-	background: none;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.base .page_header .gear {
-	background-image: url('../img/setting_icon.png');
-	float: right;
-}
-.base .page_header .info {
-	background-image: url('../img/info_icon.png');
-	float: right;
-}
-.base .page_header .volume {
-	background-image: url('../img/volume_icon.png');
-	float: left;
-}
 
 .base .exp {
 	width: 100%;
@@ -196,3 +165,75 @@
 	border-left: solid 16px #333;
 	border-bottom: solid 8px rgba(0,0,0,0);
 }
+
+
+/*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
+@media screen and (max-width: 599px) {
+} /* (max-width: 599px) */
+
+
+/*** iPhone 5 たて [Nexus 6 たて 未満] ***/
+@media screen and (max-width: 374px) {	
+.base .exp p {
+	margin: 16px;
+}
+}
+
+
+/*** Nexus7 たて ***/
+
+/*** Nexus 10　たて ***/
+@media screen and (min-width: 800px) and (max-width: 959px) {
+}
+
+
+/*** Nexus7 横 以上 ***/
+@media screen and (min-width: 960px) {
+.base .exp {
+/*	width: 288px;
+	height: 100%;
+	right: 0;*/
+	/*display: none; */
+}
+
+.base .exp p {
+	margin: 24px 16px;
+	float: left;
+/*	margin: 96px 16px 32px;*/
+}
+
+.base .exp .text_button {
+	float: right;
+	margin: 24px 32px;
+}
+
+/*
+.base .exp {
+	width: 288px;
+	right: 0;
+	bottom: 0;
+}
+
+.base .exp p {
+	margin: 32px 16px 32px;
+	float: none;
+}
+
+.base .exp .text_button {
+	margin: 32px auto;
+	float: none;
+}*/
+}
+
+
+/*** iPad 横 以上 ***/
+@media screen and (min-width: 1024px) {
+
+}
+
+
+/*** フル HD ***/
+@media screen and (min-width: 1900px) {
+
+}
+

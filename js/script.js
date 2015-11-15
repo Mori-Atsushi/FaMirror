@@ -7,8 +7,11 @@ $(function() {
 			user_id = data.face[0].candidate[0].person_name.split(':')[1] - 1;
 			$('#message').text(user_data[user_id]['user_name']);
 			get_info(data.face[0].candidate[0].person_name);
+			$('#release').animate({'bottom' : '0'});			
 		} else {
-			$('#message').text('認証失敗');			
+			speak('認証に失敗しました。もう一度やり直してください。');
+			$('#exp').animate({'bottom' : '0'});
+			$('#base_header').animate({'top' : '0'});		
 		}
 		flag = true;
 	};
@@ -21,7 +24,7 @@ $(function() {
 			user_id: id[1]
 		};
 		send_db(url, data, function(data) {
-			speak(data, check_alarm)
+			speak(data, check_alarm);
 		});
 	};
 
@@ -59,11 +62,21 @@ $(function() {
 	//認証開始
 	$('#auth').click( function() {
 		if(flag == true) {
+			speak('認証中です。');
 			$('#message').text('認証中');
 			flag = false;
 			var blob = snapshot();
 			recognition_identify('1', blob, check_user);
+			$('#exp').animate({'bottom' : '-50%'});
+			$('#base_header').animate({'top' : '-50%'});
 		}
+	});
+
+	$('#release').click( function() {
+		speakInit();
+		$('#exp').animate({'bottom' : '0'});
+		$('#base_header').animate({'top' : '0'});
+		$('#release').animate({'bottom' : '-50%'});	
 	});
 
 	//設定ボタンクリック

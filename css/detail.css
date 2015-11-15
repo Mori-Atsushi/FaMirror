@@ -21,10 +21,6 @@
 	display: none;
 }
 
-.detail .main ul {
-	margin-top: 320px;
-}
-
 .detail .main li {
 	height: 136px;
 	line-height: 136px;
@@ -41,6 +37,7 @@
 	float: left;
 	/*background: #c68;*/
 	background: none;
+	background-repeat: no-repeat;
 	background-size: contain;
 }
 
@@ -125,3 +122,73 @@
 .green  .main li:after { color: #259956; }
 .red    .main li:after { color: #c0392b; }
 .bgreen .main li:after { color: #16a085; }
+
+
+
+
+/*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
+@media screen and (max-width: 599px) {
+.detail .main li {
+	height: 96px;
+	line-height: 96px;
+	font-size: 1.5rem;
+	border-bottom: solid 1px #aaa;
+}
+.detail .main li div {  /* アイコン */
+	margin: 16px;
+	width: 74.5px;
+	height: 64px;
+}
+.detail .main li .checked:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	display: block;
+	background-image: url('../img/check_icon.png');
+	background-size: contain;
+}
+.detail .main li:after {
+	content: '>';
+	margin: 0 30px;
+	display: block;
+	/*color: #bb5d7f;*/
+	float: right;
+}
+} /* (max-width: 599px) */
+
+
+/*** iPhone 5 たて [Nexus 6 たて 未満] ***/
+@media screen and (max-width: 374px) {
+}
+
+
+/*** Nexus7 たて ***/
+
+/*** Nexus 10　たて ***/
+@media screen and (min-width: 800px) and (max-width: 959px) {
+}
+
+
+/*** Nexus7 横 以上 ***/
+@media screen and (min-width: 960px) {
+.detail .main li {
+	width: 49.895%;
+	float: left;
+	border-right: solid 1px #aaa;
+}
+}
+
+
+/*** iPad 横 以上 ***/
+@media screen and (min-width: 1024px) {
+}
+
+
+/*** フル HD ***/
+@media screen and (min-width: 1900px) {
+.detail .main li {
+	width: 33.28%;
+	float: left;
+}
+}
+

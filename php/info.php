@@ -3,6 +3,7 @@ require 'collect.php';
 
 session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
+//$week = 1;
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 //$_POST['user_id'] = 1;
 if($conn && $_POST['user_id'] !== '') {
@@ -14,6 +15,7 @@ if($conn && $_POST['user_id'] !== '') {
 $message = greeting($time);
 $message = $message . user_name($user);
 $message = $message . set_date($manth, $day, $week);
+$message = $message . birthday($user['birthday']);
 if($user['weather_notification'])
 	$message = $message . weather($user);
 if($user['trash_notification'])
@@ -47,5 +49,16 @@ function user_name($user) {
 function set_date($manth, $day, $week) {
 	$week_ja = array('日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日');
 	return '今日は' . $manth . '月' . $day . '日、' . $week_ja[$week] . 'です。';
+}
+
+function birthday($birthday) {
+	$y = date(Y); $m = date(m); $d = date(d);
+	$b_m = $birthday[5] . $birthday[6];
+	$b_d = $birthday[8] . $birthday[9];
+	if($b_m == $m && $b_d == $d) {
+		$b_y = $birthday[0] . $birthday[1] . $birthday[2] . $birthday[3];
+		$old = $y - $b_y;
+		return $old . '歳のお誕生日、おめでとうございます！';
+	}
 }
 ?>

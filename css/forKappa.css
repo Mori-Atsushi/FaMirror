@@ -8,6 +8,10 @@
 	left: 100%;
 }
 
+.base {
+	overflow: hidden;
+}
+
 .base .exp {
 	width: 100%;
 	position: absolute;
@@ -17,10 +21,17 @@
 }
 
 .base .bottom {
-	height: 200px;
+	height: 0;
 	width: 100%;
 	position: absolute;
-	bottom: 0;
+	bottom: -50%;
+}
+
+.black_screen {
+	z-index: 100;
 	display: none;
-	/*bottom: -200px;*/
+}
+
+.black_screen div {
+	bottom: 100%;
 }

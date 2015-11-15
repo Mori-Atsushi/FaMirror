@@ -61,7 +61,9 @@
 	width: 100%;
 }
 
-.settings .main select, .settings .main input[type="text"] {
+.settings .main select,
+.settings .main input[type="text"],
+.settings .main input[type="date"] {
 	margin: 4px 0 16px;
 	padding: 8px;
 	width: 100%;
@@ -207,6 +209,16 @@
 }
 
 
+.disabled .notification,
+.disabled .area {
+	color: #999;
+}
+
+.disabled .notification input[type="checkbox"]:checked {
+	background-color: #888;
+}
+
+
 /*
 	色の変更設定
 */
@@ -238,11 +250,36 @@
 .bgreen .delete_button .text_button { background-color: #16a085; }
 
 
-.disabled .notification,
-.disabled .area {
-	color: #999;
+
+
+/*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
+@media screen and (max-width: 599px) {
+} /* (max-width: 599px) */
+
+
+/*** iPhone 5 たて [Nexus 6 たて 未満] ***/
+@media screen and (max-width: 374px) {
 }
 
-.disabled .notification input[type="checkbox"]:checked {
-	background-color: #888;
+
+/*** Nexus7 たて ***/
+
+/*** Nexus 10　たて ***/
+@media screen and (min-width: 800px) and (max-width: 959px) {
 }
+
+
+/*** Nexus7 横 以上 ***/
+@media screen and (min-width: 960px) {
+}
+
+
+/*** iPad 横 以上 ***/
+@media screen and (min-width: 1024px) {
+}
+
+
+/*** フル HD ***/
+@media screen and (min-width: 1900px) {
+}
+

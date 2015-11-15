@@ -176,7 +176,7 @@ function calendar($user) {
 
 	}
 
-	$return = $return . '以上です。';
+	$return = $return . '今日の予定は以上です。';
 	return $return;
 }
 

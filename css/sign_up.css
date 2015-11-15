@@ -1,6 +1,6 @@
 ﻿@charset "UTF-8";
 
-.sign_up p, .base p { font-size: 1.2rem;}
+.sign_up p, .base p { font-size: 1.2rem; }
 
 .sign_up .main {
 	margin: 0 auto;
@@ -24,7 +24,7 @@
 
 .sign_up .exp {
 	width: 100%;
-	height: 20%;
+	/*height: 20%;*/
 	position: absolute;
 	bottom: 0;
 	background: #d4d4dd;
@@ -35,7 +35,7 @@
 }
 
 .sign_up .exp .status {
-	margin: 0 16px 16px;
+	margin: 0 16px 32px;
 	padding-right: 8px;
 	height: 24px;
 	border: solid 1px #333;
@@ -69,11 +69,47 @@
 	top: 0;
 }
 
-@media screen and (max-width: 479px) {
+
+/*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
+@media screen and (max-width: 599px) {
 .sign_up .exp .shot {
 	margin-top: -45px;
 	margin-left: -45px;
 	padding-top: 90px;
 	width: 90px;
 }
+} /* (max-width: 599px) */
+
+
+/*** iPhone 5 たて [Nexus 6 たて 未満] ***/
+@media screen and (max-width: 374px) {
 }
+
+
+/*** Nexus7 たて ***/
+
+/*** Nexus 10　たて ***/
+@media screen and (min-width: 800px) and (max-width: 959px) {
+html, body, header, div, h1, h2, h3, h4, h5, h6, p, small, footer, button, a, ul, li {
+	font-size: 20px;
+}
+}
+
+
+/*** Nexus7 横 以上 ***/
+@media screen and (min-width: 960px) {
+
+}
+
+
+/*** iPad 横 以上 ***/
+@media screen and (min-width: 1024px) {
+
+}
+
+
+/*** フル HD ***/
+@media screen and (min-width: 1900px) {
+
+}
+

@@ -178,6 +178,10 @@ body {
 /*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
 @media screen and (max-width: 599px) {
 
+p, li, dd {
+	line-height: 1.5;
+}
+
 } /* (max-width: 599px) */
 
 

@@ -30,39 +30,26 @@ $sign_up = '<section id="sign_up" class="sign_up">
 	</section>';
 
 $base = '<section id="base" class="base">
-		<header class="page_header">
+		<header id="base_header" class="page_header">
 			<h1></h1>
-			<button id="fullscreen" class="volume"></button>
+			<button id="fullscreen" class="fullscreen"></button>
 			<button class="gear" id="setting_b"></button>
 			<button class="info"></button>
 		</header>
+
+		<h3 id="message"></h3>
 
 		<div class="main">
 			<!-- <div class="square"></div> -->
 		</div>
 
-		<div class="exp">
-			<p id="message"><!-- 四角形の中に顔を入れて、 -->画面に顔が映るようにして、認証ボタンを押してください。</p>
+		<div id="exp" class="exp">
+			<p><!-- 四角形の中に顔を入れて、 -->画面に顔が映るようにして、認証ボタンを押してください。</p>
 			<button class="text_button" id="auth">認証</button>
 		</div>
 
-		<div class="bottom show">
+		<div id="release" class="bottom show">
 			<button class="text_button" id="auth">認証解除</button>
-			<div class="showhide"></div>
-			<div class="message">
-				<p>おはようございます、○○さん。</p>
-				<div class="list">
-					<p>今日の予定は</p>
-					<ul>
-						<li>可燃ごみの回収</li>
-						<li>ホリケンさんの誕生日</li>
-						<li>しゃべくり0007の記録</li>
-						<li>ジャンプの発売日</li>
-					</ul>
-				</div>
-				<p>今日の天気は、晴れのち曇りです。</p>
-				<p>バスは…</p>
-			</div>
 		</div>
 
 	</section>';
@@ -104,7 +91,7 @@ $detail = '<section id="detail" class="detail">
 		</div>
 	</section>';
 
-$setting_profile = '<section id="setting_profile" class="setting_profile settings">
+$setting_profile = '<section id="setting_profile" class="setting_profile settings pink">
 		<header class="page_header">
 			<h1>ユーザ設定</h1>
 			<button id="profile_back" class="back"></button>
@@ -117,6 +104,9 @@ $setting_profile = '<section id="setting_profile" class="setting_profile setting
 
 				<label>読み方(ひらがな)</label>
 				<input id="name_p" type="text">
+
+				<label>誕生日</label>
+				<input id="birthday" type="date">
 
 				<label>アイコン画像</label>
 				<img id="profile_icon" class="profile_icon" alt="画像が設定されていません">

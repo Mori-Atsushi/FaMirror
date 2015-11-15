@@ -5,8 +5,8 @@
 	height: 100%;
 	position: fixed;
 	background: rgba(0,0,0,.7);
-	display: none;
-	z-index: 100;
+	/*display: none;*/
+	z-index: 1;
 }
 
 .black_screen .get_name_popup,
@@ -18,7 +18,8 @@
 	max-width: 600px;
 	background: #e6e6e6;
 	position: absolute;
-	bottom: 100%;
+	bottom: 400%;
+/*	top: 20%;*/
 	left: 0;
 	right: 0;
 	z-index: 2;
@@ -67,3 +68,37 @@
 	padding-right: 1%;
 	padding-left: 1%;
 }
+
+
+
+/*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
+@media screen and (max-width: 599px) {
+} /* (max-width: 599px) */
+
+
+/*** iPhone 5 たて [Nexus 6 たて 未満] ***/
+@media screen and (max-width: 374px) {
+}
+
+
+/*** Nexus7 たて ***/
+
+/*** Nexus 10　たて ***/
+@media screen and (min-width: 800px) and (max-width: 959px) {
+}
+
+
+/*** Nexus7 横 以上 ***/
+@media screen and (min-width: 960px) {
+}
+
+
+/*** iPad 横 以上 ***/
+@media screen and (min-width: 1024px) {
+}
+
+
+/*** フル HD ***/
+@media screen and (min-width: 1900px) {
+}
+
