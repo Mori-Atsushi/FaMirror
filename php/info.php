@@ -5,7 +5,7 @@ session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
 //$week = 1;
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
-//$_POST['user_id'] = 1;
+$_POST['user_id'] = 1;
 if($conn && $_POST['user_id'] !== '') {
 	mysql_select_db('famirror', $conn);
 	$sql = 'SELECT * FROM user WHERE user_id = ' . $_POST['user_id'] . ' AND family_id = ' . $_SESSION['family'];
@@ -16,22 +16,28 @@ $message = greeting($time);
 $message = $message . user_name($user);
 $message = $message . set_date($manth, $day, $week);
 $message = $message . birthday($user['birthday']);
-if($user['weather_notification'])
-	$message = $message . weather($user);
-if($user['trash_notification'])
-	$message = $message . trash($user, $conn, $day, $week);
-if($user['calendar_notification'])
-	$message = $message . calendar($user);
-if($user['timetable_notification'])
-	$message = $message . timetable($user, $conn, $week);
-if($user['bus_notification'])
-	$message = $message . bus($user, $conn);
-if($user['horoscope_notification'])
-	$message = $message . horoscope($user);
-if($user['lunch_notification'])
-	$message = $message . lunch($user, $conn);
-echo $message;
 
+$array = array('message' => $message);
+$setting = array();
+
+if($user['weather_notification'])
+	$setting[0] = weather($user);
+if($user['trash_notification'])
+	$setting[1] = trash($user, $conn, $day, $week);
+if($user['calendar_notification'])
+	$setting[2] = calendar($user);
+if($user['timetable_notification'])
+	$setting[3] = timetable($user, $conn, $week);
+if($user['bus_notification'])
+	$setting[4] = bus($user, $conn);
+if($user['horoscope_notification'])
+	$setting[5] = horoscope($user);
+if($user['lunch_notification'])
+	$setting[6] = lunch($user, $conn);
+
+$array += array('setting' => $setting);
+header('Content-Type: application/json; charset=utf-8');
+echo json_encode($array);
 
 function greeting($time) {
 	if($time < 4 || $time >= 18)

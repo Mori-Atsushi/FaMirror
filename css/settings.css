@@ -209,15 +209,6 @@
 }
 
 
-.disabled .notification,
-.disabled .area {
-	color: #999;
-}
-
-.disabled .notification input[type="checkbox"]:checked {
-	background-color: #888;
-}
-
 
 /*
 	色の変更設定
@@ -250,6 +241,14 @@
 .bgreen .delete_button .text_button { background-color: #16a085; }
 
 
+.disabled .notification,
+.disabled .area {
+	color: #999;
+}
+
+.disabled .notification input[type="checkbox"]:checked {
+	background-color: #888;
+}
 
 
 /*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/

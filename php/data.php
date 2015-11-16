@@ -9,6 +9,7 @@ if($conn) {
 	$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
 	$user = mysql_query($sql);
 	$num = 0;
+	$member = [];
 	while($row = mysql_fetch_assoc($user)) {
 		$member[$num]['user_name'] = $row['user_name'];
 		$member[$num]['user_name_p'] = $row['user_name_p'];

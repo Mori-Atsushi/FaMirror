@@ -1,9 +1,6 @@
 <?php
 require 'collect.php';
 
-//$_POST['type'] = 'calendar';
-//$_POST['user_id'] = 1;
-
 session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
@@ -16,27 +13,30 @@ if($conn && $_POST['user_id'] !== '') {
 
 switch ($_POST['type']) {
 	case 'weather':
-		echo weather($user);
+		$echo = weather($user);
 		break;
 	case 'trash':
-		echo trash($user, $conn, $day, $week);
+		$echo = trash($user, $conn, $day, $week);
 		break;
 	case 'calendar':
-		echo calendar($user);
+		$echo = calendar($user);
 		break;
 	case 'timetable':
-		echo timetable($user, $conn, $week);
+		$echo = timetable($user, $conn, $week);
 		break;
 	case 'bus':
-		echo bus($user, $conn);
+		$echo = bus($user, $conn);
 		break;
 	case 'horoscope':
-		echo horoscope($user);
+		$echo = horoscope($user);
 		break;
 	case 'lunch':
-		echo lunch($user, $conn);
+		$echo = lunch($user, $conn);
 		break;
 	default:
 		echo 'error';
 }
+
+header('Content-Type: application/json; charset=utf-8');
+echo json_encode($echo);
 ?>

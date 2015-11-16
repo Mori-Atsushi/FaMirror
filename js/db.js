@@ -63,7 +63,7 @@ var listen_sample = function(type, callback) {
 		type : type
 	};
 	var back = function(data) {
-		speak(data, callback);
+		speak(data['speak'], callback);
 	}
 	send_db(url, data, back);
 }

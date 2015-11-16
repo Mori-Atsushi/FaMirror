@@ -8,6 +8,8 @@ var check_alarm = function() {
 		var D = new Date();
 		if(change_flag(onof[D.getDay()]['notification']))
 			start_alarm(function(){});
+	} else {
+		speak('音声案内を終了します。');
 	}
 }
 
@@ -36,6 +38,8 @@ var start_alarm = function(callback) {
 		message += 'です。';
 	else
 		message += '経ちました。';
+
+	message += '音声案内を終了します。ß';
 
 	speak(message, callback);
 }

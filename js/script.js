@@ -23,9 +23,18 @@ $(function() {
 		var data = {
 			user_id: id[1]
 		};
-		send_db(url, data, function(data) {
-			speak(data, check_alarm);
-		});
+		send_db(url, data, speak_info);
+	};
+
+	//情報を話す。
+	var speak_info = function(data) {
+		var message = data['message'];
+		var num = user_data[user_id]['setting'].length - 1;
+		for(var i = 0; i < num; i++) {
+			if(change_flag(user_data[user_id]['setting'][i]['notification']))
+				message += data['setting'][i]['speak'];
+		}
+		speak(message, check_alarm);
 	};
 
 	//設定画面作成
