@@ -1,5 +1,6 @@
 $(function() {
 	var flag = true; //tureなら撮影可能
+	var now_balloon;
 
 	//顔認証のあとの処理
 	var check_user = function(data) {
@@ -7,11 +8,15 @@ $(function() {
 			user_id = data.face[0].candidate[0].person_name.split(':')[1] - 1;
 			$('#message').text(user_data[user_id]['user_name']);
 			get_info(data.face[0].candidate[0].person_name);
-			$('#release').animate({'bottom' : '0'});			
 		} else {
+			var messe = $('#message');
+			var height_messe = messe.height();
+
 			speak('認証に失敗しました。もう一度やり直してください。');
-			$('#exp').animate({'bottom' : '0'});
-			$('#base_header').animate({'top' : '0'});		
+			$('#exp_text').text('もう一度認証ボタンを押してください。');
+			messe.animate({'top' : -height_messe}, speed);
+			$('#exp').animate({'bottom' : '0'}, speed);
+			$('#base_header').animate({'top' : '0'}, speed);		
 		}
 		flag = true;
 	};
@@ -28,13 +33,38 @@ $(function() {
 
 	//情報を話す。
 	var speak_info = function(data) {
+		speek_data = data;
 		var message = data['message'];
 		var num = user_data[user_id]['setting'].length - 1;
+		var width = 0;
+		var icon_box = $('#icon_box'), launcher = $('#launcher');
+		var launcher_height = launcher.height(), launcher_width = launcher.width();
+		var right_flag = $('#auth_cancel').css('position') == 'fixed';
+		icon_box.html('');
 		for(var i = 0; i < num; i++) {
-			if(change_flag(user_data[user_id]['setting'][i]['notification']))
+			if(change_flag(user_data[user_id]['setting'][i]['notification'])) {
+				icon_box.append('<li id="launcher_' + user_data[user_id]['setting'][i]['name'] + '" class="' + i + '"></li>');
+				if(right_flag)
+					width += icon_box.children('li').outerHeight(true);
+				else
+					width += icon_box.children('li').outerWidth(true);
 				message += data['setting'][i]['speak'];
+			}
 		}
 		speak(message, check_alarm);
+		launcher.addClass(color[user_id]);
+		if(right_flag) {
+			icon_box.height(width);
+			launcher
+				.css({'display' : 'block', 'opacity' : 0, 'bottom' : 0, 'right' : -launcher_width})
+				.animate({'right' : 0, 'opacity' : 100}, speed);
+		} else {
+			icon_box.width(width);
+			launcher
+				.css({'display' : 'block', 'opacity' : 0, 'bottom' : -launcher_height, 'right' : 0})
+				.animate({'bottom' : 0, 'opacity' : 100}, speed);
+		}
+
 	};
 
 	//設定画面作成
@@ -71,21 +101,95 @@ $(function() {
 	//認証開始
 	$('#auth').click( function() {
 		if(flag == true) {
+			var messe = $('#message');
+			var exp = $('#exp');
+			var head = $('#base_header');
+
+			var height_messe = messe.height();
+			var height_exp = exp.height();
+			var height_head = head.height();
+
 			speak('認証中です。');
-			$('#message').text('認証中');
 			flag = false;
+
 			var blob = snapshot();
 			recognition_identify('1', blob, check_user);
-			$('#exp').animate({'bottom' : '-50%'});
-			$('#base_header').animate({'top' : '-50%'});
+
+			messe.text('認証中…').css({'top' : -height_messe}).animate({'top' : 0}, speed);
+			exp.animate({'bottom' : -height_exp}, speed);
+			head.animate({'top' : -height_head}, speed);
 		}
 	});
 
-	$('#release').click( function() {
+	$('#auth_cancel').click( function() {
 		speakInit();
-		$('#exp').animate({'bottom' : '0'});
-		$('#base_header').animate({'top' : '0'});
-		$('#release').animate({'bottom' : '-50%'});	
+		var messe = $('#message'), launcher = $('#launcher');
+		var right_flag = $('#auth_cancel').css('position') == 'fixed';
+		var height_messe = messe.height();
+
+		if(right_flag) {
+			var width = launcher.width();
+			launcher.animate({'right' : -width, 'opacity' : 0}, speed, function() {
+				launcher.removeClass(color[user_id]).css({'display' : 'none'});
+			});
+		} else {
+			var height = launcher.height();
+			launcher.animate({'bottom' : -height, 'opacity' : 0}, speed, function() {
+				launcher.removeClass(color[user_id]).css({'display' : 'none'});
+			});
+		}
+
+		messe.animate({'top' : -height_messe}, speed);
+		$('#exp').animate({'bottom' : '0'}, speed);
+		$('#base_header').animate({'top' : '0'}, speed);	
+	});
+
+	$('#showhide').click( function() {
+		var launcher = $('#launcher');
+		var right_flag = $('#auth_cancel').css('position') == 'fixed';
+		var show_flag;
+		if(right_flag)
+			show_flag = launcher.css('right') == '0px';
+		else
+			show_flag = launcher.css('bottom') == '0px';			
+
+		if(show_flag) {
+			$(this).addClass('reverse');
+			if(right_flag) {
+				var width = launcher.width();
+				launcher.animate({'right' : -width}, speed);
+			} else {
+				var height = launcher.height();
+				launcher.animate({'bottom' : -height}, speed);
+			}
+		} else {
+			$(this).removeClass('reverse');
+			if(right_flag)
+				launcher.animate({'right' : 0}, speed);
+			else
+				launcher.animate({'bottom' : 0}, speed);			
+		}
+	});
+
+	$('#icon_box').on( 'click', 'li', function() {
+		var name = $(this).attr('class');
+		var balloon = $('#balloon');
+		balloon.fadeOut(speed, function(){
+			if(now_balloon == name) {
+				now_balloon = '';
+			} else {
+				balloon.html('<h3>' + speek_data['setting'][name]['name'] + '</h3><ul></ul>');
+				balloon_ul = balloon.children('ul');
+				for(var i = 0; i < speek_data['setting'][name]['list'].length; i++)
+					balloon_ul.append('<li><h4>' + speek_data['setting'][name]['list'][i]['name'] + '</h4><p>' + speek_data['setting'][name]['list'][i]['content'] + '</p></li>');
+				balloon.fadeIn(speed);
+				now_balloon = name;
+			}
+		});
+	});
+
+	$('#balloon').click( function() {
+		$(this).fadeOut(speed);
 	});
 
 	//設定ボタンクリック

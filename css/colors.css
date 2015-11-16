@@ -1,0 +1,151 @@
+﻿@charset "UTF-8";
+
+/*
+	色の変更設定
+*/
+
+/************************
+ *  detail
+ ************************/
+.pink   .siteheader { background-image: url('../img/colors/pink/header.png'); }
+.blue   .siteheader { background-image: url('../img/colors/blue/header.png'); }
+.green  .siteheader { background-image: url('../img/colors/green/header.png'); }
+.red    .siteheader { background-image: url('../img/colors/red/header.png'); }
+.bgreen .siteheader { background-image: url('../img/colors/bluegreen/header.png'); }
+
+.pink   #item_weather div { background-image: url('../img/colors/pink/weather_icon.png'); }
+.blue   #item_weather div { background-image: url('../img/colors/blue/weather_icon.png'); }
+.green  #item_weather div { background-image: url('../img/colors/green/weather_icon.png'); }
+.red    #item_weather div { background-image: url('../img/colors/red/weather_icon.png'); }
+.bgreen #item_weather div { background-image: url('../img/colors/bluegreen/weather_icon.png'); }
+
+.pink   #item_trash div { background-image: url('../img/colors/pink/trash_icon.png'); }
+.blue   #item_trash div { background-image: url('../img/colors/blue/trash_icon.png'); }
+.green  #item_trash div { background-image: url('../img/colors/green/trash_icon.png'); }
+.red    #item_trash div { background-image: url('../img/colors/red/trash_icon.png'); }
+.bgreen #item_trash div { background-image: url('../img/colors/bluegreen/trash_icon.png'); }
+
+.pink   #item_calendar  div { background-image: url('../img/colors/pink/calendar_icon.png'); }
+.blue   #item_calendar  div { background-image: url('../img/colors/blue/calendar_icon.png'); }
+.green  #item_calendar  div { background-image: url('../img/colors/green/calendar_icon.png'); }
+.red    #item_calendar  div { background-image: url('../img/colors/red/calendar_icon.png'); }
+.bgreen #item_calendar  div { background-image: url('../img/colors/bluegreen/calendar_icon.png'); }
+
+.pink   #item_timetable div { background-image: url('../img/colors/pink/timetable_icon.png'); }
+.blue   #item_timetable div { background-image: url('../img/colors/blue/timetable_icon.png'); }
+.green  #item_timetable div { background-image: url('../img/colors/green/timetable_icon.png'); }
+.red    #item_timetable div { background-image: url('../img/colors/red/timetable_icon.png'); }
+.bgreen #item_timetable div { background-image: url('../img/colors/bluegreen/timetable_icon.png'); }
+
+.pink   #item_bus div { background-image: url('../img/colors/pink/bus_icon.png'); }
+.blue   #item_bus div { background-image: url('../img/colors/blue/bus_icon.png'); }
+.green  #item_bus div { background-image: url('../img/colors/green/bus_icon.png'); }
+.red    #item_bus div { background-image: url('../img/colors/red/bus_icon.png'); }
+.bgreen #item_bus div { background-image: url('../img/colors/bluegreen/bus_icon.png'); }
+
+.pink   #item_horoscope div { background-image: url('../img/colors/pink/horoscope_icon.png'); }
+.blue   #item_horoscope div { background-image: url('../img/colors/blue/horoscope_icon.png'); }
+.green  #item_horoscope div { background-image: url('../img/colors/green/horoscope_icon.png'); }
+.red    #item_horoscope div { background-image: url('../img/colors/red/horoscope_icon.png'); }
+.bgreen #item_horoscope div { background-image: url('../img/colors/bluegreen/horoscope_icon.png'); }
+
+.pink   #item_lunch div { background-image: url('../img/colors/pink/lunch_icon.png'); }
+.blue   #item_lunch div { background-image: url('../img/colors/blue/lunch_icon.png'); }
+.green  #item_lunch div { background-image: url('../img/colors/green/lunch_icon.png'); }
+.red    #item_lunch div { background-image: url('../img/colors/red/lunch_icon.png'); }
+.bgreen #item_lunch div { background-image: url('../img/colors/bluegreen/lunch_icon.png'); }
+
+.pink   #item_alarm div { background-image: url('../img/colors/pink/alarm_icon.png'); }
+.blue   #item_alarm div { background-image: url('../img/colors/blue/alarm_icon.png'); }
+.green  #item_alarm div { background-image: url('../img/colors/green/alarm_icon.png'); }
+.red    #item_alarm div { background-image: url('../img/colors/red/alarm_icon.png'); }
+.bgreen #item_alarm div { background-image: url('../img/colors/bluegreen/alarm_icon.png'); }
+
+.pink   .main li:after { color: #bb5d7f; }
+.blue   .main li:after { color: #2980b9; }
+.green  .main li:after { color: #259956; }
+.red    .main li:after { color: #c0392b; }
+.bgreen .main li:after { color: #16a085; }
+
+
+/************************
+ *  settings
+ ************************/
+.pink   .page_header { background-image: url('../img/colors/pink/header.png'); }
+.blue   .page_header { background-image: url('../img/colors/blue/header.png'); }
+.green  .page_header { background-image: url('../img/colors/green/header.png'); }
+.red    .page_header { background-image: url('../img/colors/red/header.png'); }
+.bgreen .page_header { background-image: url('../img/colors/bluegreen/header.png'); }
+
+.pink   .onoff:after,
+.pink   .notification input[type="checkbox"]:checked,
+.pink   .delete_button .text_button { background-color: #bb5d7f; }
+
+.blue   .onoff:after,
+.blue   .notification input[type="checkbox"]:checked,
+.blue   .delete_button .text_button { background-color: #2980b9; }
+
+.green  .onoff:after,
+.green  .notification input[type="checkbox"]:checked,
+.green  .delete_button .text_button { background-color: #259956; }
+
+.red    .onoff:after,
+.red    .notification input[type="checkbox"]:checked,
+.red    .delete_button .text_button { background-color: #c0392b; }
+
+.bgreen .onoff:after,
+.bgreen .notification input[type="checkbox"]:checked,
+.bgreen .delete_button .text_button { background-color: #16a085; }
+
+
+/************************
+ *  base
+ ************************/
+.pink   #launcher_weather { background-image: url('../img/colors/pink/w/weather.png');}
+.blue   #launcher_weather { background-image: url('../img/colors/blue/w/weather.png');}
+.green  #launcher_weather { background-image: url('../img/colors/green/w/weather.png');}
+.red    #launcher_weather { background-image: url('../img/colors/red/w/weather.png');}
+.bgreen #launcher_weather { background-image: url('../img/colors/bluegreen/w/weather.png');}
+
+.pink   #launcher_trash { background-image: url('../img/colors/pink/w/trash.png');}
+.blue   #launcher_trash { background-image: url('../img/colors/blue/w/trash.png');}
+.green  #launcher_trash { background-image: url('../img/colors/green/w/trash.png');}
+.red    #launcher_trash { background-image: url('../img/colors/red/w/trash.png');}
+.bgreen #launcher_trash { background-image: url('../img/colors/bluegreen/w/trash.png');}
+
+.pink   #launcher_calendar { background-image: url('../img/colors/pink/w/calendar.png');}
+.blue   #launcher_calendar { background-image: url('../img/colors/blue/w/calendar.png');}
+.green  #launcher_calendar { background-image: url('../img/colors/green/w/calendar.png');}
+.red    #launcher_calendar { background-image: url('../img/colors/red/w/calendar.png');}
+.bgreen #launcher_calendar { background-image: url('../img/colors/bluegreen/w/calendar.png');}
+
+.pink   #launcher_timetable { background-image: url('../img/colors/pink/w/class_schedule.png');}
+.blue   #launcher_timetable { background-image: url('../img/colors/blue/w/class_schedule.png');}
+.green  #launcher_timetable { background-image: url('../img/colors/green/w/class_schedule.png');}
+.red    #launcher_timetable { background-image: url('../img/colors/red/w/class_schedule.png');}
+.bgreen #launcher_timetable { background-image: url('../img/colors/bluegreen/w/class_schedule.png');}
+
+.pink   #launcher_bus { background-image: url('../img/colors/pink/w/bus.png');}
+.blue   #launcher_bus { background-image: url('../img/colors/blue/w/bus.png');}
+.green  #launcher_bus { background-image: url('../img/colors/green/w/bus.png');}
+.red    #launcher_bus { background-image: url('../img/colors/red/w/bus.png');}
+.bgreen #launcher_bus { background-image: url('../img/colors/bluegreen/w/bus.png');}
+
+.pink   #launcher_horoscope { background-image: url('../img/colors/pink/w/horoscope.png');}
+.blue   #launcher_horoscope { background-image: url('../img/colors/blue/w/horoscope.png');}
+.green  #launcher_horoscope { background-image: url('../img/colors/green/w/horoscope.png');}
+.red    #launcher_horoscope { background-image: url('../img/colors/red/w/horoscope.png');}
+.bgreen #launcher_horoscope { background-image: url('../img/colors/bluegreen/w/horoscope.png');}
+
+.pink   #launcher_lunch { background-image: url('../img/colors/pink/w/school_lunch.png');}
+.blue   #launcher_lunch { background-image: url('../img/colors/blue/w/school_lunch.png');}
+.green  #launcher_lunch { background-image: url('../img/colors/green/w/school_lunch.png');}
+.red    #launcher_lunch { background-image: url('../img/colors/red/w/school_lunch.png');}
+.bgreen #launcher_lunch { background-image: url('../img/colors/bluegreen/w/school_lunch.png');}
+
+
+.base .pink   .text_button { background-color: #bb5d7f; }
+.base .blue   .text_button { background-color: #2980b9; }
+.base .green  .text_button { background-color: #259956; }
+.base .red    .text_button { background-color: #c0392b; }
+.base .bgreen .text_button { background-color: #16a085; }

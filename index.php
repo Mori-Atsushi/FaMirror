@@ -37,21 +37,38 @@ $base = '<section id="base" class="base">
 			<button class="info"></button>
 		</header>
 
-		<h3 id="message"></h3>
+		<h2 id="message"></h2>
 
 		<div class="main">
 			<!-- <div class="square"></div> -->
 		</div>
 
 		<div id="exp" class="exp">
-			<p><!-- 四角形の中に顔を入れて、 -->画面に顔が映るようにして、認証ボタンを押してください。</p>
+			<p id ="exp_text">画面に顔が映るようにして、認証ボタンを押してください。</p>
 			<button class="text_button" id="auth">認証</button>
 		</div>
 
-		<div id="release" class="bottom show">
-			<button class="text_button" id="auth">認証解除</button>
+		<div id="launcher" class="launcher">
+			<div id="showhide" class="showhide"></div>
+			<button class="text_button" id="auth_cancel">認証解除</button>
+			<div id="balloon" class="balloon">
+				<!-- h3>時間割</h3>
+				<ul>
+					<li>
+						<h4>1限目</h4>
+						<p>解析学</p>
+					</li>
+					<li>
+						<h4>2限目</h4>
+						<p>計算機アーキテクチャ</p>
+					</li>
+				</ul -->
+			</div>
+			<div class="scrollbox">
+				<ul id="icon_box">
+				</ul>
+			</div>
 		</div>
-
 	</section>';
 
 
@@ -579,6 +596,7 @@ $video = '<section id="video" class="video">
 	<link rel="stylesheet" href="css/setting.css">
 	<link rel="stylesheet" href="css/settings.css">
 	<link rel="stylesheet" href="css/popup.css">
+	<link rel="stylesheet" href="css/colors.css">
 	<link rel="stylesheet" href="css/forKappa.css">
 	<title>FaMirror</title>
 </head>

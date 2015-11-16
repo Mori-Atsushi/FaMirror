@@ -6,6 +6,18 @@
 	height: 100%;
 }
 
+.base > h2 {
+	margin: 0 10%;
+	width: 80%;
+	color: #f0f0f0;
+	/*text-shadow: 0 3px 5px rgba(0, 0, 0, .7);*/
+	/*box-shadow: 0 2px 0 rgba(0, 0, 0, .5);*/
+	font-size: 3rem;
+	position: absolute;
+	border-bottom: solid 2px #f0f0f0;
+	text-align: center;
+}
+
 .base .main {
 	margin: 0 auto;
 	width: 100%;
@@ -33,7 +45,7 @@
 	position: absolute;
 	bottom: 0;
 	background: rgba(255, 255, 255, .7);
-	/*display: none; */
+	display: none; /**/
 }
 
 .base .exp p {
@@ -47,128 +59,152 @@
 }
 
 
-
-.base .bottom {
-	height: 200px;
+.base .launcher {
 	width: 100%;
+	height: 128px;
 	position: absolute;
 	bottom: 0;
-	/*bottom: -200px;*/
+	background-color: rgba(0, 0, 0, .7);
 }
 
-.base .bottom button.text_button {
+.base .launcher .scrollbox::-webkit-scrollbar {
+	display: none;
+}
+
+
+.base .showhide {
+	width: 96px;
+	height: 48px;
+	position: absolute;
+	right: 0;
+	bottom: 100%;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+.base .showhide:after {
+	content: '';
+	margin: 5px auto;
+	width: 24px;
+	height: 24px;
+	border-left: solid 1px #f0f0f0;
+	border-bottom: solid 1px #f0f0f0;
+	transform: rotate(-45deg);
+	display: block;
+	transition: transform 0.256s, margin 0.256s;
+}
+
+.base .showhide.reverse:after {
+	margin-top: 20px;
+	transform: rotate(135deg);
+}
+
+.base .launcher button.text_button {
 	margin: 8px;
-	background: #848;
+	/*background: #848;*/
 	color: #f8f8f8;
 	position: absolute;
 	bottom: 100%;
 	left: 0;
 }
 
-.base .bottom div.showhide {
-	width: 120px;
-	height: 56px;
-	background: rgba(255, 255, 255, .7);
+.base .launcher .balloon {
+	margin: 8px 1%;
+	/*height: 80px;*/
+	width: 50%;
 	position: absolute;
-	right: 32px;
 	bottom: 100%;
+	right: 0;
+	background: #d4d4dd;
+	border-radius: 16px;
+	overflow: auto;
 }
 
-.base .bottom.show div.showhide:before,
-.base .bottom.hide div.showhide:before {
-	margin: 14px auto;
-	content: '';
-	display: block;
-	width: 60px;
-	height: 27px;
-	background-image: url('../img/arrow.png');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
-}
-.base .bottom.hide div.showhide:before {
-	transform: rotate(180deg);
+.base .launcher .balloon::-webkit-scrollbar {
+	display: none;
 }
 
-/*
-.base .bottom div.showhide:before,
-.base .bottom div.showhide:after {
-	content: '';
-	width: 24px;
-	height: 2px;
-	background-color: #333;
-	display: block;
-	position: absolute;
+.base .launcher .balloon > * {
+	margin: 16px;
 }
-.base .bottom.show div.showhide:before,
-.base .bottom.show div.showhide:after {
-	margin-top: 8px;
-	top: 50%;
-}
-.base .bottom.show div.showhide:before {
-	right: 50%;
-	transform-origin: 100% 50%;
-	transform: rotate(40deg);
-}
-.base .bottom.show div.showhide:after {
-	left: 50%;
-	transform-origin: 0% 50%;
-	transform: rotate(-40deg);
-}
-.base .bottom.hide div.showhide:before,
-.base .bottom.hide div.showhide:after {
-	margin-bottom: 8px;
-	bottom: 50%;
-}
-.base .bottom.hide div.showhide:before {
-	right: 50%;
-	transform-origin: 100% 50%;
-	transform: rotate(-40deg);
-}
-.base .bottom.hide div.showhide:after {
-	left: 50%;
-	transform-origin: 0% 50%;
-	transform: rotate(40deg);
-}*/
 
-.base .bottom .message {
+.base .launcher .balloon h3 {
+	font-size: 1.2rem;
+	text-align: center;
+	border-bottom: solid 1px #333;
+}
+
+.base .launcher .balloon h4 {
+	font-size: 0.8rem;
+}
+
+.base .launcher .balloon p {
+	font-size: 1rem;
+	line-height: 1.5;
+}
+
+.base .launcher .balloon li {
+	margin: 8px 0;
+}
+
+.base .launcher .scrollbox {
+	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background: rgba(255, 255, 255, .7);
+}
+.base .launcher .scrollbox ul {
+	width: 1064px;
+	min-height: 100%;
 }
 
-.base .bottom .message {
-	padding: 0 16px;
-}
-.base .bottom .message > :first-child {
-	padding-top: 16px;
-}
-.base .bottom .message > :last-child {
-	padding-bottom: 16px;
-}
-
-.base .bottom .message .list p,
-.base .bottom .message .list ul {
-	display: table-cell;
-}
-
-.base .bottom .message .list li {
-	font-size: 1.2rem;
-}
-
-.base .bottom .message .list li:before {
-	content: '';
-	margin-right: 8px;
-	margin-left: 16px;
-	display: inline-block;
-	border-top: solid 8px rgba(0,0,0,0);
-	border-left: solid 16px #333;
-	border-bottom: solid 8px rgba(0,0,0,0);
+.base .launcher .scrollbox li {
+	height: 120px;
+	width: 120px;
+	margin: 4px 16px;
+	float: left;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 
 /*** iPhone 6 たて 以上 [Nexus 7 たて 未満] ***/
 @media screen and (max-width: 599px) {
+.base h2 {
+	font-size: 2rem;
+}
+
+.base .launcher {
+	height: 88px;
+}
+
+.base .showhide {
+	width: 80px;
+	height: 40px;
+}
+
+.base .showhide:after {
+	margin: 8px auto;
+	width: 16px;
+	height: 16px;
+}
+
+.base .launcher button.text_button {
+	margin: 4px;
+}
+
+.base .launcher .balloon {
+	width: 70%;
+}
+
+.base .launcher .scrollbox ul {
+	width: 672px;
+}
+
+.base .launcher .scrollbox li {
+	height: 80px;
+	width: 80px;
+	margin: 4px 8px;
+}
 } /* (max-width: 599px) */
 
 
@@ -207,22 +243,74 @@
 	margin: 24px 32px;
 }
 
-/*
-.base .exp {
-	width: 288px;
+
+.base .launcher {
+	width: 128px;
+	height: 100%;
 	right: 0;
+	bottom: auto;
+}
+
+.base .showhide {
+	width: 48px;
+	height: 96px;
+	right: 100%;
+	bottom: 0%;
+}
+
+.base .showhide:after {
+	content: '';
+	margin: 36px 6px;
+	width: 24px;
+	height: 24px;
+	transform: rotate(-135deg);
+	display: block;
+}
+
+.base .showhide.reverse:after {
+	margin: 38px 20px;
+	transform: rotate(45deg);
+}
+
+.base .launcher button.text_button {
+	position: fixed;
 	bottom: 0;
+	left: 0;
 }
 
-.base .exp p {
-	margin: 32px 16px 32px;
+.base .launcher .balloon {
+	margin: 8px;
+	width: 500px;
+	/*position: absolute;*/
+	bottom: auto;
+	right: 100%;/*
+	background: #d4d4dd;
+	border-radius: 16px;*/
+}
+
+.base .launcher .balloon li {
+	margin: 8px 0;
+}
+
+.base .launcher .scrollbox {/*
+	width: 100%;
+	height: 100%;
+	overflow: auto;*/
+}
+.base .launcher .scrollbox ul {
+	width: auto;
+	min-height: 0;
+	min-width: 100%;
+	height: 728px;
+}
+
+.base .launcher .scrollbox li {
+	height: 96px;
+	width: 96px;
+	margin: 8px 16px;
 	float: none;
 }
 
-.base .exp .text_button {
-	margin: 32px auto;
-	float: none;
-}*/
 }
 
 
@@ -237,3 +325,20 @@
 
 }
 
+
+
+
+  /* デバッグ用 */
+/*#base_header {
+	display: none;
+}
+
+.base .launcher .balloon {
+	display: none;
+}
+
+.base {
+	background-image: url('../img/nakura.jpg');
+	background-size: cover;
+	background-position: center;
+}*/

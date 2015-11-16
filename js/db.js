@@ -1,4 +1,4 @@
-var user_data, user_length;
+var user_data, user_length, speek_data;
 var speed = 256; //アニメーションのスピード
 var user_id;
 var member_list_flag = true; //メンバーリストを生成したらfalseへ

@@ -13,18 +13,7 @@
 }
 
 .base .exp {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	background: rgba(255, 255, 255, .7);
 	display: block; /**/
-}
-
-.base .bottom {
-	height: 0;
-	width: 100%;
-	position: absolute;
-	bottom: -50%;
 }
 
 .black_screen {
@@ -34,4 +23,17 @@
 
 .black_screen div {
 	bottom: 100%;
+}
+
+.balloon {
+	display: none;
+}
+
+.base .launcher {
+	bottom: -128px;
+	display: none;
+}
+
+#message {
+	top: -50%;
 }
