@@ -45,12 +45,12 @@ $base = '<section id="base" class="base">
 
 		<div id="exp" class="exp">
 			<p id ="exp_text">画面に顔が映るようにして、認証ボタンを押してください。</p>
-			<button class="text_button" id="auth">認証</button>
+			<button class="text_button" id="auth">利用開始</button>
 		</div>
 
 		<div id="launcher" class="launcher">
 			<div id="showhide" class="showhide"></div>
-			<button class="text_button" id="auth_cancel">認証解除</button>
+			<button class="text_button" id="auth_cancel">利用終了</button>
 			<div id="balloon" class="balloon">
 				<!-- h3>時間割</h3>
 				<ul>

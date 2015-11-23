@@ -141,7 +141,11 @@ $(function() {
 
 		messe.animate({'top' : -height_messe}, speed);
 		$('#exp').animate({'bottom' : '0'}, speed);
-		$('#base_header').animate({'top' : '0'}, speed);	
+		$('#base_header').animate({'top' : '0'}, speed, function() {
+			$('#balloon').css({'display' : 'none'});
+			now_balloon = '';
+			$('#showhide').removeClass('reverse');
+		});	
 	});
 
 	$('#showhide').click( function() {
@@ -191,6 +195,7 @@ $(function() {
 
 	$('#balloon').click( function() {
 		$(this).fadeOut(speed);
+		now_balloon = '';
 	});
 
 	//設定ボタンクリック
