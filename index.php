@@ -545,12 +545,14 @@ $setting_alarm = '<section id="setting_alarm" class="settings setting_alarm">
 	</section>';
 
 $popup = '	<div id="black_screen" class="black_screen">
-			<div id="get_name_popup" class="get_name_popup">
-			<h2>表示名と読み方を入力してください</h2>
+ 		<div id="get_name_popup" class="get_name_popup">
+			<h2>ユーザ情報を入力してください</h2>
 			<label for="name">表示名</label>
 			<input type="text" name="name" class="name" value="' . $_SESSION['name'] . '">
 			<label for="name_p">読み方(ひらがな)</label>
 			<input type="text" name="name_p" class="name_p" value="">
+			<label for="birthday">生年月日</label>
+			<input type="date" name="birthday" class="birthday" value="">
 			<button id="get_name_submit">完了</button>
 		</div>
 		<div id="user_delete" class="OK_Cancel_popup">

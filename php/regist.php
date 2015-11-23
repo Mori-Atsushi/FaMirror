@@ -2,6 +2,7 @@
 $data = array('user_id' => '1');
 $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
 $name_p = htmlspecialchars($_POST['name_p'], ENT_QUOTES);
+$birthday = htmlspecialchars($_POST['birthday'], ENT_QUOTES);
 session_start();
 
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
@@ -25,7 +26,7 @@ if($conn) {
 	$data['img'] = $file_name;
 	file_put_contents('../icon/' . $file_name, $img);
 
-	$sql = 'INSERT INTO user (user_mail, family_id, user_id, refresh_token, user_name, user_name_p, img) VALUES ("' . $_SESSION['email'] . '", "' . $data['family_id'] . '", "' . $data['user_id'] . '", "' . $_SESSION['refresh_token'] . '", "' . $name . '", "' . $name_p . '", "' . $file_name . '")';
+	$sql = 'INSERT INTO user (user_mail, family_id, user_id, refresh_token, user_name, user_name_p, img, birthday) VALUES ("' . $_SESSION['email'] . '", "' . $data['family_id'] . '", "' . $data['user_id'] . '", "' . $_SESSION['refresh_token'] . '", "' . $name . '", "' . $name_p . '", "' . $file_name . '", "' . $birthday . '")';
 	mysql_query($sql, $conn);
 
 	unset($_SESSION['email']);

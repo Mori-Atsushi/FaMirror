@@ -3,7 +3,7 @@ $(function() {
 	var family_id;
 	var face_id = new Array(max);
 	var speed_slow = 1000, speed_fast = 100;
-	var name, name_p;
+	var name, name_p, birthday;
 	var db_count = 0;
 
 	var flag = true; //trueなら撮影可能
@@ -49,7 +49,8 @@ $(function() {
 		var url = 'php/regist.php';
 		var data = {
 			name: name,
-			name_p: name_p
+			name_p: name_p,
+			birthday: birthday
 		};
 		send_db(url, data, new_person_create);
 	};
@@ -119,6 +120,7 @@ $(function() {
 		var popup = $('#get_name_popup');
 		name = popup.find('.name').val();
 		name_p = popup.find('.name_p').val();
+		birthday = popup.find('.birthday').val();
 		$('#black_screen').fadeOut(speed, function() {
 			popup.css({bottom: '100%'});
 		});
