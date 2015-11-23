@@ -69,6 +69,16 @@
 
 
 /************************
+ *  setting
+ ************************/
+.setting .main li:nth-child(5n+1):after { background-color: #bb5d7f; } /* ピンク */
+.setting .main li:nth-child(5n+2):after { background-color: #2980b9; } /* 青 */
+.setting .main li:nth-child(5n+3):after { background-color: #259956; } /* 緑 */
+.setting .main li:nth-child(5n+4):after { background-color: #c0392b; } /* 赤 */
+.setting .main li:nth-child(5n):after   { background-color: #16a085; } /* 青緑 */
+
+
+/************************
  *  settings
  ************************/
 .pink   .page_header { background-image: url('../img/colors/pink/header.png'); }

@@ -93,6 +93,9 @@
 html, body, header, div, h1, h2, h3, h4, h5, h6, p, small, footer, button, a, ul, li {
 	font-size: 20px;
 }
+.sign_up .exp .status {
+	height: 30px;
+}
 }
 
 

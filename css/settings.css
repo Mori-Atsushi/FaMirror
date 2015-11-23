@@ -249,7 +249,7 @@
 }
 
 .disabled .notification input[type="checkbox"]:checked {
-	background-color: #888;
+	background-color: #888 !important;
 }
 
 

@@ -7,7 +7,7 @@ session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
-	mysql_select_db('famirror', $conn);
+	mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 	if($_SESSION['family'] == '') {
 		$sql = 'SELECT max(family_id) FROM user';
 		$famiy_num = mysql_fetch_assoc(mysql_query($sql, $conn));

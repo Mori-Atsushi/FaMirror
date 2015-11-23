@@ -34,7 +34,7 @@ $base = '<section id="base" class="base">
 			<h1></h1>
 			<button id="fullscreen" class="fullscreen"></button>
 			<button class="gear" id="setting_b"></button>
-			<button class="info"></button>
+			<!-- button class="info"></button -->
 		</header>
 
 		<h2 id="message"></h2>
@@ -167,19 +167,19 @@ $setting_weather = '<section id="setting_weather" class="settings">
 					<li>
 						<label>詳細情報
 							<input id="weather_detail" type="checkbox">
-							<p>天気の詳細をお知らせします。</p>
+							<p>今日及び明日の、天気詳細情報をお知らせします。</p>
 						</label>
 					</li>
 					<li>
 						<label>最高気温/最低温度
 							<input id="weather_temperature" type="checkbox">
-							<p>天気の詳細をお知らせします。</p>
+							<p>予想最高気温、予想最低気温をお知らせします。最高気温、最低気温の時間を過ぎた場合、省略されます。</p>
 						</label>
 					</li>
 					<li>
 						<label>明日の天気
 							<input id="weather_tomorrow" type="checkbox">
-							<p>天気の詳細をお知らせします。</p>
+							<p>明日の天気をお知らせします。</p>
 						</label>
 					</li>
 				</ul>
@@ -228,7 +228,7 @@ $setting_trash = '<section id="setting_trash" class="settings">
 					<li>
 						<label>明日のごみ回収
 							<input id="trash_tomorrow" type="checkbox">
-							<p>翌日にごみ回収がある場合お知らせします。</p>
+							<p>翌日のごみ回収も、合わせてお知らせします。</p>
 						</label>
 					</li>
 				</ul>
@@ -258,25 +258,25 @@ $setting_calendar = '<section id="setting_calendar" class="settings">
 					<li>
 						<label>開始時刻
 							<input type="checkbox" id="calendar_start">
-							<p>カレンダーに登録されているスケジュールの開始時刻をお知らせします。</p>
+							<p>スケジュールの開始時刻をお知らせします。</p>
 						</label>
 					</li>
 					<li>
 						<label>終了時刻
 							<input type="checkbox" id="calendar_end">
-							<p>カレンダーに登録されているスケジュールの終了時刻をお知らせします。</p>
+							<p>スケジュールの終了時刻をお知らせします。</p>
 						</label>
 					</li>
 					<li>
 						<label>場所
 							<input type="checkbox" id="calendar_location">
-							<p>カレンダーに登録されているスケジュールの場所をお知らせします。</p>
+							<p>スケジュールの場所をお知らせします。未入力の場合、省略されます。</p>
 						</label>
 					</li>
 					<li>
 						<label>詳細説明
 							<input type="checkbox" id="calendar_description">
-							<p>カレンダーに登録されているスケジュールの詳細説明をお知らせします。</p></label>
+							<p>スケジュールの詳細説明をお知らせします。未入力の場合、省略されます。</p></label>
 					</li>
 				</ul>
 			</div>
@@ -410,7 +410,7 @@ $setting_horoscope = '<section id="setting_horoscope" class="settings">
 					<li>
 						<label>コメント
 							<input id="horoscope_detail" type="checkbox">
-							<p>コメントをお知らせします。</p>
+							<p>今日のあなたの運勢について、詳しくお知らせします。</p>
 						</label>
 					</li>
 					<li>
@@ -466,7 +466,7 @@ $setting_lunch = '<section id="setting_lunch" class="settings">
 					<li>
 						<label>明日の給食
 							<input id="lunch_tomorrow" type="checkbox">
-							<p>明日の給食もお知らせします。</p>
+							<p>明日の給食も合わせてお知らせします。</p>
 						</label>
 					</li>
 				</ul>

@@ -46,7 +46,7 @@ session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
-	mysql_select_db('famirror', $conn);
+	mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 	$sql = 'SELECT family_id FROM user WHERE user_mail = "'. $array['email'] .'"';
 	if(mysql_num_rows(mysql_query($sql, $conn)) !== 0) {
 		$famiy_num = mysql_fetch_assoc(mysql_query($sql, $conn));

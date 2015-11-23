@@ -84,7 +84,7 @@ function trash($user, $conn, $day, $week) {
 
 
 	if($conn) {
-		mysql_select_db('famirror', $conn);
+		mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 		$sql = 'SELECT area1, area2 FROM trashes WHERE id = ' . $trash_id;
 		$result = mysql_fetch_assoc(mysql_query($sql));
 
@@ -127,7 +127,7 @@ function check_trash($conn, $day, $week, $trash_id) {
 	$return = '';
 
 	if($conn) {
-		mysql_select_db('famirror', $conn);
+		mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 		$sql = 'SELECT type, wday FROM trash_types WHERE trash_id = ' . $trash_id;
 		$result = mysql_query($sql);
 		while($row = mysql_fetch_assoc($result)) {
@@ -305,7 +305,7 @@ function horoscope($user) {
 
 function timetable($user, $conn, $week) {
 	if($conn) {
-		mysql_select_db('famirror', $conn);
+		mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 		$sql = 'SELECT department, grade FROM timetables WHERE id = ' . $user['timetable_class'];
 		$result = mysql_fetch_assoc(mysql_query($sql));
 
@@ -350,7 +350,7 @@ function bus($user, $conn) {
 	$h = date(H); $m = date(i);
 	$now = $h . ':' . $m . ':00';
 	if($conn) {
-		mysql_select_db('famirror', $conn);
+		mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 		$sql = 'SELECT route, stop FROM bus_stops WHERE id = ' . $user['bus_route'];
 		$result = mysql_fetch_assoc(mysql_query($sql));
 		$array = array('name' => 'バス（' . $result['route'] . ' ' . $result['stop'] . '）');
@@ -391,7 +391,8 @@ function lunch($user, $conn) {
 	$message = '今日の給食は、';
 	$temp = get_lunch($user, $conn, $month, $day);
 	$message = $message . $temp['speak'];
-	$list = $temp['menu'];
+	$list = array();
+	$list = array_merge($list, $temp['menu']);
 	if($user['lunch_tomorrow']) {
 		$day = $day + 1;
 		$temp = get_lunch($user, $conn, $month, $day);
@@ -408,7 +409,7 @@ function get_lunch($user, $conn, $month, $day) {
 	if($conn) {
 		$year = date(Y);
 		$today = $year . '-' . $month . '-' . $day;
-		mysql_select_db('famirror', $conn);
+		mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 		$sql = 'SELECT menu, calorie FROM cafemenus WHERE school_id = ' . $user['lunch_school'] . ' AND date = "' . $today . '"';
 		$result = mysql_query($sql);
 		$i = 0;
@@ -424,10 +425,13 @@ function get_lunch($user, $conn, $month, $day) {
 			$menu[] = array('name' => $month . '/' . $day . ' メニュー' . ($i + 1), 'content' => $content);
 			$i++;
 		}
-		if($i == 0)
+		if($i == 0) {
 			$message = $message . 'ありません。';
-		else
+			$menu[] = array('name' => $month . '/' . $day . ' メニュー', 'content' => 'ありません');
+
+		} else {
 			$message = $message . 'です。';
+		}
 		$array = array('speak' => $message, 'menu' => $menu);
 		return $array;
 	}

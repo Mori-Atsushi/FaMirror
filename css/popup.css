@@ -19,7 +19,7 @@
 	background: #e6e6e6;
 	position: absolute;
 	bottom: 400%;
-/*	top: 20%;*/
+	/*top: 20%;*/
 	left: 0;
 	right: 0;
 	z-index: 2;
@@ -78,6 +78,11 @@
 
 /*** iPhone 5 たて [Nexus 6 たて 未満] ***/
 @media screen and (max-width: 374px) {
+.black_screen .get_name_popup button,
+.black_screen .OK_popup button,
+.black_screen .OK_Cancel_popup button {
+	width: 96px;
+}
 }
 
 

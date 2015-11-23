@@ -2,7 +2,7 @@
 session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 if($conn) {
-	mysql_select_db('famirror', $conn);
+	mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 	$data = '';
 	for($i = 0; $i < count($_POST['set']); $i++) {
 		if($i != 0)

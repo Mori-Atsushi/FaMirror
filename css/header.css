@@ -207,6 +207,10 @@
 /*
  * ヘッダによるズレの修正
  */
+.setting .main ul,
+.settings .main > :first-child {
+	margin-top: 64px;
+}
 .detail .main ul {
 	margin-top: 200px;
 }

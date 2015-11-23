@@ -5,7 +5,7 @@ $sign_up_flag = !empty($_SESSION['email']);
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 
 if($conn) {
-	mysql_select_db('famirror', $conn);
+	mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 	$sql = 'SELECT * FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
 	$user = mysql_query($sql);
 	$num = 0;

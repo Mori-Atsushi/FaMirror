@@ -8,7 +8,7 @@ $url = 'https://apius.faceplusplus.com';
 session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
 if($conn) {
-	mysql_select_db('famirror', $conn);
+	mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 	$sql = 'SELECT img FROM user WHERE family_id = "' . $_SESSION['family'] . '" AND user_id = "' . $_POST['user_id'] . '"';
 	$old = mysql_fetch_assoc(mysql_query($sql));
 	$old_path = '../icon/' . $old['img'];
@@ -21,12 +21,17 @@ if($conn) {
 	$req = $url . '/person/delete' .  $api . '&person_name=' . $person_name;
 	$res = file_get_contents($req);
 
-	$sql = 'SELECT user_id FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
+	$sql = 'SELECT user_id, img FROM user WHERE family_id = ' . $_SESSION['family'] . ' ORDER BY user_id ASC';
 	$user = mysql_query($sql);
 	$num = 1;
 	while($row = mysql_fetch_assoc($user)) {
 		if($row['user_id'] != $num) {
-			$sql = 'UPDATE user SET user_id = "' . $num . '" WHERE family_id = "' . $_SESSION['family'] . '" AND user_id = "' . $row['user_id'] . '"';
+			$extension = pathinfo($row['img'], PATHINFO_EXTENSION);
+			$old_path = '../icon/' . $row['img'];
+			$new = $_SESSION['family'] . '_' . $num . '.' . $extension;
+			$new_path = '../icon/' . $new;
+			rename($old_path, $new_path);
+			$sql = 'UPDATE user SET user_id = "' . $num . '", img = "' . $new . '" WHERE family_id = "' . $_SESSION['family'] . '" AND user_id = "' . $row['user_id'] . '"';
 			mysql_query($sql);
 
 			$person_name = $_SESSION['family'] . ':' . $row['user_id'];

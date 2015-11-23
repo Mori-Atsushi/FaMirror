@@ -7,7 +7,7 @@ $(function() {
 		if(data.face.length == 1) {
 			user_id = data.face[0].candidate[0].person_name.split(':')[1] - 1;
 			$('#message').text(user_data[user_id]['user_name']);
-			get_info(data.face[0].candidate[0].person_name);
+			get_info();
 		} else {
 			var messe = $('#message');
 			var height_messe = messe.height();
@@ -22,18 +22,17 @@ $(function() {
 	};
 
 	//音声案内用の文章を取得
-	var get_info = function(user) {
+	var get_info = function() {
 		var url = 'php/info.php';
-		var id = user.split(':');
 		var data = {
-			user_id: id[1]
+			user_id: (user_id + 1)
 		};
 		send_db(url, data, speak_info);
 	};
 
 	//情報を話す。
 	var speak_info = function(data) {
-		speek_data = data;
+		speak_data = data;
 		var message = data['message'];
 		var num = user_data[user_id]['setting'].length - 1;
 		var width = 0;
@@ -127,6 +126,7 @@ $(function() {
 		var right_flag = $('#auth_cancel').css('position') == 'fixed';
 		var height_messe = messe.height();
 
+		$('#exp_text').text('画面に顔が映るようにして、認証ボタンを押してください。');
 		if(right_flag) {
 			var width = launcher.width();
 			launcher.animate({'right' : -width, 'opacity' : 0}, speed, function() {
@@ -174,14 +174,15 @@ $(function() {
 	$('#icon_box').on( 'click', 'li', function() {
 		var name = $(this).attr('class');
 		var balloon = $('#balloon');
+		console.log(speak_data['setting'][name]['list']);
 		balloon.fadeOut(speed, function(){
 			if(now_balloon == name) {
 				now_balloon = '';
 			} else {
-				balloon.html('<h3>' + speek_data['setting'][name]['name'] + '</h3><ul></ul>');
+				balloon.html('<h3>' + speak_data['setting'][name]['name'] + '</h3><ul></ul>');
 				balloon_ul = balloon.children('ul');
-				for(var i = 0; i < speek_data['setting'][name]['list'].length; i++)
-					balloon_ul.append('<li><h4>' + speek_data['setting'][name]['list'][i]['name'] + '</h4><p>' + speek_data['setting'][name]['list'][i]['content'] + '</p></li>');
+				for(var i = 0; i < speak_data['setting'][name]['list'].length; i++)
+					balloon_ul.append('<li><h4>' + speak_data['setting'][name]['list'][i]['name'] + '</h4><p>' + speak_data['setting'][name]['list'][i]['content'] + '</p></li>');
 				balloon.fadeIn(speed);
 				now_balloon = name;
 			}
