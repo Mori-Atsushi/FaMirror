@@ -1,15 +1,15 @@
 
 var alarm = 7, content = 0, time = 1;
 
-var check_alarm = function() {
+var check_alarm = function(callback) {
 	var flag = change_flag(user_data[user_id]['setting'][alarm]['notification']);
 	if(flag) {
 		var onof = user_data[user_id]['setting'][alarm]['config']['onof'];
 		var D = new Date();
 		if(change_flag(onof[D.getDay()]['notification']))
-			start_alarm(function(){});
+			start_alarm(callback);
 	} else {
-		speak('音声案内を終了します。');
+		callback();
 	}
 }
 
@@ -38,8 +38,6 @@ var start_alarm = function(callback) {
 		message += 'です。';
 	else
 		message += '経ちました。';
-
-	message += '音声案内を終了します。ß';
 
 	speak(message, callback);
 }

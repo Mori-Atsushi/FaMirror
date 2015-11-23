@@ -1,6 +1,6 @@
 $(function() {
 	var flag = true; //tureなら撮影可能
-	var now_balloon;
+	var now_balloon, speak_flag = false;
 
 	//顔認証のあとの処理
 	var check_user = function(data) {
@@ -50,7 +50,10 @@ $(function() {
 				message += data['setting'][i]['speak'];
 			}
 		}
-		speak(message, check_alarm);
+		speak(message, function() {
+			check_alarm(finish_speak);
+		});
+		speak_flag = true;
 		launcher.addClass(color[user_id]);
 		if(right_flag) {
 			icon_box.height(width);
@@ -64,6 +67,12 @@ $(function() {
 				.animate({'bottom' : 0, 'opacity' : 100}, speed);
 		}
 
+	};
+
+	//音声案内終了
+	var finish_speak = function() {
+		speak("音声案内を終了します。");
+		speak_flag = false;
 	};
 
 	//設定画面作成
@@ -178,7 +187,6 @@ $(function() {
 	$('#icon_box').on( 'click', 'li', function() {
 		var name = $(this).attr('class');
 		var balloon = $('#balloon');
-		console.log(speak_data['setting'][name]['list']);
 		balloon.fadeOut(speed, function(){
 			if(now_balloon == name) {
 				now_balloon = '';
@@ -189,6 +197,8 @@ $(function() {
 					balloon_ul.append('<li><h4>' + speak_data['setting'][name]['list'][i]['name'] + '</h4><p>' + speak_data['setting'][name]['list'][i]['content'] + '</p></li>');
 				balloon.fadeIn(speed);
 				now_balloon = name;
+				if(speak_flag == false)
+					speak(speak_data['setting'][name]['speak']);
 			}
 		});
 	});

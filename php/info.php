@@ -5,7 +5,7 @@ session_start();
 $time = date(H); $manth = date(n); $day = date(j); $week = date(w);
 //$week = 1;
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
-$_POST['user_id'] = 1;
+//$_POST['user_id'] = 1;
 if($conn && $_POST['user_id'] !== '') {
 	mysql_select_db('famirror', $conn); mysql_query('SET NAMES utf8', $conn );
 	$sql = 'SELECT * FROM user WHERE user_id = ' . $_POST['user_id'] . ' AND family_id = ' . $_SESSION['family'];
