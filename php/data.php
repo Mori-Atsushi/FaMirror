@@ -11,6 +11,7 @@ if($conn) {
 	$num = 0;
 	$member = [];
 	while($row = mysql_fetch_assoc($user)) {
+		$member[$num]['family_id'] = $row['family_id'];
 		$member[$num]['user_name'] = $row['user_name'];
 		$member[$num]['user_name_p'] = $row['user_name_p'];
 		$member[$num]['img'] = $row['img'];

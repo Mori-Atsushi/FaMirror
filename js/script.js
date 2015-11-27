@@ -121,7 +121,7 @@ $(function() {
 			flag = false;
 
 			var blob = snapshot();
-			recognition_identify('1', blob, check_user);
+			recognition_identify(user_data[0]['family_id'], blob, check_user);
 
 			messe.text('認証中…').css({'top' : -height_messe}).animate({'top' : 0}, speed);
 			exp.animate({'bottom' : -height_exp}, speed);
