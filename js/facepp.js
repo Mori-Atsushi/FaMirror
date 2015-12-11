@@ -1,8 +1,11 @@
-var api_key = '64f0b8d4729734b49f231e5b0c1f4523';
-var	api_secret = 'bABwx_lmF99mpbGy9M3ZSzsJqiiAoNpb';
+//var api_key = '64f0b8d4729734b49f231e5b0c1f4523';
+var api_key = 'b81fd92a7779b24eddf6b556ccb9baa9';
+//var	api_secret = 'bABwx_lmF99mpbGy9M3ZSzsJqiiAoNpb';
+var api_secret = 'Pq9T3A_pboK4ANRSAnK7ea9XQZdTbVpH';
 var api = '?api_key=' + api_key + '&api_secret=' + api_secret;
 
-var url = 'https://apius.faceplusplus.com';
+//var url = 'https://apius.faceplusplus.com';
+var url = 'https://apicn.faceplusplus.com';
 
 //face++に情報を送信する
 var send_info = function(url, callback) {
@@ -35,6 +38,7 @@ var send_img = function(url, blob, callback) {
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log('Error : ' + errorThrown);
+			setTimeout( function() { send_img(url, blob, callback); } , 1000);
 		}
 	});
 };

@@ -7,7 +7,7 @@ $mirror_flag = !empty($_SESSION['family']);
 $top = '<section class="top">
 		<header class="siteheader"></header>
 		<div class="main">
-			<h2>一瞬の時間もムダにしない、<br>新しい朝を。</h2>
+			<h2>朝の時間を、もっと自由に。<br>　</h2>
 		</div>
 		<footer class="sitefooter">
 			<button onclick="location.href=\'php/OAuth.php\'"></button>
@@ -629,7 +629,8 @@ $video = '<section id="video" class="video">
 	}
 
 	if($sign_up_flag || $mirror_flag) {
-		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>';
+//		echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>';
+		echo '<script type="text/javascript" src="./js/jquery.min.js"></script>';
 		echo '<script type="text/javascript" src="./js/mirror.js"></script>';
 		echo '<script type="text/javascript" src="./js/db.js"></script>';
 		echo '<script type="text/javascript" src="./js/facepp.js"></script>';

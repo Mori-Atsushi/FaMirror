@@ -1,9 +1,12 @@
 <?php
-$api_key = '64f0b8d4729734b49f231e5b0c1f4523';
-$api_secret = 'bABwx_lmF99mpbGy9M3ZSzsJqiiAoNpb';
+//$api_key = '64f0b8d4729734b49f231e5b0c1f4523';
+$api_key = 'b81fd92a7779b24eddf6b556ccb9baa9';
+//$api_secret = 'bABwx_lmF99mpbGy9M3ZSzsJqiiAoNpb';
+$api_secret = 'Pq9T3A_pboK4ANRSAnK7ea9XQZdTbVpH';
 $api = '?api_key=' . $api_key . '&api_secret=' . $api_secret;
 
-$url = 'https://apius.faceplusplus.com';
+//$url = 'https://apius.faceplusplus.com';
+$url = 'https://apicn.faceplusplus.com';
 
 session_start();
 $conn = mysql_connect('localhost', 'famirror', 'famirrorproject');
